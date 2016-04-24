@@ -12,7 +12,12 @@ DISTROS=('Arch'
 'CentOS'
 'Debian'
 'Fedora'
-'Gentoo')
+'Gentoo'
+'Linux Mint'
+'Mageia'
+'openSUSE'
+'Sabayon'
+'Ubuntu')
 for I in "${DISTROS[@]}"
 do
   i=$(echo $I | tr '[:upper:]' '[:lower:]') # convert distro string to lowercase

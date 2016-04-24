@@ -5,7 +5,7 @@ export ARCH=$(uname -m)
 export VER=$(lsb_release -sr)
 
 # Load the test function
-/bin/bash -c "lib/test.sh"
+source "lib/test.sh"
 
 echo $VER
 DISTROS=('Arch'

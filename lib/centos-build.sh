@@ -1,3 +1,5 @@
+. /lib/atom-build.sh
+
 function centos-build {
   # Get dependencies
   curl -sL https://rpm.nodesource.com/setup_5.x | sudo bash -     # Get the latest version of Node.js

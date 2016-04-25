@@ -1,3 +1,5 @@
+. /lib/atom-build.sh
+
 function fedora-build {
   # Get dependencies
   sudo dnf copr enable nibbler/nodejs

@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# This script is the main script of this installer. It detects the operating system
+# and relevant hardware details. 
+
+
 export LD=$(lsb_release -sd | sed 's/"//g') # current distribution name
 export ARCH=$(uname -m)                     # current CPU architecture
 export VER=$(lsb_release -sr)               # current distribution version

@@ -1,4 +1,6 @@
 #!/bin/bash
+
+# This is a quick install script to install Atom ASAP
 export REPO=https://github.com/fusion809/atom-installer
 export GHUB=$HOME/GitHub
 
@@ -8,7 +10,7 @@ fi
 
 cd $GHUB
 
-if ! [[ -d $GHUB/atom-installer ]]; then
+if ! [[ -d $GHUB/atom-installer ]]; then                                                  # Get the repository, if necessary
   printf "Getting the atom-installer repository locally ==>"
   if which git >/dev/null 2>&1; then
     git clone $REPO $GHUB/atom-installer
@@ -25,6 +27,7 @@ else
     if which git >/dev/null 2>&1; then
       cd $GHUB/atom-installer
       git pull origin master
+      cd .
     elif which curl >/dev/null 2>&1; then
       rm -rf $GHUB/atom-installer
       curl -sL $REPO/archive/master.tar.gz | tar xz --transform=s/atom-installer-master/atom-installer/ -C $GHUB
@@ -37,3 +40,6 @@ else
   fi
 
 fi
+
+cd $GHUB/atom-installer
+./installer.sh

@@ -13,6 +13,8 @@ if [[ $LD == "Arch Linux" ]]; then          # Load AUR function
   source "lib/atom-editor-aur.sh"
 elif [[ $LD == "CentOS"* ]]; then           # Load CentOS function
   source "lib/centos-build.sh"
+elif [[ $LD == "Debian"* ]]; then
+  source "lib/debian-build.sh"
 fi
 
 DISTROS=(                                   # List of supported distributions

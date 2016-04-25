@@ -75,7 +75,7 @@ while if you would rather use GNU wget run:
 ```
 
 ## License
-The contents of this repository are licensed under the GNU General Public License version 3 (GNU GPLv3), see [LICENSE](/LICENSE).
+The contents of this repository are licensed under the GNU General Public License version 3 (GNU GPLv3), for a copy, see [LICENSE](/LICENSE).
 
 ## External Resources
 * [Official Linux Build Instructions for Atom](https://github.com/atom/atom/blob/master/docs/build-instructions/linux.md).

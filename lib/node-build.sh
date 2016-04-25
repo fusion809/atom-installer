@@ -1,3 +1,4 @@
+#!/bin/bash
 function node-build {
   export ARCH=$(uname -m)
   wget -cqO- "https://projects.archlinux.org/svntogit/community.git/plain/trunk/PKGBUILD?h=packages/nodejs" > /tmp/PKGBUILD

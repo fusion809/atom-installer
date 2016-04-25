@@ -1,3 +1,4 @@
+#!/bin/bash
 . ./lib/atom-build.sh
 
 function linux-mint-build {

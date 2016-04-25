@@ -9,7 +9,7 @@ function atom-build {
   read SRC_DEST
 
   if ! [[ -n $SRC_DEST ]]; then
-    INST_DEST=$GHUB
+    SRC_DEST=$GHUB
   fi
 
   printf "Do you want to install Atom locally or system-wide? [local/system] "

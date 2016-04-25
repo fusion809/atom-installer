@@ -1,6 +1,6 @@
 function atom-build {
   export GHUB=$HOME/GitHub
-  
+
   # Get the source code
   printf "How would you like to get the source code? [curl/git/wget/?] "
   read SRC_METHOD
@@ -15,11 +15,15 @@ function atom-build {
   printf "Do you want to install Atom locally or system-wide? [local/system] "
   read DEST_TYPE
 
-  printf "Where do you want to install Atom? [Leave empty for ./install]"
+  printf "Where do you want to install Atom? [Leave empty for ./install (local) and /usr (system)]"
   read INST_DEST
 
   if ! [[ -n $INST_DEST ]]; then
-    INST_DEST=install
+    if [[ $DEST_TYPE == "local" ]]; then
+      INST_DEST=install
+    else
+      INST_DEST=/usr
+    fi
   fi
 
   git clone https://aur.archlinux.org/atom-editor.git /tmp/atom-editor
@@ -58,6 +62,7 @@ function atom-build {
   script/build
   if [[ $DEST_TYPE == "local" ]]; then
     script/grunt install --channel=stable --install-dir $INST_DEST
+    printf "The Atom executable is now found at $INST_DEST/bin/atom"
   elif [[ $DEST_TYPE = "system" ]]; then
     sudo script/grunt install --channel=stable --install-dir $INST_DEST
   fi

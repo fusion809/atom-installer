@@ -1,24 +1,25 @@
 #!/bin/bash
 
-export LD=$(lsb_release -sd | sed 's/"//g')
-export ARCH=$(uname -m)
-export VER=$(lsb_release -sr)
+export LD=$(lsb_release -sd | sed 's/"//g') # current distribution name
+export ARCH=$(uname -m)                     # current CPU architecture
+export VER=$(lsb_release -sr)               # current distribution version
 
-# Load the test function
-source "lib/test.sh"
+source "lib/test.sh"                        # Load the test functions
 
-echo $VER
-DISTROS=('Arch'
-'CentOS'
-'Debian'
-'Fedora'
-'Gentoo'
-'Linux Mint'
-'Mageia'
-'openSUSE'
-'Sabayon'
-'Ubuntu')
-for I in "${DISTROS[@]}"
+DISTROS=(                                   # List of supported distributions
+'Arch'                                      #  Arch Linux
+'CentOS'                                    #  CentOS
+'Debian'                                    #  Debian
+'Fedora'                                    #  Fedora
+'Gentoo'                                    #  Gentoo Linux
+'Linux Mint'                                #  Linux Mint
+'Mageia'                                    #  Mageia
+'openSUSE'                                  #  openSUSE
+'Sabayon'                                   #  Sabayon Linux
+'Ubuntu'                                    #  Ubuntu
+)
+
+for I in "${DISTROS[@]}"                    # Run the appropriate script, for the distro and architecture
 do
   i=$(echo $I | tr '[:upper:]' '[:lower:]') # convert distro string to lowercase
   if [[ $LD == "$I"* ]]; then

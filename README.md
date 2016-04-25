@@ -4,21 +4,38 @@ This project's stated purpose is to create shell scripts for automating the inst
 ```bash
 .
 ├── lib
+│   ├── atom-build.sh
 │   ├── atom-editor-aur.sh
+│   ├── centos-build.sh
+│   ├── debian-build.sh
+│   ├── fedora-build.sh
+│   ├── gentoo-build.sh
+│   ├── linux-mint-build.sh
+│   ├── mageia-build.sh
+│   ├── node-build.sh
 │   └── test.sh
 ├── i686
 │   ├── arch.sh
 │   ├── centos.sh
 │   ├── debian.sh
 │   ├── fedora.sh
-│   └── gentoo.sh
+│   ├── gentoo.sh
+│   ├── linux-mint.sh
+│   ├── mageia.sh
+│   └── opensuse.sh
 ├── x86_64
 │   ├── arch.sh
 │   ├── centos.sh
 │   ├── debian.sh
 │   ├── fedora.sh
-│   └── gentoo.sh
+│   ├── gentoo.sh
+│   ├── linux-mint.sh
+│   ├── mageia.sh
+│   └── opensuse.sh
+├── deploy.sh
+├── help.sh
 ├── installer.sh
+├── perms.sh
 ├── quick-install.sh
 ├── LICENSE
 └── README.md
@@ -38,7 +55,7 @@ If you want to add another distribution to the set of supported distributions fo
 A feature I have added to this repository is a quick install script (i.e., the `quick-install.sh` script). This script quickly gets the latest version of this repository locally and then runs the `installer.sh` script.
 
 ```bash
-sh -c $(curl -sL https://git.io/vwEIX)
+sh -c "$(curl -sL https://git.io/vwEIX)"
 ```
 
 ## External Resources

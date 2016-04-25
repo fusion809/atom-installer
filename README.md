@@ -13,16 +13,21 @@ This project's stated purpose is to create shell scripts for automating the inst
 │   ├── linux-mint-build.sh
 │   ├── mageia-build.sh
 │   ├── node-build.sh
-│   └── test.sh
+│   ├── opensuse-build.sh
+│   ├── test.sh
+│   └── ubuntu-build.sh
 ├── i686
-│   ├── arch.sh
-│   ├── centos.sh
-│   ├── debian.sh
-│   ├── fedora.sh
+│   ├── arch.sh
+│   ├── centos.sh
+│   ├── debian.sh
+│   ├── fedora.sh
 │   ├── gentoo.sh
 │   ├── linux-mint.sh
 │   ├── mageia.sh
-│   └── opensuse.sh
+│   ├── manjaro.sh
+│   ├── opensuse.sh
+│   ├── sabayon.sh
+│   └── ubuntu.sh
 ├── x86_64
 │   ├── arch.sh
 │   ├── centos.sh
@@ -31,7 +36,10 @@ This project's stated purpose is to create shell scripts for automating the inst
 │   ├── gentoo.sh
 │   ├── linux-mint.sh
 │   ├── mageia.sh
-│   └── opensuse.sh
+│   ├── manjaro.sh
+│   ├── opensuse.sh
+│   ├── sabayon.sh
+│   └── ubuntu.sh
 ├── deploy.sh
 ├── help.sh
 ├── installer.sh
@@ -67,7 +75,7 @@ while if you would rather use GNU wget run:
 ```
 
 ## License
-The contents of this repository are licensed under the GNU General Public License version 3 (GNU GPLv3), see [/LICENSE](/LICENSE).
+The contents of this repository are licensed under the GNU General Public License version 3 (GNU GPLv3), see [LICENSE](/LICENSE).
 
 ## External Resources
 * [Official Linux Build Instructions for Atom](https://github.com/atom/atom/blob/master/docs/build-instructions/linux.md).

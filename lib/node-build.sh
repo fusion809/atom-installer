@@ -9,4 +9,5 @@ function node-build {
     curl -sL http://nodejs.org/dist/v$ver/node-v$ver-linux-x86.tar.xz | tar xJ -C /tmp
     sudo cp -a /tmp/node-v$ver-linux-x86/{bin,lib,share,include} /usr
   fi
+  sudo npm install -g node-gyp
 }

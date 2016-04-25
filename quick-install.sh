@@ -11,7 +11,7 @@ fi
 cd $GHUB
 
 if ! [[ -d $GHUB/atom-installer ]]; then                                                  # Get the repository, if necessary
-  printf "Getting the atom-installer repository locally ==>"
+  printf "Getting the atom-installer repository locally ==>\n"
   if which git >/dev/null 2>&1; then
     git clone $REPO $GHUB/atom-installer
   elif which curl >/dev/null 2>&1; then
@@ -20,8 +20,8 @@ if ! [[ -d $GHUB/atom-installer ]]; then                                        
     wget -cqO- $REPO/archive/master.tar.gz | tar xz --transform=s/atom-installer-master/atom-installer/ -C $GHUB
   fi
 else
-  printf "The atom-installer repository is already locally present!"
-  printf "Update your local copy? [y/n]"
+  printf "The atom-installer repository is already locally present!\n"
+  printf "Update your local copy? [y/n]\n"
   read yn
   if [[ $yn == "y" ]]; then
     if which git >/dev/null 2>&1; then

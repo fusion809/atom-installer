@@ -5,6 +5,9 @@ export ARCH=$(uname -m)                     # current CPU architecture
 export VER=$(lsb_release -sr)               # current distribution version
 
 source "lib/test.sh"                        # Load the test functions
+if [[ $LD == "Arch Linux" ]]; then
+  source "lib/atom-editor-aur.sh"           # load the atomin function
+fi
 
 DISTROS=(                                   # List of supported distributions
 'Arch'                                      #  Arch Linux

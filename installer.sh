@@ -29,7 +29,7 @@ DISTROS=(                                   # List of supported distributions
 )
 
 for I in "${DISTROS[@]}"                    # Run the appropriate script, for the distro and architecture
-do
+do                                          # we're on
   i=$(echo $I | tr '[:upper:]' '[:lower:]') # convert distro string to lowercase
   if [[ $LD == "$I"* ]]; then
     ./$ARCH/${i}.sh

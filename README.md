@@ -1,5 +1,5 @@
 # Atom Installer
-This project's stated purpose is to create shell scripts for automating the installation process of Atom on 32-bit and 64-bit Linux. The structure of this repository is (at the time of me writing this section of the README, more shell scripts should be added to the lib, i686 and x86_64 folders with time):
+This project's stated purpose is to create shell scripts for automating the installation process of [Atom](https://atom.io) on 32-bit and 64-bit Linux. The structure of this repository is (at the time of me writing this section of the README, more shell scripts should be added to the lib, i686 and x86_64 folders with time):
 
 ```bash
 .

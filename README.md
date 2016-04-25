@@ -31,4 +31,4 @@ If you want to add another distribution to the set of supported distributions fo
 * Adding extra supported distributions via a pull request.
 * Fixing errors or otherwise improving on existing scripts in this repository.
 * Improving on this README or other forms of documentation.
-* Reporting errors in these scripts via starting a [new issue](/issues/new).
+* Reporting errors in these scripts via starting a [new issue](https://github.com/fusion809/atom-installer/issues/new).

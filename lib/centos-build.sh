@@ -1,4 +1,4 @@
-. /lib/atom-build.sh
+. ./lib/atom-build.sh
 
 function centos-build {
   # Get dependencies

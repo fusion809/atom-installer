@@ -20,8 +20,8 @@ if ! [[ -d $GHUB/atom-installer ]]; then                                        
     wget -cqO- $REPO/archive/master.tar.gz | tar xz --transform=s/atom-installer-master/atom-installer/ -C $GHUB
   fi
 else
-  printf "The atom-installer repository is already locally present! "
-  printf "\n"
+  printf "The atom-installer repository is already locally present! \s\s\n"
+  printf "\n\n"
   printf "Update your local copy? [y/n] "
   read yn
   if [[ $yn == "y" ]]; then

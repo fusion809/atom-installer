@@ -1,4 +1,4 @@
-. /lib/atom-build.sh
+. ./lib/atom-build.sh
 
 function fedora-build {
   # Get dependencies

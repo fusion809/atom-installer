@@ -21,7 +21,7 @@ if ! [[ -d $GHUB/atom-installer ]]; then                                        
   fi
 else
   printf "The atom-installer repository is already locally present! "
-  printf "\n\n"
+  printf "\n"
   printf "Update your local copy? [y/n] "
   read yn
   if [[ $yn == "y" ]]; then

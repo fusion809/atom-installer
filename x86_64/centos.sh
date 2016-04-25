@@ -26,6 +26,9 @@ elif [[ $preference == "B" ]]; then
   printf "Where do you want to install Atom?"
   read INST_DEST
 
+  git clone https://aur.archlinux.org/atom-editor.git /tmp/atom-editor
+  ver=$(sed -n 's/pkgver=//p' /tmp/atom-editor/PKGBUILD)
+
   if [[ $SRC_METHOD == "?" ]]; then
 
     printf "curl and wget are the fastest methods and they chew up less bandwidth.\n
@@ -33,29 +36,13 @@ elif [[ $preference == "B" ]]; then
 
   elif [[ $SRC_METHOD == "curl" ]]; then
 
-    git clone https://aur.archlinux.org/atom-editor.git /tmp/atom-editor
-    ver=$(sed -n 's/pkgver=//p' /tmp/atom-editor/PKGBUILD)
     curl -sL https://github.com/atom/atom/archive/v$ver.tar.gz | tar xz -C $SRC_DEST
     cd $SRC_DEST/atom-$ver
-    script/build
-    if [[ $DEST_TYPE == "local" ]]; then
-      script/grunt install --channel=stable --install-dir $INST_DEST
-    elif [[ $DEST_TYPE = "system" ]]; then
-      sudo script/grunt install --channel=stable --install-dir $INST_DEST
-    fi
 
   elif [[ $SRC_METHOD == "wget" ]]; then
 
-    git clone https://aur.archlinux.org/atom-editor.git /tmp/atom-editor
-    ver=$(sed -n 's/pkgver=//p' /tmp/atom-editor/PKGBUILD)
     wget -cqO- https://github.com/atom/atom/archive/v$ver.tar.gz | tar xz -C $SRC_DEST
     cd $SRC_DEST/atom-$ver
-    script/build
-    if [[ $DEST_TYPE == "local" ]]; then
-      script/grunt install --channel=stable --install-dir $INST_DEST
-    elif [[ $DEST_TYPE = "system" ]]; then
-      sudo script/grunt install --channel=stable --install-dir $INST_DEST
-    fi
 
   elif [[ $SRC_METHOD == "git" ]]; then
 
@@ -63,13 +50,17 @@ elif [[ $preference == "B" ]]; then
     cd $SRC_DEST/atom
     git fetch -p
     git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
-    script/build
-    if [[ $DEST_TYPE == "local" ]]; then
-      script/grunt install --channel=stable --install-dir $INST_DEST
-    elif [[ $DEST_TYPE = "system" ]]; then
-      sudo script/grunt install --channel=stable --install-dir $INST_DEST
-    fi
+
+  else
+
+    printf "You must select a SRC_METHOD!"
 
   fi
-  
+
+  script/build
+  if [[ $DEST_TYPE == "local" ]]; then
+    script/grunt install --channel=stable --install-dir $INST_DEST
+  elif [[ $DEST_TYPE = "system" ]]; then
+    sudo script/grunt install --channel=stable --install-dir $INST_DEST
+  fi
 fi

@@ -15,6 +15,8 @@ elif [[ $LD == "CentOS"* ]]; then           # Load CentOS function
   source "lib/centos-build.sh"
 elif [[ $LD == "Debian"* ]]; then
   source "lib/debian-build.sh"
+elif [[ $LD == "Fedora"* ]]; then
+  source "lib/fedora-build.sh"
 fi
 
 DISTROS=(                                   # List of supported distributions

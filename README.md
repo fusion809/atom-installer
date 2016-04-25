@@ -32,3 +32,6 @@ If you want to add another distribution to the set of supported distributions fo
 * Fixing errors or otherwise improving on existing scripts in this repository.
 * Improving on this README or other forms of documentation.
 * Reporting errors in these scripts via starting a [new issue](https://github.com/fusion809/atom-installer/issues/new).
+
+## External Resources
+* [Official Linux Build Instructions for Atom](https://github.com/atom/atom/blob/master/docs/build-instructions/linux.md).

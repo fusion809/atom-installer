@@ -1,5 +1,7 @@
 #!/bin/bash
 
+. ./lib/test.sh
+
 function atomin {
   if [[ -n "$1" ]]; then
     cd /tmp/atom-editor-$1

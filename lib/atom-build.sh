@@ -50,3 +50,5 @@ function atom-build {
     sudo script/grunt install --channel=stable --install-dir $INST_DEST
   fi
 }
+
+export -f atom-build

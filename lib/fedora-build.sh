@@ -5,3 +5,5 @@ function fedora-build {
     libgnome-keyring-dev fakeroot
   atom-build
 }
+
+export -f fedora-build

@@ -6,3 +6,5 @@ function debian-build {
     libgnome-keyring-dev fakeroot
   atom-build
 }
+
+export -f debian-build

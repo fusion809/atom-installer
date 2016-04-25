@@ -5,3 +5,5 @@ function centos-build {
     glibc-devel git-core
   atom-build
 }
+
+export -f centos-build

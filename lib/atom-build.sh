@@ -9,7 +9,7 @@ function atom-build {
   printf "Do you want to install Atom locally or system-wide? [local/system] "
   read DEST_TYPE
 
-  printf "Where do you want to install Atom?"
+  printf "Where do you want to install Atom? "
   read INST_DEST
 
   git clone https://aur.archlinux.org/atom-editor.git /tmp/atom-editor
@@ -42,6 +42,8 @@ function atom-build {
     printf "You must select a SRC_METHOD!"
 
   fi
+
+  mkdir -p $INST_DEST
 
   script/build
   if [[ $DEST_TYPE == "local" ]]; then

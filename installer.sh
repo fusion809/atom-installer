@@ -26,7 +26,6 @@ DISTROS=(                                   # List of supported distributions
 'Fedora'                                    #  Fedora
 'Gentoo'                                    #  Gentoo Linux
 'Linux Mint'                                #  Linux Mint
-'Mageia'                                    #  Mageia
 'openSUSE'                                  #  openSUSE
 'Sabayon'                                   #  Sabayon Linux
 'Ubuntu'                                    #  Ubuntu

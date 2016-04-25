@@ -1,16 +1,26 @@
 function atom-build {
+  export GHUB=$HOME/GitHub
+  
   # Get the source code
   printf "How would you like to get the source code? [curl/git/wget/?] "
   read SRC_METHOD
 
-  printf "Where do you want to store the source code? "
+  printf "Where do you want to store the source code? [Leavy empty for $GHUB]"
   read SRC_DEST
+
+  if ! [[ -n $SRC_DEST ]]; then
+    INST_DEST=$GHUB
+  fi
 
   printf "Do you want to install Atom locally or system-wide? [local/system] "
   read DEST_TYPE
 
-  printf "Where do you want to install Atom? "
+  printf "Where do you want to install Atom? [Leave empty for ./install]"
   read INST_DEST
+
+  if ! [[ -n $INST_DEST ]]; then
+    INST_DEST=install
+  fi
 
   git clone https://aur.archlinux.org/atom-editor.git /tmp/atom-editor
   ver=$(sed -n 's/pkgver=//p' /tmp/atom-editor/PKGBUILD)

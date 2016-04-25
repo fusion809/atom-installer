@@ -19,6 +19,7 @@ This project's stated purpose is to create shell scripts for automating the inst
 │   ├── fedora.sh
 │   └── gentoo.sh
 ├── installer.sh
+├── quick-install.sh
 ├── LICENSE
 └── README.md
 ```
@@ -32,6 +33,13 @@ If you want to add another distribution to the set of supported distributions fo
 * Fixing errors or otherwise improving on existing scripts in this repository.
 * Improving on this README or other forms of documentation.
 * Reporting errors in these scripts via starting a [new issue](https://github.com/fusion809/atom-installer/issues/new).
+
+## Quick Installer
+A feature I have added to this repository is a quick install script (i.e., the `quick-install.sh` script). This script quickly gets the latest version of this repository locally and then runs the `installer.sh` script.
+
+```bash
+sh -c $(curl -sL https://git.io/vwEIX)
+```
 
 ## External Resources
 * [Official Linux Build Instructions for Atom](https://github.com/atom/atom/blob/master/docs/build-instructions/linux.md).

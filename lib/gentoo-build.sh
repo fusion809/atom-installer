@@ -9,8 +9,9 @@ function gentoo-build {
   sudo emerge-webrsync
   sudo emerge -o --autounmask-write app-editors/atom
   sudo etc-update --automode -5
+
   sudo emerge -o app-editors/atom || echo "Sorry, you are going to have to deal with any issues here yourself. \n One common issue is a circular dependency issue with app-crypt/gcr, app-crypt/gnupg and app-crypt/pinentry. The solution involves adjusting USE flags."
-  atom-build
+  sudo emerge app-editors/atom || echo "Emerging the Atom editor failed! Now we are going to install it the old fashion manual way!" && atom-build
 }
 
 export -f gentoo-build

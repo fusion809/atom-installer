@@ -66,5 +66,8 @@ while if you would rather use GNU wget run:
 /bin/bash -c "$(wget -cqO- https://git.io/vwEIX)"
 ```
 
+## License
+The contents of this repository are licensed under the GNU General Public License version 3 (GNU GPLv3), see [/LICENSE](/LICENSE).
+
 ## External Resources
 * [Official Linux Build Instructions for Atom](https://github.com/atom/atom/blob/master/docs/build-instructions/linux.md).

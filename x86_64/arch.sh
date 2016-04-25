@@ -1,6 +1,4 @@
 #!/bin/bash
-export AUR=https://aur.archlinux.org/cgit/aur.git/snapshot/
-export GIT=https://aur.archlinux.org/
 
 if comex atom; then                       # Check if Atom is already installed
 
@@ -16,5 +14,5 @@ else
   elif [[ $preference == "B" ]]; then
     atomaur
   fi
-  
+
 fi

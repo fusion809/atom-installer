@@ -12,7 +12,13 @@ function atomin {
 
 export -f atomin
 
+# Install atom-editor
 function atomaur {
+
+  # Export env variables
+  export AUR=https://aur.archlinux.org/cgit/aur.git/snapshot/
+  export GIT=https://aur.archlinux.org/
+
   if [[ -n "$1" ]]; then                     # if input provided; allowed input bin, git
 
     if comex yaourt; then                    # Install with yaourt if possible

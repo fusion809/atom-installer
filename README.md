@@ -55,7 +55,7 @@ If you want to add another distribution to the set of supported distributions fo
 A feature I have added to this repository is a quick install script (i.e., the `quick-install.sh` script). This script quickly gets the latest version of this repository locally and then runs the `installer.sh` script.
 
 ```bash
-sh -c "$(curl -sL https://git.io/vwEIX)"
+/bin/bash -c "$(curl -sL https://git.io/vwEIX)"
 ```
 
 ## External Resources

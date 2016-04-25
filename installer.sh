@@ -11,9 +11,11 @@ export ARCH=$(uname -m)                     # current CPU architecture
 export VER=$(lsb_release -sr)               # current distribution version
 
 source "lib/test.sh"                        # Load the test functions
-if [[ $LD == "Arch Linux" ]]; then          # Load AUR function
+
+# Load the distribution-specific libraries
+if [[ $LD == "Arch Linux" ]] || [[ $LD == "Manjaro"* ]]; then
   source "lib/atom-editor-aur.sh"
-elif [[ $LD == "CentOS"* ]]; then           # Load CentOS function
+elif [[ $LD == "CentOS"* ]]; then
   source "lib/centos-build.sh"
 elif [[ $LD == "Debian"* ]]; then
   source "lib/debian-build.sh"
@@ -36,6 +38,7 @@ DISTROS=(                                   # List of supported distributions
 'Fedora'                                    #  Fedora
 'Gentoo'                                    #  Gentoo Linux
 'Linux Mint'                                #  Linux Mint
+'Manjaro'                                   #  Manjaro Linux
 'openSUSE'                                  #  openSUSE
 'Sabayon'                                   #  Sabayon Linux
 'Ubuntu'                                    #  Ubuntu

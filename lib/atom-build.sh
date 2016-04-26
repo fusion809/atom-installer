@@ -40,16 +40,18 @@ function atom-build {
 
   elif [[ $SRC_METHOD == "curl" ]]; then
 
-    if ! [[ -d $SRC_DEST/atom-$ver ]]; then
-      curl -sL https://github.com/atom/atom/archive/v$ver.tar.gz | tar xz -C $SRC_DEST
+    if [[ -d $SRC_DEST/atom-$ver ]]; then
+      rm -rf $SRC_DEST/atom-$ver
     fi
+    curl -sL https://github.com/atom/atom/archive/v$ver.tar.gz | tar xz -C $SRC_DEST
     cd $SRC_DEST/atom-$ver
 
   elif [[ $SRC_METHOD == "wget" ]]; then
 
     if ! [[ -d $SRC_DEST/atom-$ver ]]; then
-      wget -cqO- https://github.com/atom/atom/archive/v$ver.tar.gz | tar xz -C $SRC_DEST
+      rm -rf $SRC_DEST/atom-$ver
     fi
+    wget -cqO- https://github.com/atom/atom/archive/v$ver.tar.gz | tar xz -C $SRC_DEST
     cd $SRC_DEST/atom-$ver
 
   elif [[ $SRC_METHOD == "git" ]]; then

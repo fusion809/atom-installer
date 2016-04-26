@@ -6,21 +6,32 @@
 if [[ "$1" == '-h' ]] || [[ "$1" == '--help' ]] || [[ "$1" == '?' ]]; then
   . ./help.sh
 fi
-export LD=$(cat /etc/os-release | grep PRETTY_NAME | sed 's/PRETTY_NAME="//g' | sed 's/"//g') # current distribution name
+export LD=$(cat /etc/os-release | grep -w "NAME" | sed 's/NAME="//g' | sed 's/"//g') # current distribution name
 export ARCH=$(uname -m)                     # current CPU architecture
-export VER=$(lsb_release -sr)               # current distribution version
+if cat /etc/os-release | grep -w "VERSION_ID" | sed 's/VERSION_ID=//g' | sed 's/"//g'; then
+  export VER=$(cat /etc/os-release | grep -w "VERSION_ID" | sed 's/VERSION_ID=//g' | sed 's/"//g')
+fi
 
 source "lib/test.sh"                        # Load the test functions
 
 # Load the distribution-specific libraries
-source "./lib/atom-editor-aur.sh"
-source "./lib/centos-build.sh"
-source "./lib/debian-build.sh"
-source "./lib/fedora-build.sh"
-source "./lib/linux-mint-build.sh"
-source "./lib/mageia-build.sh"
-source "./lib/opensuse-build.sh"
-source "./lib/ubuntu-build.sh"
+if [[ $LD == "Arch Linux" ]] || [[ $LD == "Manjaro"* ]]; then
+  source "lib/atom-editor-aur.sh"
+elif [[ $LD == "CentOS"* ]]; then
+  source "lib/centos-build.sh"
+elif [[ $LD == "Debian"* ]]; then
+  source "lib/debian-build.sh"
+elif [[ $LD == "Fedora"* ]]; then
+  source "lib/fedora-build.sh"
+elif [[ $LD == "Linux Mint"* ]]; then
+  source "lib/linux-mint-build.sh"
+elif [[ $LD == "Mageia"* ]]; then
+  source "lib/mageia-build.sh"
+elif [[ $LD == "openSUSE"* ]]; then
+  source "lib/opensuse-build.sh"
+elif [[ $LD == "Ubuntu"* ]]; then
+  source "lib/ubuntu-build.sh"
+fi
 
 DISTROS=(                                   # List of supported distributions
 'Arch'                                      #  Arch Linux

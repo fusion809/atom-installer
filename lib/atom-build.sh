@@ -25,8 +25,12 @@ function atom-build {
       INST_DEST=/usr
     fi
   fi
-
-  git clone https://aur.archlinux.org/atom-editor.git /tmp/atom-editor
+  if ! [[ -d /tmp/atom-editor ]]; then
+    git clone https://aur.archlinux.org/atom-editor.git /tmp/atom-editor
+  else
+    cd /tmp/atom-editor
+    git pull origin master
+  fi
   ver=$(sed -n 's/pkgver=//p' /tmp/atom-editor/PKGBUILD)
 
   if [[ $SRC_METHOD == "?" ]]; then
@@ -36,17 +40,22 @@ function atom-build {
 
   elif [[ $SRC_METHOD == "curl" ]]; then
 
-    curl -sL https://github.com/atom/atom/archive/v$ver.tar.gz | tar xz -C $SRC_DEST
+    if ! [[ -d $SRC_DEST/atom-$ver ]]; then
+      curl -sL https://github.com/atom/atom/archive/v$ver.tar.gz | tar xz -C $SRC_DEST
+    fi
     cd $SRC_DEST/atom-$ver
 
   elif [[ $SRC_METHOD == "wget" ]]; then
 
-    wget -cqO- https://github.com/atom/atom/archive/v$ver.tar.gz | tar xz -C $SRC_DEST
+    if ! [[ -d $SRC_DEST/atom-$ver ]]; then
+      wget -cqO- https://github.com/atom/atom/archive/v$ver.tar.gz | tar xz -C $SRC_DEST
+    fi
     cd $SRC_DEST/atom-$ver
 
   elif [[ $SRC_METHOD == "git" ]]; then
-
-    git clone https://github.com/atom/atom $SRC_DEST/atom
+    if ! [[ -d $SRC_DEST/atom ]]; then
+      git clone https://github.com/atom/atom $SRC_DEST/atom
+    fi
     cd $SRC_DEST/atom
     git fetch -p
     git checkout $(git describe --tags `git rev-list --tags --max-count=1`)

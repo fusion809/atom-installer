@@ -17,3 +17,4 @@ function node-build {
   fi
   sudo npm install -g node-gyp # Required for building Atom
 }
+export -f node-build

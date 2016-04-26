@@ -13,14 +13,14 @@ export VER=$(lsb_release -sr)               # current distribution version
 source "lib/test.sh"                        # Load the test functions
 
 # Load the distribution-specific libraries
-source "lib/atom-editor-aur.sh"
-source "lib/centos-build.sh"
-source "lib/debian-build.sh"
-source "lib/fedora-build.sh"
-source "lib/linux-mint-build.sh"
-source "lib/mageia-build.sh"
-source "lib/opensuse-build.sh"
-source "lib/ubuntu-build.sh"
+source "./lib/atom-editor-aur.sh"
+source "./lib/centos-build.sh"
+source "./lib/debian-build.sh"
+source "./lib/fedora-build.sh"
+source "./lib/linux-mint-build.sh"
+source "./lib/mageia-build.sh"
+source "./lib/opensuse-build.sh"
+source "./lib/ubuntu-build.sh"
 
 DISTROS=(                                   # List of supported distributions
 'Arch'                                      #  Arch Linux

@@ -20,6 +20,7 @@ elif [[ $LD == "CentOS"* ]]; then
 elif [[ $LD == "Debian"* ]]; then
   source "lib/debian-build.sh"
 elif [[ $LD == "Fedora"* ]]; then
+  echo "Hi"
   source "lib/fedora-build.sh"
 elif [[ $LD == "Linux Mint"* ]]; then
   source "lib/linux-mint-build.sh"

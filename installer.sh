@@ -6,11 +6,12 @@
 if [[ "$1" == '-h' ]] || [[ "$1" == '--help' ]] || [[ "$1" == '?' ]]; then
   . ./help.sh
 fi
-export LD=$(cat /etc/os-release | grep -w "NAME" | sed 's/NAME="//g' | sed 's/"//g') # current distribution name
-export ARCH=$(uname -m)                     # current CPU architecture
-if cat /etc/os-release | grep -w "VERSION_ID" | sed 's/VERSION_ID=//g' | sed 's/"//g'; then
-  export VER=$(cat /etc/os-release | grep -w "VERSION_ID" | sed 's/VERSION_ID=//g' | sed 's/"//g')
-fi
+# Distribution name
+export LD=$(cat /etc/os-release | grep -w "NAME" | sed 's/NAME="//g' | sed 's/"//g')
+# Distribution architecture
+export ARCH=$(uname -m)
+# Distribution version number, e.g., on Fedora 23 it returns 23
+export VER=$(cat /etc/os-release | grep -w "VERSION_ID" | sed 's/VERSION_ID=//g' | sed 's/"//g')
 
 source "lib/test.sh"                        # Load the test functions
 

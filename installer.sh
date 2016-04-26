@@ -6,7 +6,7 @@
 if [[ "$1" == '-h' ]] || [[ "$1" == '--help' ]] || [[ "$1" == '?' ]]; then
   . ./help.sh
 fi
-export LD=$(lsb_release -sd | sed 's/"//g') # current distribution name
+export LD=$(cat /etc/os-release | grep PRETTY_NAME | sed 's/PRETTY_NAME="//g' | sed 's/"//g') # current distribution name
 export ARCH=$(uname -m)                     # current CPU architecture
 export VER=$(lsb_release -sr)               # current distribution version
 

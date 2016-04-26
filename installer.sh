@@ -51,6 +51,7 @@ DISTROS=(
 'Fedora'                                    #  Fedora
 'Gentoo'                                    #  Gentoo Linux
 'Linux Mint'                                #  Linux Mint
+'Mageia'
 'Manjaro'                                   #  Manjaro Linux
 'openSUSE'                                  #  openSUSE
 'Sabayon'                                   #  Sabayon Linux

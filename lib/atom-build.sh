@@ -5,7 +5,7 @@ function atom-build {
   printf "How would you like to get the source code? [curl/git/wget/?] "
   read SRC_METHOD
 
-  printf "Where do you want to store the source code? [Leavy empty for $GHUB]"
+  printf "Where do you want to store the source code? [Leavy empty for $GHUB] "
   read SRC_DEST
 
   if ! [[ -n $SRC_DEST ]]; then
@@ -15,7 +15,7 @@ function atom-build {
   printf "Do you want to install Atom locally or system-wide? [local/system] "
   read DEST_TYPE
 
-  printf "Where do you want to install Atom? [Leave empty for ./install (local) and /usr (system)]"
+  printf "Where do you want to install Atom? [Leave empty for ./install (local) and /usr (system)] "
   read INST_DEST
 
   if ! [[ -n $INST_DEST ]]; then

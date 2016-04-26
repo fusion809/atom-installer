@@ -82,6 +82,7 @@ The following distributions I have tried and successfully used the installer on:
 
 * CentOS 7 (64-bit)
 * Debian 8.4 (64-bit)
+* Mageia 5 (64-bit)
 * Ubuntu 16.04 (64-bit)
 
 while I expect it to also work on the following distributions:
@@ -92,7 +93,7 @@ while I expect it to also work on the following distributions:
 * Fedora
 * Gentoo Linux
 * Linux Mint
-* Mageia
+* Mageia (other versions)
 * Manjaro Linux
 * openSUSE
 * Sabayon Linux

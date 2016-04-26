@@ -27,7 +27,8 @@ source "./lib/test.sh"                        # Load the test functions
 # Load the distribution-specific libraries
 source "./lib/build-index.sh"
 
-DISTROS=(                                   # List of supported distributions
+# List of supported distributions
+DISTROS=(
 'Arch'                                      #  Arch Linux
 'CentOS'                                    #  CentOS
 'Debian'                                    #  Debian

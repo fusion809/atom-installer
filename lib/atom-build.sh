@@ -48,7 +48,7 @@ function atom-build {
 
   elif [[ $SRC_METHOD == "wget" ]]; then
 
-    if ! [[ -d $SRC_DEST/atom-$ver ]]; then
+    if [[ -d $SRC_DEST/atom-$ver ]]; then
       rm -rf $SRC_DEST/atom-$ver
     fi
     wget -cqO- https://github.com/atom/atom/archive/v$ver.tar.gz | tar xz -C $SRC_DEST

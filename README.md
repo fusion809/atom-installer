@@ -77,5 +77,26 @@ while if you would rather use GNU wget run:
 ## License
 The contents of this repository are licensed under the GNU General Public License version 3 (GNU GPLv3), for a copy, see [LICENSE](/LICENSE).
 
+## Supported Distributions
+The following distributions I have tried and successfully used the installer on:
+
+* CentOS 7 (64-bit)
+* Debian 8.4 (64-bit)
+* Ubuntu 16.04 (64-bit)
+
+while I expect it to also work on the following distributions:
+
+* Arch Linux
+* CentOS (other versions)
+* Debian (other versions)
+* Fedora
+* Gentoo Linux
+* Linux Mint
+* Mageia
+* Manjaro Linux
+* openSUSE
+* Sabayon Linux
+* Ubuntu (other versions)
+
 ## External Resources
 * [Official Linux Build Instructions for Atom](https://github.com/atom/atom/blob/master/docs/build-instructions/linux.md).

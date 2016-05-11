@@ -76,6 +76,18 @@ while if you would rather use GNU wget run:
 /bin/bash -c "$(wget -cqO- https://git.io/vwEIX)"
 ```
 
+Alternatively, if you wish to quickly install Atom with my configuration settings, run:
+
+```bash
+/bin/bash -c "$(curl -sL )"
+```
+
+or:
+
+```bash
+/bin/bash -c "$(wget -cqO- )"
+```
+
 ## License
 The contents of this repository are licensed under the GNU General Public License version 3 (GNU GPLv3), for a copy, see [LICENSE](/LICENSE).
 

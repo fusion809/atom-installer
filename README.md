@@ -79,13 +79,13 @@ while if you would rather use GNU wget run:
 Alternatively, if you wish to quickly install Atom with my configuration settings, run:
 
 ```bash
-/bin/bash -c "$(curl -sL )"
+/bin/bash -c "$(curl -sL https://git.io/vrLi9)"
 ```
 
 or:
 
 ```bash
-/bin/bash -c "$(wget -cqO- )"
+/bin/bash -c "$(wget -cqO- https://git.io/vrLi9)"
 ```
 
 ## License

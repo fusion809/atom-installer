@@ -7,3 +7,5 @@ function opensuse-build {
     git-core libgnome-keyring-devel
   atom-build
 }
+
+export -f opensuse-build

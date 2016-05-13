@@ -12,7 +12,7 @@ function atom-build {
     SRC_DEST=$GHUB
   fi
 
-  printf "Do you want to install Atom locally or system-wide? [local/system] "
+  printf "Do you want to install Atom locally or system-wide? [local/system, default: system] "
   read DEST_TYPE
 
   printf "Where do you want to install Atom? [Leave empty for ./install (local) and /usr (system)] "
@@ -74,7 +74,7 @@ function atom-build {
   if [[ $DEST_TYPE == "local" ]]; then
     script/grunt install --channel=stable --install-dir $INST_DEST
     printf "The Atom executable is now found at $SRC_DEST/$INST_DEST/bin/atom \n"
-  elif [[ $DEST_TYPE = "system" ]]; then
+  else
     sudo script/grunt install --channel=stable --install-dir $INST_DEST
   fi
 }

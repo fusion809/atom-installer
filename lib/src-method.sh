@@ -41,3 +41,5 @@ function src-method {
 
   fi
 }
+
+export -f src-method

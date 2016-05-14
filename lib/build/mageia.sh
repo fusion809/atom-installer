@@ -1,6 +1,6 @@
 #!/bin/bash
-. ./lib/atom-build.sh
-. ./lib/node-build.sh
+. ./lib/build/atom.sh
+. ./lib/build/node.sh
 
 function mageia-build {
   # Get dependencies

@@ -1,4 +1,4 @@
-. ./lib/atom-build.sh
+. ./lib/build/atom.sh
 
 function gentoo-build {
   # Get dependencies

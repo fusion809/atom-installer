@@ -1,7 +1,6 @@
-#!/bin/bash
-. ./lib/atom-build.sh
+. ./lib/build/atom.sh
 
-function linux-mint-build {
+function debian-build {
   # Get dependencies
   sudo apt-get install -y curl
   curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
@@ -10,4 +9,4 @@ function linux-mint-build {
   atom-build
 }
 
-export -f linux-mint-build
+export -f debian-build

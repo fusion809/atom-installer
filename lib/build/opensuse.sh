@@ -1,5 +1,5 @@
 #!/bin/bash
-. ./lib/atom-build.sh
+. ./lib/build/atom.sh
 
 function opensuse-build {
   # Get dependencies

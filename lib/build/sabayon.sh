@@ -1,5 +1,5 @@
 #!/bin/bash
-. ./lib/atom-build.sh
+. ./lib/build/atom.sh
 
 function sabayon-build {
   # Get dependencies

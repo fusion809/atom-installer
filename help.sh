@@ -10,7 +10,7 @@ Atom from the available binary or from source code.
 it will install Atom from it.
 
 3. If option 1 or 2 are not possible, or if you opted to install Atom from source code it will
-run the `./lib/atom-build.sh` script after installing any missing build/runtime dependencies
+run the `./lib/build/atom.sh` script after installing any missing build/runtime dependencies
 for Atom
 
 Note it will NOT install Atom from unofficial binaries or repositories.'

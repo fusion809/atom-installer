@@ -1,3 +1,4 @@
+#!/bin/bash
 function atom-build {
   export GHUB=$HOME/GitHub
 

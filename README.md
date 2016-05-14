@@ -103,12 +103,11 @@ while I expect it to also work on the following distributions:
 * Debian (other versions)
 * Fedora
 * Gentoo Linux
-* Linux Mint
 * Mageia (other versions)
 * Manjaro Linux
 * openSUSE
 * Sabayon Linux
-* Ubuntu (other versions)
+* Ubuntu (other versions, as well as its derivatives like Linux Mint)
 
 ## External Resources
 * [Official Linux Build Instructions for Atom](https://github.com/atom/atom/blob/master/docs/build-instructions/linux.md).

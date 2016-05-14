@@ -114,7 +114,7 @@ while I expect it to also work on the following distributions:
 * [Official Linux Build Instructions for Atom](https://github.com/atom/atom/blob/master/docs/build-instructions/linux.md).
 
 ## Contributing
-For details on how to contribute to this project please see the [CONTRIBUTING.md](https://github.com/fusion809/lighttable-installer/blob/master/CONTRIBUTING.md) file.
+For details on how to contribute to this project please see the [CONTRIBUTING.md](/CONTRIBUTING.md) file.
 
 ## License
 The contents of this repository are licensed under the GNU General Public License version 3 (GNU GPLv3), for a copy, see [LICENSE](/LICENSE). The Atom text editor itself, however, is licensed under the MIT License.

@@ -1,5 +1,5 @@
 #!/bin/bash
-printf "Do you want to install Atom from A) a binary package (faster) or would you prefer B) a source install (slower)? [A/B] "
+printf "Do you want to install Atom from A) a binary package (faster) or would you prefer B) a source install (slower)? [A/B; B is the default] "
 read preference
 
 sudo apt-get install -y curl
@@ -10,7 +10,7 @@ if [[ $preference == "A" ]]; then
   sudo dpkg -i /tmp/atom-amd64.deb                                     # Install it with dpkg
   sudo apt-get -f install                                              # Install missing dependencies
 
-elif [[ $preference == "B" ]]; then
+else
 
   ubuntu-build
 

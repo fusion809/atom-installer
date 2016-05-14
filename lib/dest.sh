@@ -1,6 +1,6 @@
 #!/bin/bash
 function dest {
-  printf "Where do you want to store the source code? [Leavy empty for $GHUB] "
+  printf "Where do you want to store the source code? [Leave empty for $GHUB] "
   read SRC_DEST
 
   if ! [[ -n $SRC_DEST ]]; then
@@ -24,7 +24,7 @@ function dest {
   if ! [[ -d $INST_DEST ]]; then
     mkdir -p $INST_DEST
   fi
-  
+
   export SRC_DEST
   export DEST_TYPE
   export INST_DEST

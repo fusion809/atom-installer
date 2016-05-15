@@ -109,6 +109,8 @@ while I expect it to also work on the following distributions:
 * Sabayon Linux
 * Ubuntu (other versions, as well as its derivatives like Linux Mint)
 
+The way it detects the operating system it is being run on is by reading the `/etc/os-release` file. So, if you find that running `cat /etc/os-release | grep -w "NAME" | sed 's/NAME=//g' | sed 's/"//g'` returns the distribution names given above, your distribution should be supported by this installer.
+
 ## External Resources
 * [Official Linux Build Instructions for Atom](https://github.com/atom/atom/blob/master/docs/build-instructions/linux.md).
 

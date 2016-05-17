@@ -4,9 +4,9 @@
 
 function atomin {
   if [[ -n "$1" ]]; then
-    cd /tmp/atom-editor-$1
+    cd /tmp/PKGBUILDs/atom-editor/atom-editor-$1
   else
-    cd /tmp/atom-editor
+    cd /tmp/PKGBUILDs/atom-editor/atom-editor
   fi
   makepkg -si --noconfirm
   cd .
@@ -14,68 +14,84 @@ function atomin {
 
 export -f atomin
 
-# Install atom-editor
+# Install Atom
 function atomaur {
 
   # Export env variables
   export AUR=https://aur.archlinux.org/cgit/aur.git/snapshot/
   export GIT=https://aur.archlinux.org/
 
-  if [[ -n "$1" ]]; then                     # if input provided; allowed input bin, git
+  printf "Would you prefer to install Atom from the AUR or from my PKGBUILDs GitHub repository? [AUR/GitHub/?; GitHub is the default] "
+  read choice
+
+  if [[ $choice == "?" ]]; then
+
+    printf 'If you opt to install Atom from the AUR, the AUR helper `yaourt` will be used to install it. This means that when updates become available from the AUR you will be able to install them (along with packages updates from the pacman repositories and other AUR packages you have installed) by running `yaourt -Syua`.\nMy PKGBUILD for Atom should be up-to-date and uses a desktop configuration file with MimeType support for a wider variety of different file formats than that provided by the AUR.'
+
+    printf "Would you prefer to install Atom from the AUR or from my PKGBUILDs GitHub repository? [AUR/GitHub; GitHub is the default] "
+    read choice
+
+  fi
+
+  if [[ $choice == "AUR" ]]; then
 
     if comex yaourt; then                    # Install with yaourt if possible
 
-      yaourt -S atom-editor-$1 --noconfirm
+      printf "Great you have yaourt already installed!"
 
     elif comex git; then                      # Install with git and makepkg otherwise
 
-      git clone $GIT/atom-editor-$1.git /tmp/atom-editor-$1
-      atomin $1
+      printf "Ah, it seems you do not have yaourt installed, so I'm about to install it for you!"
+
+      git clone $GIT/package-query.git /tmp/package-query
+      git clone $GIT/yaourt.git /tmp/yaourt
+
+      cd /tmp/package-query && makepkg -si --noconfirm
+      cd /tmp/yaourt && makepkg -si --noconfirm
 
     elif comex curl; then                     # Install with curl and makepkg otherwise
 
-      curl -sL $AUR/atom-editor-$1.tar.gz | tar xz -C /tmp
-      atomin $1
+      curl -sL $AUR/package-query.tar.gz | tar xz -C /tmp
+      curl -sL $AUR/yaourt.tar.gz | tar xz -C /tmp
+      cd /tmp/package-query && makepkg -si --noconfirm
+      cd /tmp/yaourt && makepkg -si --noconfirm
 
     elif comex wget; then                     # Install with wget and makepkg otherwise
 
-      wget -cqO- $AUR/atom-editor-$1.tar.gz | tar xz -C /tmp
-      atomin $1
+      wget -cqO- $AUR/package-query.tar.gz | tar xz -C /tmp
+      wget -cqO- $AUR/yaourt.tar.gz | tar xz -C /tmp
+      cd /tmp/package-query && makepkg -si --noconfirm
+      cd /tmp/yaourt && makepkg -si --noconfirm
 
     else                                      # Install curl and install with curl and makepkg otherwise
 
       sudo pacman -S curl --noconfirm
-      curl -sL $AUR/atom-editor-$1.tar.gz | tar xz -C /tmp
-      atomin $1
+      curl -sL $AUR/package-query.tar.gz | tar xz -C /tmp
+      curl -sL $AUR/yaourt.tar.gz | tar xz -C /tmp
+      cd /tmp/package-query && makepkg -si --noconfirm
+      cd /tmp/yaourt && makepkg -si --noconfirm
 
     fi
-  else
-    if comex yaourt; then                    # Install with yaourt if possible
 
-      yaourt -S atom-editor --noconfirm
+    yaourt -S atom-editor --noconfirm
 
-    elif comex git; then                      # Install with git and makepkg otherwise
+  else # GitHub is the default
 
-      git clone $GIT/atom-editor.git /tmp/atom-editor
-      atomin
+    if comex git; then
 
-    elif comex curl; then                     # Install with curl and makepkg otherwise
+      git clone https://github.com/fusion809/PKGBUILDs.git /tmp/PKGBUILDs
 
-      curl -sL $AUR/atom-editor.tar.gz | tar xz -C /tmp
-      atomin
+    elif comex curl; then
 
-    elif comex wget; then                     # Install with wget and makepkg otherwise
+      curl -sL https://github.com/fusion809/PKGBUILDs/archive/master.tar.gz | tar xz --transform=s/PKGBUILDs-master/PKGBUILDs -C /tmp
 
-      wget -cqO- $AUR/atom-editor.tar.gz | tar xz -C /tmp
-      atomin
+    elif comex wget; then
 
-    else                                      # Install curl and install with curl and makepkg otherwise
-
-      sudo pacman -S curl --noconfirm
-      curl -sL $AUR/atom-editor.tar.gz | tar xz -C /tmp
-      atomin
+      wget -cqO- https://github.com/fusion809/PKGBUILDs/archive/master.tar.gz | tar xz --transform=s/PKGBUILDs-master/PKGBUILDs -C /tmp
 
     fi
+
+    atomin
   fi
 }
 

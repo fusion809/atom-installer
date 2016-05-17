@@ -4,9 +4,9 @@
 
 function atomin {
   if [[ -n "$1" ]]; then
-    cd /tmp/PKGBUILDs/atom-editor/atom-editor-$1
+    cd /tmp/PKGBUILDs/atom-editor-$1
   else
-    cd /tmp/PKGBUILDs/atom-editor/atom-editor
+    cd /tmp/PKGBUILDs/atom-editor
   fi
   makepkg -si --noconfirm
   cd .

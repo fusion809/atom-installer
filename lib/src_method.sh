@@ -2,7 +2,7 @@
 
 function src_method {
   # Get the source code
-  printf "How would you like to get the source code? [curl/git/wget/?] "
+  printf "How would you like to get the source code? [curl/git/wget/?; default: curl] "
   read SRC_METHOD
 
   # Test to see what SRC_METHOD is defined as
@@ -10,14 +10,6 @@ function src_method {
 
     printf "curl and wget are the fastest methods and they chew up less bandwidth.\n
     While git uses up more bandwidth but it also makes upgrading the package faster."
-
-  elif [[ $SRC_METHOD == "curl" ]]; then
-
-    if [[ -d $SRC_DEST/atom-$pkgver ]]; then
-      rm -rf $SRC_DEST/atom-$pkgver
-    fi
-    curl -sL https://github.com/atom/atom/archive/v$pkgver.tar.gz | tar xz -C $SRC_DEST
-    cd $SRC_DEST/atom-$pkgver
 
   elif [[ $SRC_METHOD == "wget" ]]; then
 
@@ -37,7 +29,11 @@ function src_method {
 
   else
 
-    printf "You must select a SRC_METHOD!"
+    if [[ -d $SRC_DEST/atom-$pkgver ]]; then
+      rm -rf $SRC_DEST/atom-$pkgver
+    fi
+    curl -sL https://github.com/atom/atom/archive/v$pkgver.tar.gz | tar xz -C $SRC_DEST
+    cd $SRC_DEST/atom-$pkgver
 
   fi
 }

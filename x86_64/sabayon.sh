@@ -8,7 +8,7 @@ else
 
   method
 
-  if [[ $method == "A" ]]; then
+  if [[ $preference == "A" ]]; then
     sudo equo i app-editors/atom
   else
     sabayon_build

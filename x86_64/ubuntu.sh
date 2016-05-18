@@ -3,7 +3,7 @@ method
 
 sudo apt-get install -y curl
 
-if [[ $method == "A" ]]; then
+if [[ $preference == "A" ]]; then
 
   curl -sL https://atom.io/download/deb > /tmp/atom-amd64.deb          # Download latest binary
   sudo dpkg -i /tmp/atom-amd64.deb                                     # Install it with dpkg

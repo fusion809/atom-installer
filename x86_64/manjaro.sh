@@ -8,7 +8,7 @@ else
 
   method
 
-  if [[ $method == "A" ]]; then
+  if [[ $preference == "A" ]]; then
     atomaur bin
   else
     atomaur

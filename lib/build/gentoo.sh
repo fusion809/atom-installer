@@ -1,6 +1,6 @@
 . ./lib/build/atom.sh
 
-function gentoo-build {
+function gentoo_build {
   # Get dependencies
   sudo sed -i -e 's/USE="/USE="-bindist' /etc/portage/make.conf
   if ! [[ -d /usr/portage ]]; then
@@ -11,7 +11,7 @@ function gentoo-build {
   sudo etc-update --automode -5
 
   sudo emerge -o app-editors/atom || echo "Sorry, you are going to have to deal with any issues here yourself. \n One common issue is a circular dependency issue with app-crypt/gcr, app-crypt/gnupg and app-crypt/pinentry. The solution involves adjusting USE flags."
-  sudo emerge app-editors/atom || echo "Emerging the Atom editor failed! Now we are going to install it the old fashion manual way!" && atom-build
+  sudo emerge app-editors/atom || echo "Emerging the Atom editor failed! Now we are going to install it the old fashion manual way!" && atom_build
 }
 
-export -f gentoo-build
+export -f gentoo_build

@@ -10,6 +10,6 @@ if [[ $preference == "A" ]]; then
 
 else
 
-  opensuse-build
+  opensuse_build
 
 fi

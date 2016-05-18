@@ -12,6 +12,6 @@ if [[ $preference == "A" ]]; then
 
 else
 
-  debian-build
+  debian_build
 
 fi

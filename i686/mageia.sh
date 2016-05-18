@@ -1,3 +1,3 @@
 #!/bin/bash
 
-mageia-build
+mageia_build

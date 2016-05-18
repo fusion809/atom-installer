@@ -1,5 +1,5 @@
 #!/bin/bash
-function atom-build {
+function atom_build {
   export GHUB=$HOME/GitHub
 
   if ! `comex node-gyp`; then
@@ -13,13 +13,13 @@ function atom-build {
   version
 
   # Get the source code
-  src-method
+  src_method
 
   # Compile the source
-  src-build
+  src_build
 
   # Install it
-  atom-install
+  atom_install
 }
 
-export -f atom-build
+export -f atom_build

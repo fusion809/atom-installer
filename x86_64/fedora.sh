@@ -10,6 +10,6 @@ if [[ $preference == "A" ]]; then
 
 else
 
-  fedora-build
+  fedora_build
 
 fi

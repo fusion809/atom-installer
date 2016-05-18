@@ -12,6 +12,6 @@ else
   if [[ $preference == "A" ]]; then
     sudo equo i app-editors/atom
   else
-    sabayon-build
+    sabayon_build
   fi
 fi

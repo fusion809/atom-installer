@@ -1,3 +1,3 @@
 #!/bin/bash
 
-fedora-build
+fedora_build

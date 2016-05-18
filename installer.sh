@@ -25,8 +25,8 @@ export VER=$(cat /etc/os-release | grep -w "VERSION_ID" | sed 's/VERSION_ID=//g'
 source "./lib/test.sh"                        # Load the test functions
 source "./lib/dest.sh"                        # Load the dest function
 source "./lib/version.sh"                     # Load the version function
-source "./lib/src-method.sh"                  # Load the source method function
-source "./lib/src-build.sh"                   # Load the source build function
+source "./lib/src_method.sh"                  # Load the source method function
+source "./lib/src_build.sh"                   # Load the source build function
 source "./lib/install.sh"                     # Load the atom install function
 
 # Load the distribution-specific libraries

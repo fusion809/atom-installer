@@ -1,3 +1,3 @@
 #!/bin/bash
 
-gentoo-build
+gentoo_build

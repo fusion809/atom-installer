@@ -1,3 +1,3 @@
 #!/bin/bash
 
-centos-build
+centos_build

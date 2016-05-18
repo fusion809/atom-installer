@@ -12,6 +12,6 @@ if [[ $preference == "A" ]]; then
 
 else
 
-  ubuntu-build
+  ubuntu_build
 
 fi

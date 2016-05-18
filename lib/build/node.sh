@@ -1,5 +1,5 @@
 #!/bin/bash
-function node-build {
+function node_build {
 
   # Architecture
   export ARCH=$(uname -m)
@@ -18,4 +18,4 @@ function node-build {
   sudo npm install -g node-gyp # Required for building Atom
 }
 
-export -f node-build
+export -f node_build

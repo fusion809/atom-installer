@@ -1,3 +1,3 @@
 #!/bin/bash
 
-debian-build
+debian_build

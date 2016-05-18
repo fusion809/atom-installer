@@ -1,3 +1,3 @@
 #!/bin/bash
 
-ubuntu-build
+ubuntu_build

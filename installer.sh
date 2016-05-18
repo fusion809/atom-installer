@@ -23,6 +23,7 @@ export VER=$(cat /etc/os-release | grep -w "VERSION_ID" | sed 's/VERSION_ID=//g'
 ######################################################################################################
 
 source "./lib/test.sh"                        # Load the test functions
+source "./lib/method.sh"                      # Load pref checker
 source "./lib/dest.sh"                        # Load the dest function
 source "./lib/version.sh"                     # Load the version function
 source "./lib/src_method.sh"                  # Load the source method function

@@ -6,10 +6,9 @@ if comex atom; then                       # Check if Atom is already installed
 
 else
 
-  printf "Would you rather install Atom from: A) a Debian binary (faster) or B) from source (slower, but more reliable)? [A/B; B is the default] "
-  read preference
+  method
 
-  if [[ $preference == "A" ]]; then
+  if [[ $method == "A" ]]; then
     atomaur bin
   else
     atomaur

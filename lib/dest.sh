@@ -10,12 +10,12 @@ function dest {
   printf "Do you want to install Atom locally or system-wide? [local/system, default: system] "
   read DEST_TYPE
 
-  printf "Where do you want to install Atom? [Leave empty for ./install (local) and /usr (system)] "
+  printf "Where do you want to install Atom? [Leave empty for ~/.local (local) and /usr (system)] "
   read INST_DEST
 
   if ! [[ -n $INST_DEST ]]; then
     if [[ $DEST_TYPE == "local" ]]; then
-      INST_DEST=$SRC_DEST/atom*/install
+      INST_DEST=$HOME/.local
     else
       INST_DEST=/usr
     fi

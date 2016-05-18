@@ -50,6 +50,9 @@ if [[ -d $GHUBM ]]; then
 
   fi
 
+  cd $GHUBM/atom-installer
+  ./installer.sh
+
 else
   cd $GHUB
 
@@ -89,14 +92,6 @@ else
     fi
   fi
 
-fi
-###########################################################################################################################################
-
-# Run the main installer script
-if [[ -d $GHUB/atom-installer ]]; then
   cd $GHUB/atom-installer
-  ./installer.sh
-elif [[ -d $GHUBM/atom-installer ]]; then
-  cd $GHUBM/atom-installer
   ./installer.sh
 fi

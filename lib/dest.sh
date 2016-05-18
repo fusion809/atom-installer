@@ -14,10 +14,10 @@ function dest {
   read INST_DEST
 
   if ! [[ -n $INST_DEST ]]; then
-    if [[ $DEST_TYPE == "local" ]]; then
-      INST_DEST=$HOME/.local
+    if [[ $DEST_TYPE == "system" ]]; then
+      INST_DEST="/usr"
     else
-      INST_DEST=/usr
+      INST_DEST="$HOME/.local"
     fi
   fi
 

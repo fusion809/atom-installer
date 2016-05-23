@@ -14,7 +14,7 @@ fi
 
 # Distribution name. Previously lsb_release was used, but it failed on Docker containers so this
 # substitute was made.
-export LD=$(cat /etc/os-release | grep -w "NAME" | sed 's/NAME=//g' | sed 's/"//g')
+export LD=$(cat /etc/os-release | grep -w "NAME" | sed 's/NAME=//g' | sed 's/"//g') || export LD=$(cat /etc/pclinuxos-release | grep -w "NAME" | sed 's/NAME=//g' | sed 's/"//g')
 # Distribution architecture
 export ARCH=$(uname -m | sed 's/i[0-9]/i6/g')
 # Distribution version number, e.g., on Fedora 23 it returns 23
@@ -59,6 +59,7 @@ DISTROS=(
 'Mageia'                                    #  Mageia
 'Manjaro'                                   #  Manjaro Linux
 'openSUSE'                                  #  openSUSE
+'PCLinuxOS'                                 #  PCLinuxOS
 'Sabayon'                                   #  Sabayon Linux
 'Ubuntu'                                    #  Ubuntu
 'Zorin OS'                                  #  Zorin OS

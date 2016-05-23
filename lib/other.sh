@@ -1,6 +1,7 @@
 #!/bin/bash
 source "./lib/build/node.sh"
 source "./lib/build/atom.sh"
+source "./lib/test.sh"
 
 printf "\n\nGreetings, you seem to be using an operating system that is not officially supported by this installer. Despite this, provided you are using some distribution of Linux this installer can still be used to install Atom from source, provided you have the following packages installed:
 * alsa-lib

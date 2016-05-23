@@ -2,7 +2,7 @@
 
 function gentoo_build {
   # Get dependencies
-  sudo sed -i -e 's/USE="/USE="-bindist' /etc/portage/make.conf
+  sudo sed -i -e 's/USE="/USE="-bindist/g' /etc/portage/make.conf
   if ! [[ -d /usr/portage ]]; then
     sudo mkdir /usr/portage
   fi

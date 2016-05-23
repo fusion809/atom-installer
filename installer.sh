@@ -39,6 +39,8 @@ elif [[ $LD == "Debian"* ]]; then
   source "lib/build/debian.sh"
 elif [[ $LD == "Fedora"* ]]; then
   source "lib/build/fedora.sh"
+elif [[ $LD == "Gentoo"* ]]; then
+  source "lib/build/gentoo.sh"
 elif [[ $LD == "Mageia"* ]]; then
   source "lib/build/mageia.sh"
 elif [[ $LD == "openSUSE"* ]]; then

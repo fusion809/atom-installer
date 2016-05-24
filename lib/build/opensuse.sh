@@ -4,7 +4,7 @@
 function opensuse_build {
   # Get dependencies
   sudo zypper in -y nodejs nodejs-devel make gcc gcc-c++ glibc-devel \
-    git-core libgnome-keyring-devel rpmbuild
+    git-core libgnome-keyring-devel rpm-build
   atom_build
 }
 

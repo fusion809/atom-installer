@@ -8,29 +8,38 @@ This project's stated purpose is to create shell scripts for automating the inst
 
 ```bash
 .
-├── lib
-│   ├── atom-build.sh
-│   ├── atom-editor-aur.sh
-│   ├── centos-build.sh
-│   ├── debian-build.sh
-│   ├── fedora-build.sh
-│   ├── gentoo-build.sh
-│   ├── linux-mint-build.sh
-│   ├── mageia-build.sh
-│   ├── node-build.sh
-│   ├── opensuse-build.sh
+├── lib/
+│   ├── build/
+│   │   ├── atom.sh
+│   │   ├── aur.sh
+│   │   ├── centos.sh
+│   │   ├── debian.sh
+│   │   ├── fedora.sh
+│   │   ├── gentoo.sh
+│   │   ├── mageia.sh
+│   │   ├── node.sh
+│   │   ├── opensuse.sh
+│   │   ├── pclinuxos.sh
+│   │   ├── sabayon.sh
+│   │   └── ubuntu.sh
+│   ├── dest.sh
+│   ├── install.sh
+│   ├── method.sh
+│   ├── other.sh
+│   ├── src_build.sh
+│   ├── src_method.sh
 │   ├── test.sh
-│   └── ubuntu-build.sh
+│   ├── version.sh
 ├── i686
 │   ├── arch.sh
 │   ├── centos.sh
 │   ├── debian.sh
 │   ├── fedora.sh
 │   ├── gentoo.sh
-│   ├── linux-mint.sh
 │   ├── mageia.sh
 │   ├── manjaro.sh
 │   ├── opensuse.sh
+│   ├── pclinuxos.sh
 │   ├── sabayon.sh
 │   └── ubuntu.sh
 ├── x86_64
@@ -39,16 +48,17 @@ This project's stated purpose is to create shell scripts for automating the inst
 │   ├── debian.sh
 │   ├── fedora.sh
 │   ├── gentoo.sh
-│   ├── linux-mint.sh
 │   ├── mageia.sh
 │   ├── manjaro.sh
 │   ├── opensuse.sh
+│   ├── pclinuxos.sh
 │   ├── sabayon.sh
 │   └── ubuntu.sh
 ├── deploy.sh
 ├── help.sh
 ├── installer.sh
 ├── perms.sh
+├── quick-config.sh
 ├── quick-install.sh
 ├── LICENSE
 └── README.md

@@ -9,7 +9,7 @@ function src_build {
 	       -e "/metrics/d" \
          -e "s/0.36.8/0.36.12/g" \
          -e "s/language-gfm/language-gfm2/g" \
-         -e "s/0.85.0/0.87.0/g" \
+         -e "s/0.85.0/0.88.0/g" \
          -e 's/"package-generator": "1.0.0",/"package-generator": "1.0.0",\n    "package-sync": "1.1.0",/g' package.json
   script/build
 }

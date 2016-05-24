@@ -3,7 +3,8 @@ function atom_install {
   if [[ $DEST_TYPE == "system" ]]; then
     if `comex dpkg`; then
       script/grunt mkdeb
-      sudo dpkg -i out/*.deb
+      cd out
+      sudo dpkg -i *.deb
       sudo apt-get -f install
     elif `comex yum`; then
       script/grunt mkrpm

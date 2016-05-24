@@ -2,7 +2,7 @@
 
 function src_method {
   # Get the source code
-  printf "How would you like to get the source code? [curl/git/wget/?; default: curl] "
+  printf "How would you like to get the source code? \n[curl/git/wget/?; default: curl]\n"
   read SRC_METHOD
 
   # Test to see what SRC_METHOD is defined as

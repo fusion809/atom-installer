@@ -5,6 +5,9 @@ function src_build {
          -e 's/Comment/Description/g' resources/linux/atom.desktop.in
   sed -i -e "/exception-reporting/d" \
 	       -e "/metrics/d" \
+         -e "s/language-gfm/language-gfm2/g" \
+         -e "s/0.85.0/0.87.0/g" \
+         -e 's/"language-gfm2": "0.87.0",/"language-gfm2": "0.87.0",\n    "language-liquid": "0.5.1",/g' \
          -e 's/"package-generator": "1.0.0",/"package-generator": "1.0.0",\n    "package-sync": "1.1.0",/g' package.json
   script/build
 }

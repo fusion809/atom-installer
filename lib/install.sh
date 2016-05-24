@@ -14,7 +14,7 @@ function atom_install {
       sudo yum install -y out/rpm/*.rpm
     elif `comex zypper`; then
       script/grunt mkrpm
-      sudo zypper in -y out/*.rpm
+      sudo zypper in -y out/rpm/*.rpm
     else
       sudo script/grunt install --channel=stable --install-dir $INST_DEST
     fi

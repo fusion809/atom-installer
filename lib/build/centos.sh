@@ -4,7 +4,7 @@ function centos_build {
 
   # Get dependencies
   sudo yum install -y python gcc gcc-c++ make \
-    glibc-devel git-core libgnome-keyring-devel
+    glibc-devel git-core libgnome-keyring-devel rpmdevtools
 
   ## Node.js
   curl -L "https://projects.archlinux.org/svntogit/community.git/plain/trunk/PKGBUILD?h=packages/nodejs" > /tmp/PKGBUILD

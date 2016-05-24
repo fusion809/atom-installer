@@ -3,6 +3,9 @@
 
 function ubuntu_build {
   # Get dependencies
+  sudo apt-get install -y build-essential git libgnome-keyring-dev fakeroot
+
+  ## Node.js
   curl -L "https://projects.archlinux.org/svntogit/community.git/plain/trunk/PKGBUILD?h=packages/nodejs" > /tmp/PKGBUILD
   nodelver=$(sed -n 's/pkgver=//p' /tmp/PKGBUILD)
   nodever=$(node --version | sed 's/v//g')
@@ -13,8 +16,8 @@ function ubuntu_build {
       node_build
     fi
   fi
-  sudo apt-get install -y build-essential git libgnome-keyring-dev \
-    fakeroot
+
+  # Build
   atom_build
 }
 

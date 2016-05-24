@@ -14,7 +14,7 @@ fi
 if [[ -d $GHUBM ]]; then
   cd $GHUBM
 
-  if ! [[ -d $GHUBM/atom-installer ]]; then                                                  # Get the repository, if necessary
+  if ! $([[ -d $GHUBM/atom-installer ]] || [[ -d $GHUB/atom-installer ]]); then                                                  # Get the repository, if necessary
     printf "Getting the atom-installer repository locally. ==>\n"
 
     ## git

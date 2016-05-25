@@ -1,4 +1,11 @@
 #!/bin/bash
+source "./lib/build/default.sh"
+source "./lib/dest.sh"
+source "./lib/src_build.sh"
+source "./lib/src_method.sh"
+source "./lib/install.sh"
+source "./lib/version.sh"
+
 function atom_build {
   export GHUB=$HOME/GitHub
 
@@ -6,20 +13,29 @@ function atom_build {
     sudo npm install -g node-gyp
   fi
 
-  # Set the dest variables
-  dest
+  printf "Do you want to just use the default settings (A) or would you rather choose your own settings (B)? \n[Available options: A/B. A is the default.]\n"
+  read settings
 
-  # Set the pkgver variable
-  version
+  if [[ $settings = "B" ]]; then
+    # Set the dest variables
+    dest
 
-  # Get the source code
-  src_method
+    # Set the pkgver variable
+    version
 
-  # Compile the source
-  src_build
+    # Get the source code
+    src_method
 
-  # Install it
-  atom_install
+    # Compile the source
+    src_build
+
+    # Install it
+    atom_install
+  else
+
+    default
+
+  fi
 }
 
 export -f atom_build

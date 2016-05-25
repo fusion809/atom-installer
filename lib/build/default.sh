@@ -6,7 +6,7 @@ function default {
   if [[ -d $SRC_DEST/atom-$pkgver ]]; then
     rm -rf $SRC_DEST/atom-$pkgver
   fi
-  
+
   curl -sL https://github.com/atom/atom/archive/v$pkgver.tar.gz | tar xz -C $SRC_DEST
   cd $SRC_DEST/atom-$pkgver
 
@@ -46,3 +46,5 @@ function default {
 
   fi
 }
+
+export -f default

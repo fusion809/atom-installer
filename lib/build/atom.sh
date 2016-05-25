@@ -1,6 +1,7 @@
 #!/bin/bash
 source "./lib/build/default.sh"
 source "./lib/dest.sh"
+source "./lib/method.sh"
 source "./lib/src_build.sh"
 source "./lib/src_method.sh"
 source "./lib/install.sh"

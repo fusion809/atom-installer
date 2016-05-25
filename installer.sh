@@ -42,7 +42,7 @@ elif [[ $LD == "Mageia"* ]]; then
   source "lib/build/mageia.sh"
 elif [[ $LD == "openSUSE"* ]]; then
   source "lib/build/opensuse.sh"
-elif [[ $LD == "PCLinuxOS" ]]; then
+elif [[ $LD == "PCLinuxOS"* ]]; then
   source "lib/build/pclinuxos.sh"
 elif [[ $LD == "Sabayon"* ]]; then
   source "lib/build/sabayon.sh"

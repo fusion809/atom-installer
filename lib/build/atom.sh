@@ -5,6 +5,7 @@ source "./lib/src_build.sh"
 source "./lib/src_method.sh"
 source "./lib/install.sh"
 source "./lib/version.sh"
+source "./lib/test.sh"
 
 function atom_build {
   export GHUB=$HOME/GitHub

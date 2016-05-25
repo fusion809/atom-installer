@@ -20,6 +20,7 @@ if [[ -f /etc/os-release ]]; then
   export VER=$(cat /etc/os-release | grep -w "VERSION_ID" | sed 's/VERSION_ID=//g' | sed 's/"//g')
 elif [[ -f /etc/pclinuxos-release ]]; then
   export LD=$(cat /etc/pclinuxos-release | grep -w "NAME" | sed 's/NAME=//g' | sed 's/"//g')
+  echo $LD
 fi
 # Distribution architecture
 export ARCH=$(uname -m | sed 's/i[0-9]/i6/g')
@@ -41,6 +42,8 @@ elif [[ $LD == "Mageia"* ]]; then
   source "lib/build/mageia.sh"
 elif [[ $LD == "openSUSE"* ]]; then
   source "lib/build/opensuse.sh"
+elif [[ $LD == "PCLinuxOS" ]]; then
+  source "lib/build/pclinuxos.sh"
 elif [[ $LD == "Sabayon"* ]]; then
   source "lib/build/sabayon.sh"
 elif [[ $LD == "Ubuntu"* ]] || [[ $LD == "Zorin OS" ]]; then

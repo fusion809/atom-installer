@@ -15,17 +15,17 @@ function default {
   if `comex dnf`; then
 
     script/grunt mkrpm
-    sudo dnf install -y out/atom*.rpm
+    sudo dnf install -y out/rpm/atom*.rpm
 
   elif `comex yum`; then
 
     script/grunt mkrpm
-    sudo yum install -y out/atom*.rpm
+    sudo yum install -y out/rpm/atom*.rpm
 
   elif `comex zypper`; then
 
     script/grunt mkrpm
-    sudo zypper in -y out/atom*.rpm
+    sudo zypper in -y out/rpm/atom*.rpm
 
   elif `comex apt-get`; then
 
@@ -36,7 +36,7 @@ function default {
       cd -
     elif `comex rpm`; then
       script/grunt mkrpm
-      sudo rpm -i out/atom*.rpm
+      sudo rpm -i out/rpm/atom*.rpm
       sudo apt-get -f install
     fi
 

@@ -8,6 +8,7 @@ function version {
   fi
   pkgver=$(sed -n 's/pkgver=//p' /tmp/atom-editor/PKGBUILD)
   export pkgver
+  cd -
 }
 
 export -f version

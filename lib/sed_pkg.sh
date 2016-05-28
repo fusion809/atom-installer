@@ -24,6 +24,7 @@ function sed_pkg {
   _atom_language_rust_ver=0.8.0
 
   cd $SRC_DEST/atom
+  printf "PWD is $PWD"
 
   if [[ "$1" == "custom" ]]; then
 

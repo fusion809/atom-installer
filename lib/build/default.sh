@@ -3,12 +3,12 @@ function default {
 
   version
 
-  if [[ -d $SRC_DEST/atom-$pkgver ]]; then
-    rm -rf $SRC_DEST/atom-$pkgver
+  if [[ -d $SRC_DEST/atom ]]; then
+    rm -rf $SRC_DEST/atom
   fi
 
   curl -sL https://github.com/atom/atom/archive/v$pkgver.tar.gz | tar xz -C $SRC_DEST
-  mv atom-${pkgver} atom
+  mv $SRC_DEST/atom-${pkgver} $SRC_DEST/atom
 
   cd $SRC_DEST/atom
 

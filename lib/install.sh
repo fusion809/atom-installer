@@ -4,7 +4,11 @@ function atom_install {
     if `comex dpkg`; then
       script/grunt mkdeb
       cd out/deb
-      sudo dpkg -i *.deb
+      if [[ $ARCH == "x86_64" ]]; then
+        sudo dpkg -i atom-${pkgver}-amd64.deb
+      else
+        sudo dpkg -i atom-${pkgver}-i386.deb
+      fi
       sudo apt-get -f install
     elif `comex dnf`; then
       script/grunt mkrpm

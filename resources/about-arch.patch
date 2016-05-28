@@ -1,5 +1,5 @@
 diff --git a/lib/about-view.coffee b/lib/about-view.coffee
-index 7960ac3..213c21b 100644
+index 7960ac3..022ec9b 100644
 --- a/lib/about-view.coffee
 +++ b/lib/about-view.coffee
 @@ -73,11 +73,9 @@ class AboutView extends ScrollView
@@ -11,7 +11,7 @@ index 7960ac3..213c21b 100644
 -          @span ' PKGBUILD, in the '
 -          @a href: 'https://github.com/fusion809/PKGBUILDs', 'fusion809/PKGBUILDs'
 -          @span ' GitHub repository.'
-+          @span ' framework. This build of Atom, was using the '
++          @span ' framework. This build of Atom, was created using the '
 +          @a href: 'https://github.com/fusion809/atom-installer', 'atom-installer'
 +          @span '.'
 

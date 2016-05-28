@@ -10,7 +10,7 @@ function default {
   curl -sL https://github.com/atom/atom/archive/v$pkgver.tar.gz | tar xz -C $SRC_DEST
   cd $SRC_DEST/atom-$pkgver
 
-  src_build
+  src_build custom
 
   if `comex dnf`; then
 

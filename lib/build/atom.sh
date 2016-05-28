@@ -29,10 +29,18 @@ function atom_build {
     src_method
 
     # Compile the source
-    src_build
+    printf "Do you want to build Atom with my preferences applied? [y/n; default: y] "
+    read ynp
+
+    if [[ $ynp == "n" ]]; then
+      src_build
+    else
+      src_build custom
+    fi
 
     # Install it
     atom_install
+
   else
 
     default

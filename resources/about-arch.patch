@@ -1,0 +1,27 @@
+diff --git a/lib/about-view.coffee b/lib/about-view.coffee
+index 7960ac3..213c21b 100644
+--- a/lib/about-view.coffee
++++ b/lib/about-view.coffee
+@@ -73,11 +73,9 @@ class AboutView extends ScrollView
+         @div class: 'about-inline', =>
+           @span 'Atom is a hackable text editor for the 21st century, that is built using web technologies, on top of the '
+           @a href: 'https://electron.atom.io', 'Electron'
+-          @span ' framework. This build of Atom, was built from the '
+-          @a href: 'https://github.com/fusion809/PKGBUILDs/tree/master/atom-editor', 'atom-editor'
+-          @span ' PKGBUILD, in the '
+-          @a href: 'https://github.com/fusion809/PKGBUILDs', 'fusion809/PKGBUILDs'
+-          @span ' GitHub repository.'
++          @span ' framework. This build of Atom, was using the '
++          @a href: 'https://github.com/fusion809/atom-installer', 'atom-installer'
++          @span '.'
+
+         @div class: 'about-actions group-item', =>
+           @div class: 'btn-group', =>
+@@ -94,7 +92,7 @@ class AboutView extends ScrollView
+         @div class: 'about-credits group-item', outlet: 'credits', =>
+           @span class: 'inline', 'And the awesome '
+           @a href: 'https://github.com/atom/atom/contributors', 'Atom Community'
+-          @span class: 'inline', ' and packaged for Arch Linux by '
++          @span class: 'inline', '. The atom-installer was written by '
+           @a class: 'inline', href: 'https://fusion809.github.io', 'Brenton Horne'
+           @span class: 'inline', '.'

@@ -23,6 +23,12 @@ elif [[ -f /etc/pclinuxos-release ]]; then
 fi
 # Distribution architecture
 export ARCH=$(uname -m | sed 's/i[0-9]/i6/g')
+export RELDIR=$(dirname "$0" | sed 's|.||g')
+if [[ -n $RELDIR ]]; then
+  export INDIR="$PWD/$RELDIR"
+else
+  export INDIR=$PWD
+fi
 
 ######################################################################################################
 

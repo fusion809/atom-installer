@@ -79,9 +79,10 @@ function sed_pkg {
            package.json
   fi
 
-  cp $INDIR/resources/about-arch.patch .
+  cp $INDIR/resources/about-arch.patch node_modules/about-arch
+  cd node_modules/about-arch
   patch -Np1 < about-arch.patch
-
+  cd -
 }
 
 export -f sed_pkg

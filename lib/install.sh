@@ -3,7 +3,7 @@ function atom_install {
   if [[ $DEST_TYPE == "system" ]]; then
     if `comex dpkg`; then
       script/grunt mkdeb
-      cd out
+      cd $SRC_DEST/atom/out
       if [[ $ARCH == "x86_64" ]]; then
         sudo dpkg -i atom-${pkgver}-amd64.deb
       else

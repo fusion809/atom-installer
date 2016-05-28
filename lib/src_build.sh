@@ -5,7 +5,7 @@ function src_build {
          -e 's/GNOME;GTK;Utility;//g' \
          -e 's/Comment/Description/g' resources/linux/atom.desktop.in
 
-  src_pkg "$1"
+  sed_pkg "$1"
 
   script/build
 }

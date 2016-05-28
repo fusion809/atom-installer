@@ -7,8 +7,8 @@ function default {
     rm -rf $SRC_DEST/atom-$pkgver
   fi
 
-  curl -sL https://github.com/atom/atom/archive/v$pkgver.tar.gz | tar xz -C $SRC_DEST
-  cd $SRC_DEST/atom-$pkgver
+  curl -sL https://github.com/atom/atom/archive/v$pkgver.tar.gz | tar xz --transform="s/atom-${pkgver}/atom"-C $SRC_DEST
+  cd $SRC_DEST/atom
 
   src_build custom
 

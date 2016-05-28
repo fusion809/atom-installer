@@ -8,6 +8,9 @@ function sed_pkg {
   _fusion_ui_ver=0.10.3
   _git_plus_ver=5.14.0
   _git_time_machine_ver=1.5.3
+  _go_debug_ver=0.1.12
+  _node_debug_ver=1.7.0
+  _python_debug_ver=1.0.0
   _language_d_ver=3.2.3
   _language_docker_ver=1.1.6
   _language_fortran_ver=2.0.11
@@ -22,6 +25,7 @@ function sed_pkg {
   _language_lua_ver=0.9.4
   _language_matlab_ver=0.2.1
   _language_pascal_ver=0.18.1
+  _language_swift_ver=0.4.0
   _language_viml_ver=1.0.0
   _language_shellscript_ver=0.22.3
   _minimap_ver=4.24.3
@@ -77,7 +81,7 @@ function sed_pkg {
                 \"language-matlab\": \"${_language_matlab_ver}\"," package.json # MATLAB
 
     sed -i -e "/\"language-perl\": \".*\",/i \
-                \"language-pascal\": \"${_language_pascal_ver}\",\n    \"language-swift\": \"0.4.0\"," package.json # pascal
+                \"language-pascal\": \"${_language_pascal_ver}\",\n    \"language-swift\": \"${_language_swift_ver}\"," package.json # pascal
 
     sed -i -e "/\"language-toml\": \".*\",/a \
                 \"language-viml\": \"${_language_viml_ver}\"," package.json   # Add VimL

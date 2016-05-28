@@ -51,8 +51,8 @@ function sed_pkg {
                 \"file-icons\": \"${_file_icons_ver}\"," package.json # file-icons
 
     sed -i -e "/\"git-diff\": \".*\",/a \
-                \"git-plus\": \"${_git_plus_ver}\",/" package.json #git-plus
-                
+                \"git-plus\": \"${_git_plus_ver}\"," package.json #git-plus
+
     sed -i -e "/\"language-css\": \".*\",/a \
                 \"language-d\": \"${_language_d_ver}\"," package.json
 

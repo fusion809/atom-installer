@@ -92,6 +92,9 @@ function sed_pkg {
   cd node_modules/about-arch
   patch -Np1 < about-arch.patch
   cd -
+
+  sed -i -e 's@node script/bootstrap@node script/bootstrap --no-quiet@g' \
+  ./script/build || die "Fail fixing verbosity of script/build"
 }
 
 export -f sed_pkg

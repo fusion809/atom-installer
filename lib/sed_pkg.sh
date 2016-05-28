@@ -57,7 +57,7 @@ function sed_pkg {
                 \"file-icons\": \"${_file_icons_ver}\"," package.json # file-icons
 
     sed -i -e "/\"git-diff\": \".*\",/a \
-                \"git-plus\": \"${_git_plus_ver}\",\n    \"git-time-machine\": \"${_git_time_machine_ver}\"," package.json # git packages
+                \"git-plus\": \"${_git_plus_ver}\",\n    \"git-time-machine\": \"${_git_time_machine_ver}\",\n    \"go-debug\": \"0.1.12\",\n    \"node-debug\": \"1.7.0\",\n    \"python-debug\": \"1.0.0\"," package.json # git packages
 
     sed -i -e "/\"language-css\": \".*\",/a \
                 \"language-d\": \"${_language_d_ver}\",\n    \"language-docker\": \"${_language_docker_ver}\",\n    \"language-fortran\": \"${_language_fortran_ver}\"," package.json
@@ -77,7 +77,7 @@ function sed_pkg {
                 \"language-matlab\": \"${_language_matlab_ver}\"," package.json # MATLAB
 
     sed -i -e "/\"language-perl\": \".*\",/i \
-                \"language-pascal\": \"${_language_pascal_ver}\"," package.json # pascal
+                \"language-pascal\": \"${_language_pascal_ver}\",\n    \"language-swift\": \"0.4.0\"," package.json # pascal
 
     sed -i -e "/\"language-toml\": \".*\",/a \
                 \"language-viml\": \"${_language_viml_ver}\"," package.json   # Add VimL

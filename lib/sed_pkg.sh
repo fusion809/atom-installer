@@ -2,7 +2,6 @@
 function sed_pkg {
 
   _about_arch_ver=1.5.15
-  _atom_typescript_ver=8.10.2
   _dark_bint_syntax_ver=0.8.4
   _electron_ver=0.36.12
   _file_icons_ver=1.7.12
@@ -25,8 +24,6 @@ function sed_pkg {
   _language_pascal_ver=0.18.1
   _language_viml_ver=1.0.0
   _language_shellscript_ver=0.22.3
-  _linter_ver=1.11.4
-  _linter_docker_ver=0.1.2
   _markdown_writer_ver=2.3.4
   _minimap_ver=4.24.3
   _nuclide_ver=0.139.0
@@ -55,7 +52,7 @@ function sed_pkg {
                \"fusion-ui\": \"${_fusion_ui_ver}\"," package.json # install fusion-ui theme
 
     sed -i -e "/\"archive-view\": \".*\",/a \
-                \"atom-language-rust\": \"${_atom_language_rust_ver}\",\n    \"atom-typescript\": \"${_atom_typescript_ver}\"," package.json
+                \"atom-language-rust\": \"${_atom_language_rust_ver}\"," package.json
 
     sed -i -e "/\"find-and-replace\": \".*\",/i \
                 \"file-icons\": \"${_file_icons_ver}\"," package.json # file-icons
@@ -90,15 +87,12 @@ function sed_pkg {
 
     sed -i -e "/\"notifications\": \".*\",/a \
                 \"nuclide\": \"${_nuclide_ver}\"," package.json # nuclide
-                
+
     sed -i -e "/\"package-generator\": \".*\",/a \
                 \"package-sync\": \"${_package_sync_ver}\",\n    \"pigments\": \"${_pigments_ver}\",\n    \"script\": \"${_script_ver}\",\n    \"terminal-plus\": \"${_terminal_plus_ver}\"," package.json
 
     sed -i -e "/\"markdown-preview\": \".*\",/a \
                 \"md-writer\": \"${_markdown_writer_ver}\",\n    \"minimap\": \"${_minimap_ver}\"," package.json
-
-    sed -i -e "/\"link\": \".*\",/a \
-                \"linter\": \"${_linter_ver}\",\n    \"linter-docker\": \"${_linter_docker_ver}\"," package.json
 
     sed -i -e "s|^\"|    \"|g"  package.json # fixing spacing issues
 

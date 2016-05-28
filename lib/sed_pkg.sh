@@ -84,7 +84,7 @@ function sed_pkg {
     mkdir node_modules
   fi
 
-  curl -sL https://github.com/fusion809/about/archive/v${_about_arch_ver}.tar.gz | tar xz --transform="s/about-${_about_arch_ver}/about-arch/" -C node_modules
+  curl -sL https://github.com/fusion809/about/archive/v${_about_arch_ver}.tar.gz | tar xz --transform=s/about-${_about_arch_ver}/about-arch/ -C node_modules
 
   cp $INDIR/resources/about-arch.patch node_modules/about-arch
   cd node_modules/about-arch

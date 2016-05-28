@@ -8,9 +8,6 @@ function sed_pkg {
   _fusion_ui_ver=0.10.3
   _git_plus_ver=5.14.0
   _git_time_machine_ver=1.5.3
-  _go_debug_ver=0.1.12
-  _node_debugger_ver=1.7.0
-  _python_debugger_ver=1.0.0
   _language_d_ver=3.2.3
   _language_docker_ver=1.1.6
   _language_fortran_ver=2.0.11
@@ -61,7 +58,7 @@ function sed_pkg {
                 \"file-icons\": \"${_file_icons_ver}\"," package.json # file-icons
 
     sed -i -e "/\"git-diff\": \".*\",/a \
-                \"git-plus\": \"${_git_plus_ver}\",\n    \"git-time-machine\": \"${_git_time_machine_ver}\",\n    \"go-debug\": \"${_go_debug_ver}\",\n    \"node-debugger\": \"${_node_debugger_ver}\",\n    \"python-debugger\": \"${_python_debugger_ver}\"," package.json # git packages
+                \"git-plus\": \"${_git_plus_ver}\",\n    \"git-time-machine\": \"${_git_time_machine_ver}\"," package.json # git packages
 
     sed -i -e "/\"language-css\": \".*\",/a \
                 \"language-d\": \"${_language_d_ver}\",\n    \"language-docker\": \"${_language_docker_ver}\",\n    \"language-fortran\": \"${_language_fortran_ver}\"," package.json

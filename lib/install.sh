@@ -3,11 +3,10 @@ function atom_install {
   if [[ $DEST_TYPE == "system" ]]; then
     if `comex dpkg`; then
       script/grunt mkdeb
-      cd $SRC_DEST/atom/out
       if [[ $ARCH == "x86_64" ]]; then
-        sudo dpkg -i atom-${pkgver}-amd64.deb
+        sudo dpkg -i $SRC_DEST/atom/out/atom-${pkgver}-amd64.deb
       else
-        sudo dpkg -i atom-${pkgver}-i386.deb
+        sudo dpkg -i $SRC_DEST/atom/out/atom-${pkgver}-i386.deb
       fi
       sudo apt-get -f install
     elif `comex dnf`; then

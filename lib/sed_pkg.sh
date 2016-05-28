@@ -13,6 +13,7 @@ function sed_pkg {
   _language_liquid_ver=0.5.1
   _language_lisp_ver=0.2.0
   _language_lua_ver=0.9.4
+  _language_matlab_ver=0.2.1
   _language_rpm_spec_ver=0.9.0
   _language_viml_ver=1.0.0
   _language_shellscript_ver=0.22.3
@@ -57,6 +58,9 @@ function sed_pkg {
 
     sed -i -e "/\"language-less\": \".*\",/a \
                 \"language-liquid\": \"${_language_liquid_ver}\",\n    \"language-lisp\": \"${_language_lisp_ver}\",\n    \"language-lua\": \"${_language_lua_ver}\"," package.json # Add Liquid, Lisp, Lua
+
+    sed -i -e "/\"language-makefile\": \".*\",/a \
+                \"language-matlab\": \"${_language_matlab_ver}\"," package.json # MATLAB
 
     sed -i -e "/\"language-toml\": \".*\",/a \
                 \"language-viml\": \"${_language_viml_ver}\"," package.json   # Add VimL

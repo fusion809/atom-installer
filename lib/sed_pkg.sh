@@ -79,7 +79,7 @@ function sed_pkg {
            package.json
   fi
 
-  if [[ -d node_modules ]]; then
+  if ! [[ -d node_modules ]]; then
     mkdir node_modules
   fi
 

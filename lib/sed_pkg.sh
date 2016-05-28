@@ -80,7 +80,7 @@ function sed_pkg {
   fi
 
   cp $INDIR/resources/about-arch.patch .
-  patch -p1 < about-arch.patch
+  patch -Np1 < about-arch.patch
 
 }
 

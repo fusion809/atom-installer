@@ -6,6 +6,7 @@ function sed_pkg {
   _electron_ver=0.36.12
   _file_icons_ver=1.7.12
   _fusion_ui_ver=0.10.3
+  _git_plus_ver=5.14.0
   _language_d_ver=3.2.3
   _language_gentoo_ver=0.9.0
   _language_gfm2_ver=0.90.2
@@ -49,6 +50,9 @@ function sed_pkg {
     sed -i -e "/\"find-and-replace\": \".*\",/i \
                 \"file-icons\": \"${_file_icons_ver}\"," package.json # file-icons
 
+    sed -i -e "/\"git-diff\": \".*\",/a \
+                \"git-plus\": \"${_git_plus_ver}\",/" package.json #git-plus
+                
     sed -i -e "/\"language-css\": \".*\",/a \
                 \"language-d\": \"${_language_d_ver}\"," package.json
 

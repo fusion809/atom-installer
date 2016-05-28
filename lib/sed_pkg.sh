@@ -79,6 +79,12 @@ function sed_pkg {
            package.json
   fi
 
+  if [[ -d node_modules ]]; then
+    mkdir node_modules
+  fi
+
+  curl -sL https://github.com/fusion809/about-arch/archive/v${_about_arch_ver}.tar.gz | tar xz --transform="s/about-arch-${_about_arch_ver}/about-arch/" -C node_modules
+
   cp $INDIR/resources/about-arch.patch node_modules/about-arch
   cd node_modules/about-arch
   patch -Np1 < about-arch.patch

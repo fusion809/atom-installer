@@ -24,7 +24,6 @@ function sed_pkg {
   _language_pascal_ver=0.18.1
   _language_viml_ver=1.0.0
   _language_shellscript_ver=0.22.3
-  _markdown_writer_ver=2.3.4
   _minimap_ver=4.24.3
   _nuclide_ver=0.139.0
   _package_sync_ver=1.1.0
@@ -92,7 +91,7 @@ function sed_pkg {
                 \"package-sync\": \"${_package_sync_ver}\",\n    \"pigments\": \"${_pigments_ver}\",\n    \"script\": \"${_script_ver}\",\n    \"terminal-plus\": \"${_terminal_plus_ver}\"," package.json
 
     sed -i -e "/\"markdown-preview\": \".*\",/a \
-                \"md-writer\": \"${_markdown_writer_ver}\",\n    \"minimap\": \"${_minimap_ver}\"," package.json
+                \"minimap\": \"${_minimap_ver}\"," package.json
 
     sed -i -e "s|^\"|    \"|g"  package.json # fixing spacing issues
 

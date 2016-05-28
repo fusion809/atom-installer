@@ -5,10 +5,10 @@ function version {
   else
     cd /tmp/atom-editor
     git pull origin master
+    cd -
   fi
   pkgver=$(sed -n 's/pkgver=//p' /tmp/atom-editor/PKGBUILD)
   export pkgver
-  cd -
 }
 
 export -f version

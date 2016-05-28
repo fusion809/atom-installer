@@ -29,6 +29,7 @@ function sed_pkg {
   _linter_docker_ver=0.1.2
   _markdown_writer_ver=2.3.4
   _minimap_ver=4.24.3
+  _nuclide_ver=0.139.0
   _package_sync_ver=1.1.0
   _pigments_ver=0.27.1
   _script_ver=3.7.3
@@ -87,6 +88,9 @@ function sed_pkg {
 
     sed -i -e "s/\"language-shellscript\": \".*\"/\"language-shellscript\": \"${_language_shellscript_ver}\"/g" package.json
 
+    sed -i -e "/\"notifications\": \".*\",/a \
+                \"nuclide\": \"${_nuclide_ver}\"," package.json # nuclide
+                
     sed -i -e "/\"package-generator\": \".*\",/a \
                 \"package-sync\": \"${_package_sync_ver}\",\n    \"pigments\": \"${_pigments_ver}\",\n    \"script\": \"${_script_ver}\",\n    \"terminal-plus\": \"${_terminal_plus_ver}\"," package.json
 

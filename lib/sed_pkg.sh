@@ -23,9 +23,10 @@ function sed_pkg {
   _terminal_plus_ver=0.14.5
   _atom_language_rust_ver=0.8.0
 
+  cd $SRC_DEST/atom
+
   if [[ "$1" == "custom" ]]; then
 
-    echo $PWD
     ## package.json edits
     sed -i -e "/exception-reporting/d" \
            -e "/metrics/d" package.json

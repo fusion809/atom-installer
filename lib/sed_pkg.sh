@@ -25,6 +25,7 @@ function sed_pkg {
 
   if [[ "$1" == "custom" ]]; then
 
+    echo $PWD
     ## package.json edits
     sed -i -e "/exception-reporting/d" \
            -e "/metrics/d" package.json

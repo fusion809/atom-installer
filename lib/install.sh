@@ -1,5 +1,6 @@
 #!/bin/bash
 function atom_install {
+  cd $SRC_DEST/atom
   if [[ $DEST_TYPE == "system" ]]; then
     if `comex dpkg`; then
       script/grunt mkdeb

@@ -32,18 +32,15 @@ function atom_build {
     # Compile the source
     printf "Which of the following would you prefer:\n
 A.) Atom built with my (that is, fusion809's) own preferred packages.\n
-B.) Option A.), except with the platformio-ide and platformio-ide-terminal packages replacing nuclide and terminal-plus packages, respectively.\n
-C.) Atom built with the standard set of packages. Minus the exception-reporting and metrics packages (due to privacy concerns), with language-gfm2 and language-liquid replacing language-gfm.\n
-D.) Option C.) plus my preferred themes (dark-bint-syntax and fusion-ui). "
+B.) Atom built with the standard set of packages. Minus the exception-reporting and metrics packages (due to privacy concerns), with language-gfm2 and language-liquid replacing language-gfm.\n
+C.) Option B.) plus my preferred themes (dark-bint-syntax and fusion-ui). "
     read ynp
 
-    if [[ $ynp == "C" ]]; then
+    if [[ $ynp == "B" ]]; then
       src_prepare
-    elif [[ $ynp == "B" ]]; then
-      src_prepare platformio
     elif [[ $ynp == "A" ]]; then
       src_prepare custom
-    elif [[ $ynp == "D" ]]; then
+    elif [[ $ynp == "C" ]]; then
       src_prepare themes
     fi
 

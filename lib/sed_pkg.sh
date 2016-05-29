@@ -57,8 +57,7 @@ function sed_pkg {
 
     sed_viml
 
-    sed -i -e "/\"notifications\": \".*\",/a \
-                \"nuclide\": \"${_nuclide_ver}\"," package.json # nuclide
+    sed_nuclide
 
     sed_termplus
 

@@ -26,7 +26,7 @@ function atom_build {
     version
 
     # Get the source code
-    src_method
+    get_atom_src
 
     # Compile the source
     printf "Do you want to build Atom with my preferences applied? [y/n; default: y] "

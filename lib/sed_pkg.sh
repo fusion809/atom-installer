@@ -1,5 +1,6 @@
 #!/bin/bash
 function sed_pkg {
+  # This function seds the Atom package.json file
 
   _about_arch_ver=1.5.15
   _browser_plus_fix_ver=0.1.0
@@ -30,6 +31,8 @@ function sed_pkg {
   _nuclide_ver=0.139.0
   _package_sync_ver=1.1.0
   _pigments_ver=0.27.1
+  _platformio_ide_terminal_ver=2.0.10
+  _platformio_ide_ver=1.2.2
   _script_ver=3.7.3
   _terminal_plus_ver=0.14.5
   _atom_language_rust_ver=0.8.0
@@ -110,20 +113,6 @@ function sed_pkg {
            package.json
   fi
 
-  if ! [[ -d node_modules ]]; then
-    mkdir node_modules
-  fi
-
-  curl -L https://github.com/fusion809/about/archive/v${_about_arch_ver}.tar.gz | tar xz -C node_modules
-  mv node_modules/about-${_about_arch_ver} node_modules/about-arch
-
-  cp $INDIR/resources/about-arch.patch node_modules/about-arch
-  cd node_modules/about-arch
-  patch -Np1 < about-arch.patch
-  cd -
-  
-  sed -i -e 's@node script/bootstrap@node script/bootstrap --no-quiet@g' \
-  ./script/build || die "Fail fixing verbosity of script/build"
 }
 
 export -f sed_pkg

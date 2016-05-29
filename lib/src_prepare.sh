@@ -12,3 +12,5 @@ function src_prepare {
 
   src_modules
 }
+
+export -f src_prepare

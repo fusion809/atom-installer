@@ -2,7 +2,7 @@
 
 function src_build {
 
-  script/build
+  until ./script/build; do :; done
 }
 
 export -f src_build

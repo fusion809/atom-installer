@@ -38,20 +38,22 @@ function sed_pkg {
 
     sed_julia
 
-    sed -i -e "/\"language-less\": \".*\",/a \
-                \"language-liquid\": \"${_language_liquid_ver}\",\n    \"language-lisp\": \"${_language_lisp_ver}\",\n    \"language-lua\": \"${_language_lua_ver}\"," package.json # Add Liquid, Lisp, Lua
+    sed_lua
 
-    sed -i -e "/\"language-makefile\": \".*\",/a \
-                \"language-matlab\": \"${_language_matlab_ver}\"," package.json # MATLAB
+    sed_lisp
 
-    sed -i -e "/\"language-perl\": \".*\",/i \
-                \"language-pascal\": \"${_language_pascal_ver}\",\n    \"language-swift\": \"${_language_swift_ver}\"," package.json # pascal
+    sed_liquid
 
-    sed -i -e "/\"language-toml\": \".*\",/a \
-                \"language-viml\": \"${_language_viml_ver}\"," package.json   # Add VimL
+    sed_matlab
 
-    sed -i -e "s/\"language-shellscript\": \".*\"/\"language-shellscript\": \"${_language_shellscript_ver}\"/g" package.json
+    sed_swift
 
+    sed_pascal
+
+    sed_viml
+
+    sed_shellscript
+    
     sed -i -e "/\"notifications\": \".*\",/a \
                 \"nuclide\": \"${_nuclide_ver}\"," package.json # nuclide
 

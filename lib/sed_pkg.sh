@@ -30,13 +30,13 @@ function sed_pkg {
 
     sed_d
 
+    sed_gentoo
+
     sed_gfm
 
-    sed -i -e "/\"language-gfm2\": \".*\",/i \
-                \"language-gentoo\": \"${_language_gentoo_ver}\"," package.json # gentoo
+    sed_ini
 
-    sed -i -e "/\"language-hyperlink\": \".*\",/a \
-                \"language-ini2\": \"${_language_ini2_ver}\",\n    \n\"language-julia\": \"${_language_julia_ver}\"," package.json # Julia
+    sed_julia
 
     sed -i -e "/\"language-less\": \".*\",/a \
                 \"language-liquid\": \"${_language_liquid_ver}\",\n    \"language-lisp\": \"${_language_lisp_ver}\",\n    \"language-lua\": \"${_language_lua_ver}\"," package.json # Add Liquid, Lisp, Lua

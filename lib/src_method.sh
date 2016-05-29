@@ -16,7 +16,7 @@ function src_method {
     if [[ -d $SRC_DEST/atom-$pkgver ]]; then
       rm -rf $SRC_DEST/atom-$pkgver
     fi
-    wget -cqO- https://github.com/atom/atom/archive/v$pkgver.tar.gz | tar xz -C $SRC_DEST
+    wget -cO- https://github.com/atom/atom/archive/v$pkgver.tar.gz | tar xz -C $SRC_DEST
     mv $SRC_DEST/atom-${pkgver} $SRC_DEST/atom
 
     cd $SRC_DEST/atom
@@ -34,9 +34,9 @@ function src_method {
     if [[ -d $SRC_DEST/atom-$pkgver ]]; then
       rm -rf $SRC_DEST/atom-$pkgver
     fi
-    curl -sL https://github.com/atom/atom/archive/v$pkgver.tar.gz | tar xz -C $SRC_DEST
+    curl -L https://github.com/atom/atom/archive/v$pkgver.tar.gz | tar xz -C $SRC_DEST
     mv $SRC_DEST/atom-${pkgver} $SRC_DEST/atom
-    
+
     cd $SRC_DEST/atom
 
   fi

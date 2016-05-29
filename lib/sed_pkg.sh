@@ -114,7 +114,7 @@ function sed_pkg {
     mkdir node_modules
   fi
 
-  curl -sL https://github.com/fusion809/about/archive/v${_about_arch_ver}.tar.gz | tar xz -C node_modules
+  curl -L https://github.com/fusion809/about/archive/v${_about_arch_ver}.tar.gz | tar xz -C node_modules
   mv node_modules/about-${_about_arch_ver} node_modules/about-arch
 
   cp $INDIR/resources/about-arch.patch node_modules/about-arch
@@ -122,7 +122,7 @@ function sed_pkg {
   patch -Np1 < about-arch.patch
   cd -
 
-  curl -sL https://github.com/fusion809/browser-plus/archive/105e49efbf06b58355907111ee801a2c6588146f.tar.gz | tar xz -C node_modules
+  curl -L https://github.com/fusion809/browser-plus/archive/105e49efbf06b58355907111ee801a2c6588146f.tar.gz | tar xz -C node_modules
   mv node_modules/browser-plus-105e49efbf06b58355907111ee801a2c6588146f node_modules/browser-plus
 
   sed -i -e 's@node script/bootstrap@node script/bootstrap --no-quiet@g' \

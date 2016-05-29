@@ -49,8 +49,8 @@ function sed_pkg {
     sed -i -e "/\"atom-light-syntax\": \".*\"/a \
                 \"dark-bint-syntax\": \"${_dark_bint_syntax_ver}\"," package.json # install dark-bint-syntax
 
-    sed -i -e "/\"bracket-matcher\": \".*\",/a \
-                \"browser-plus\": \"0.0.60\"," package.json
+    # sed -i -e "/\"bracket-matcher\": \".*\",/a \
+    #            \"browser-plus\": \"0.0.60\"," package.json
 
     sed -i -e "/\"atom-light-ui\": \".*\",/a \
                \"fusion-ui\": \"${_fusion_ui_ver}\"," package.json # install fusion-ui theme
@@ -121,10 +121,7 @@ function sed_pkg {
   cd node_modules/about-arch
   patch -Np1 < about-arch.patch
   cd -
-
-  curl -L https://github.com/fusion809/browser-plus/archive/105e49efbf06b58355907111ee801a2c6588146f.tar.gz | tar xz -C node_modules
-  mv node_modules/browser-plus-105e49efbf06b58355907111ee801a2c6588146f node_modules/browser-plus
-
+  
   sed -i -e 's@node script/bootstrap@node script/bootstrap --no-quiet@g' \
   ./script/build || die "Fail fixing verbosity of script/build"
 }

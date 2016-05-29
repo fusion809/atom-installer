@@ -12,7 +12,7 @@ function default {
 
   get_atom_src curl
 
-  src_prepare curl
+  src_prepare custom
 
   src_build
 

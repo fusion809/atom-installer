@@ -17,23 +17,13 @@ function sed_pkg {
     ## package.json edits
     sed_priv
 
-    sed -i -e "/\"atom-light-syntax\": \".*\"/a \
-                \"dark-bint-syntax\": \"${_dark_bint_syntax_ver}\"," package.json # install dark-bint-syntax
+    sed_themes
 
-    # sed -i -e "/\"bracket-matcher\": \".*\",/a \
-    #            \"browser-plus\": \"0.0.60\"," package.json
+    sed_rust
 
-    sed -i -e "/\"atom-light-ui\": \".*\",/a \
-               \"fusion-ui\": \"${_fusion_ui_ver}\"," package.json # install fusion-ui theme
+    sed_icons
 
-    sed -i -e "/\"archive-view\": \".*\",/a \
-                \"atom-language-rust\": \"${_atom_language_rust_ver}\"," package.json
-
-    sed -i -e "/\"find-and-replace\": \".*\",/i \
-                \"file-icons\": \"${_file_icons_ver}\"," package.json # file-icons
-
-    sed -i -e "/\"git-diff\": \".*\",/a \
-                \"git-plus\": \"${_git_plus_ver}\",\n    \"git-time-machine\": \"${_git_time_machine_ver}\"," package.json # git packages
+    sed_git
 
     sed -i -e "/\"language-css\": \".*\",/a \
                 \"language-d\": \"${_language_d_ver}\",\n    \"language-docker\": \"${_language_docker_ver}\",\n    \"language-fortran\": \"${_language_fortran_ver}\"," package.json

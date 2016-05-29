@@ -71,6 +71,56 @@ function sed_pkg {
 
     sed_spacing
 
+  elif [[ "$1" == "themes"]]; then
+
+    sed_themes
+
+  elif [[ "$1" == "platformio" ]]; then
+
+    sed_themes
+
+    sed_rust
+
+    sed_icons
+
+    sed_git
+
+    sed_fortran
+
+    sed_docker
+
+    sed_d
+
+    sed_gentoo
+
+    sed_ini
+
+    sed_julia
+
+    sed_lua
+
+    sed_lisp
+
+    sed_matlab
+
+    sed_swift
+
+    sed_pascal
+
+    sed_viml
+
+    sed_platformio
+
+    sed_script
+
+    sed_pigments
+
+    sed_sync
+
+    sed_minimap
+
+    sed_spacing
+
   fi
 
 }

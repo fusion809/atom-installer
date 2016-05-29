@@ -30,14 +30,24 @@ function atom_build {
     get_atom_src
 
     # Compile the source
-    printf "Do you want to build Atom with my preferences applied? [y/n; default: y] "
+    printf "Which of the following would you prefer:\n
+A.) Atom built with my (that is, fusion809's) own preferred packages.\n
+B.) Option A.), except with the platformio-ide and platformio-ide-terminal packages replacing nuclide and terminal-plus packages, respectively.\n
+C.) Atom built with the standard set of packages. Minus the exception-reporting and metrics packages (due to privacy concerns), with language-gfm2 and language-liquid replacing language-gfm.\n
+D.) Option C.) plus my preferred themes (dark-bint-syntax and fusion-ui). "
     read ynp
 
-    if [[ $ynp == "n" ]]; then
-      src_build
-    else
-      src_build custom
+    if [[ $ynp == "C" ]]; then
+      src_prepare
+    elif [[ $ynp == "B" ]]; then
+      src_prepare platformio
+    elif [[ $ynp == "A" ]]; then
+      src_prepare custom
+    elif [[ $ynp == "D" ]]; then
+      src_prepare themes
     fi
+
+    src_build
 
     # Install it
     atom_install

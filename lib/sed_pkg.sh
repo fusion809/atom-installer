@@ -55,9 +55,6 @@ function sed_pkg {
     sed -i -e "/\"archive-view\": \".*\",/a \
                 \"atom-language-rust\": \"${_atom_language_rust_ver}\"," package.json
 
-    sed -i -e "/\"bracket-matcher\": \".*\",/a \
-                \"browser-plus-fix\": \"${_browser_plus_fix_ver}\"," package.json
-
     sed -i -e "/\"find-and-replace\": \".*\",/i \
                 \"file-icons\": \"${_file_icons_ver}\"," package.json # file-icons
 

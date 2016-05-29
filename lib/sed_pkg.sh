@@ -2,6 +2,7 @@
 function sed_pkg {
 
   _about_arch_ver=1.5.15
+  _browser_plus_fix_ver=0.1.0
   _dark_bint_syntax_ver=0.8.4
   _electron_ver=0.36.12
   _file_icons_ver=1.7.12
@@ -53,6 +54,9 @@ function sed_pkg {
 
     sed -i -e "/\"archive-view\": \".*\",/a \
                 \"atom-language-rust\": \"${_atom_language_rust_ver}\"," package.json
+
+    sed -i -e "/\"bracket-matcher\": \".*\",/a \
+                \"browser-plus-fix\": \"${_browser_plus_fix_ver}\"," package.json
 
     sed -i -e "/\"find-and-replace\": \".*\",/i \
                 \"file-icons\": \"${_file_icons_ver}\"," package.json # file-icons

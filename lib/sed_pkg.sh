@@ -14,7 +14,6 @@ function sed_pkg {
 
     sed_about
 
-    ## package.json edits
     sed_priv
 
     sed_themes
@@ -25,10 +24,13 @@ function sed_pkg {
 
     sed_git
 
-    sed -i -e "/\"language-css\": \".*\",/a \
-                \"language-d\": \"${_language_d_ver}\",\n    \"language-docker\": \"${_language_docker_ver}\",\n    \"language-fortran\": \"${_language_fortran_ver}\"," package.json
+    sed_fortran
 
-    sed -i -e "s/\"language-gfm\": \".*\",/\"language-gfm2\": \"${_language_gfm2_ver}\",/g" package.json # GFM2
+    sed_docker
+
+    sed_d
+
+    sed_gfm
 
     sed -i -e "/\"language-gfm2\": \".*\",/i \
                 \"language-gentoo\": \"${_language_gentoo_ver}\"," package.json # gentoo

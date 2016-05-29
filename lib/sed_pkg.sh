@@ -59,7 +59,7 @@ function sed_pkg {
 
     sed_nuclide
 
-    sed_termplus
+    sed_platformio
 
     sed_script
 

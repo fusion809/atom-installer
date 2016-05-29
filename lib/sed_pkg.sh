@@ -1,5 +1,8 @@
 #!/bin/bash
-source "./lib/pkg/*.sh"
+for i in ./lib/pkg/*.sh
+do
+  source "$i"
+done
 
 function sed_pkg {
   # This function seds the Atom package.json file

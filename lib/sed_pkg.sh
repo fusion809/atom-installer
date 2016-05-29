@@ -71,7 +71,7 @@ function sed_pkg {
 
     sed_spacing
 
-  elif [[ "$1" == "themes"]]; then
+  elif [[ "$1" == "themes" ]]; then
 
     sed_themes
 

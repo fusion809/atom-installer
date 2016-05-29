@@ -1,3 +1,6 @@
+#!/bin/bash
+source "./lib/src_prepare.sh"
+
 function default {
   export SRC_DEST=$GHUB
 
@@ -8,6 +11,8 @@ function default {
   fi
 
   get_atom_src curl
+
+  src_prepare curl
 
   src_build
 

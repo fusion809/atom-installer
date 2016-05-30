@@ -4,7 +4,7 @@ do
   source "$i"
 done
 
-  _about_arch_ver=1.5.15
+  _about_arch_ver=1.5.16
   _atom_typescript_ver=8.10.2
   _dark_bint_syntax_ver=0.8.4
   _electron_ver=0.36.12

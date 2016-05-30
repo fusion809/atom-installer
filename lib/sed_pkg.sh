@@ -5,7 +5,7 @@ function sed_pkg {
   _atom_typescript_ver=8.10.2
   _dark_bint_syntax_ver=0.8.4
   _electron_ver=0.36.12
-  _file_icons_ver=1.7.12
+  _file_icons_ver=1.7.13
   _fusion_ui_ver=0.10.3
   _git_plus_ver=5.14.0
   _git_time_machine_ver=1.5.3
@@ -31,7 +31,7 @@ function sed_pkg {
   _minimap_ver=4.24.3
   _nuclide_ver=0.139.0
   _package_sync_ver=1.1.0
-  _pigments_ver=0.27.1
+  _pigments_ver=0.28.4
   _script_ver=3.7.3
   _terminal_plus_ver=0.14.5
   _atom_language_rust_ver=0.8.0
@@ -88,9 +88,9 @@ function sed_pkg {
 
     sed -i -e "s/\"language-shellscript\": \".*\"/\"language-shellscript\": \"${_language_shellscript_ver}\"/g" package.json
 
-    sed -i -e "/\"notifications\": \".*\",/a \
-                \"nuclide\": \"${_nuclide_ver}\"," package.json # nuclide
-                
+  ##  sed -i -e "/\"notifications\": \".*\",/a \
+  ##              \"nuclide\": \"${_nuclide_ver}\"," package.json # nuclide
+
     sed -i -e "/\"package-generator\": \".*\",/a \
                 \"package-sync\": \"${_package_sync_ver}\",\n    \"pigments\": \"${_pigments_ver}\",\n    \"script\": \"${_script_ver}\",\n    \"terminal-plus\": \"${_terminal_plus_ver}\"," package.json
 

@@ -94,12 +94,6 @@ function sed_pkg {
 
     sed_nuclide
 
-  ##  sed -i -e "/\"notifications\": \".*\",/a \
-  ##              \"nuclide\": \"${_nuclide_ver}\"," package.json # nuclide
-
-    sed -i -e "/\"package-generator\": \".*\",/a \
-                \"package-sync\": \"${_package_sync_ver}\",\n    \"pigments\": \"${_pigments_ver}\",\n    \"script\": \"${_script_ver}\",\n    \"terminal-plus\": \"${_terminal_plus_ver}\"," package.json
-
     sed_platformio
 
     sed_script

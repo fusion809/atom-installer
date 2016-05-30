@@ -1,9 +1,19 @@
 #!/bin/bash
 
-function src_method {
-  # Get the source code
-  printf "How would you like to get the source code? \n[curl/git/wget/?; default: curl]\n"
-  read SRC_METHOD
+function get_atom_src {
+  # If input is given to this function it is to be the download method: curl/wget/git. If none is provided it will ask the user to set the download method.
+
+  if [[ -n "$1" ]]; then
+
+    SRC_METHOD="$1"
+
+  else
+
+    # Get the source code
+    printf "How would you like to get the source code? \n[curl/git/wget/?; default: curl]\n"
+    read SRC_METHOD
+
+  fi
 
   # Test to see what SRC_METHOD is defined as
   if [[ $SRC_METHOD == "?" ]]; then
@@ -16,15 +26,17 @@ function src_method {
     if [[ -d $SRC_DEST/atom-$pkgver ]]; then
       rm -rf $SRC_DEST/atom-$pkgver
     fi
-    wget -cqO- https://github.com/atom/atom/archive/v$pkgver.tar.gz | tar xz -C $SRC_DEST
-    mv $SRC_DEST/atom-${pkgver} $SRC_DEST/atom
 
-    cd $SRC_DEST/atom
+    wget -cO- https://github.com/atom/atom/archive/v$pkgver.tar.gz | tar xz --transform="s/atom-$pkgver/atom/" -C $SRC_DEST
+
+  cd $SRC_DEST/atom
 
   elif [[ $SRC_METHOD == "git" ]]; then
+
     if ! [[ -d $SRC_DEST/atom ]]; then
       git clone https://github.com/atom/atom $SRC_DEST/atom
     fi
+
     cd $SRC_DEST/atom
     git fetch -p
     git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
@@ -34,13 +46,13 @@ function src_method {
     if [[ -d $SRC_DEST/atom-$pkgver ]]; then
       rm -rf $SRC_DEST/atom-$pkgver
     fi
-    curl -sL https://github.com/atom/atom/archive/v$pkgver.tar.gz | tar xz -C $SRC_DEST
-    mv $SRC_DEST/atom-${pkgver} $SRC_DEST/atom
-    
+
+    curl -L https://github.com/atom/atom/archive/v$pkgver.tar.gz | tar xz --transform="s/atom-$pkgver/atom/" -C $SRC_DEST
+
     cd $SRC_DEST/atom
 
   fi
 
 }
 
-export -f src_method
+export -f get_atom_src

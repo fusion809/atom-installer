@@ -1,5 +1,8 @@
 #!/bin/bash
-function sed_pkg {
+for i in ./lib/pkg/*.sh
+do
+  source "$i"
+done
 
   _about_arch_ver=1.5.15
   _atom_typescript_ver=8.10.2
@@ -36,57 +39,60 @@ function sed_pkg {
   _terminal_plus_ver=0.14.5
   _atom_language_rust_ver=0.8.0
 
+function sed_pkg {
+  # This function seds the Atom package.json file
+  pkg_ver
+
   cd $SRC_DEST/atom
+
+  sed_about
+
+  sed_elect
+
+  sed_priv
+
+  sed_gfm
+
+  sed_liquid
+
+  sed_shellscript
+
 
   if [[ "$1" == "custom" ]]; then
 
-    ## package.json edits
-    sed -i -e "/exception-reporting/d" \
-             -e "/metrics/d" package.json
+    sed_themes
 
-    sed -i -e "s/\"about\": \".*\"/\"about-arch\": \"${_about_arch_ver}\"/g" package.json # switching about with about-arch
+    sed_rust
 
-    sed -i -e "s/\"electronVersion\": \".*\"/\"electronVersion\": \"${_electron_ver}\"/g" package.json              # change electron ver
+    sed_icons
 
-    sed -i -e "/\"atom-light-syntax\": \".*\"/a \
-                \"dark-bint-syntax\": \"${_dark_bint_syntax_ver}\"," package.json # install dark-bint-syntax
+    sed_git
 
-    sed -i -e "/\"atom-light-ui\": \".*\",/a \
-               \"fusion-ui\": \"${_fusion_ui_ver}\"," package.json # install fusion-ui theme
+    sed_fortran
 
-    sed -i -e "/\"archive-view\": \".*\",/a \
-                \"atom-language-rust\": \"${_atom_language_rust_ver}\",\n    \"atom-typescript\": \"${_atom_typescript_ver}\"," package.json
+    sed_docker
 
-    sed -i -e "/\"find-and-replace\": \".*\",/i \
-                \"file-icons\": \"${_file_icons_ver}\"," package.json # file-icons
+    sed_d
 
-    sed -i -e "/\"git-diff\": \".*\",/a \
-                \"git-plus\": \"${_git_plus_ver}\",\n    \"git-time-machine\": \"${_git_time_machine_ver}\"," package.json # git packages
+    sed_gentoo
 
-    sed -i -e "/\"language-css\": \".*\",/a \
-                \"language-d\": \"${_language_d_ver}\",\n    \"language-docker\": \"${_language_docker_ver}\",\n    \"language-fortran\": \"${_language_fortran_ver}\"," package.json
+    sed_ini
 
-    sed -i -e "s/\"language-gfm\": \".*\",/\"language-gfm2\": \"${_language_gfm2_ver}\",/g" package.json # GFM2
+    sed_julia
 
-    sed -i -e "/\"language-gfm2\": \".*\",/i \
-                \"language-gentoo\": \"${_language_gentoo_ver}\"," package.json # gentoo
+    sed_lua
 
-    sed -i -e "/\"language-hyperlink\": \".*\",/a \
-                \"language-ini2\": \"${_language_ini2_ver}\",\n    \n\"language-julia\": \"${_language_julia_ver}\"," package.json # Julia
+    sed_lisp
 
-    sed -i -e "/\"language-less\": \".*\",/a \
-                \"language-liquid\": \"${_language_liquid_ver}\",\n    \"language-lisp\": \"${_language_lisp_ver}\",\n    \"language-lua\": \"${_language_lua_ver}\"," package.json # Add Liquid, Lisp, Lua
+    sed_matlab
 
-    sed -i -e "/\"language-makefile\": \".*\",/a \
-                \"language-matlab\": \"${_language_matlab_ver}\"," package.json # MATLAB
+    sed_swift
 
-    sed -i -e "/\"language-perl\": \".*\",/i \
-                \"language-pascal\": \"${_language_pascal_ver}\"," package.json # pascal
+    sed_pascal
 
-    sed -i -e "/\"language-toml\": \".*\",/a \
-                \"language-viml\": \"${_language_viml_ver}\"," package.json   # Add VimL
+    sed_viml
 
-    sed -i -e "s/\"language-shellscript\": \".*\"/\"language-shellscript\": \"${_language_shellscript_ver}\"/g" package.json
+    sed_nuclide
 
   ##  sed -i -e "/\"notifications\": \".*\",/a \
   ##              \"nuclide\": \"${_nuclide_ver}\"," package.json # nuclide
@@ -94,38 +100,24 @@ function sed_pkg {
     sed -i -e "/\"package-generator\": \".*\",/a \
                 \"package-sync\": \"${_package_sync_ver}\",\n    \"pigments\": \"${_pigments_ver}\",\n    \"script\": \"${_script_ver}\",\n    \"terminal-plus\": \"${_terminal_plus_ver}\"," package.json
 
-    sed -i -e "/\"markdown-preview\": \".*\",/a \
-                \"md-writer\": \"${_markdown_writer_ver}\",\n    \"minimap\": \"${_minimap_ver}\"," package.json
+    sed_platformio
 
-    sed -i -e "/\"link\": \".*\",/a \
-                \"linter\": \"${_linter_ver}\",\n    \"linter-docker\": \"${_linter_docker_ver}\"," package.json
+    sed_script
 
-    sed -i -e "s|^\"|    \"|g"  package.json # fixing spacing issues
+    sed_pigments
 
-  else
-    sed -i -e '/exception-reporting/d' \
-           -e '/metrics/d' \
-           -e "s/\"electronVersion\": \".*\"/\"electronVersion\": \"${_electron_ver}\"/g" \
-           -e "s/\"language-gfm\": \".*\",/\"language-gfm2\": \"${_language_gfm2_ver}\",\n    \"language-liquid\": \"${_language_liquid_ver}\",/g" \
-           -e "s/\"about\": \".*\"/\"about-arch\": \"${_about_arch_ver}\"/g" \
-           -e "s/\"language-shellscript\": \".*\"/\"language-shellscript\": \"${_language_shellscript_ver}\"/g" \
-           package.json
+    sed_sync
+
+    sed_minimap
+
+    sed_spacing
+
+  elif [[ "$1" == "themes" ]]; then
+
+    sed_themes
+
   fi
 
-  if ! [[ -d node_modules ]]; then
-    mkdir node_modules
-  fi
-
-  curl -sL https://github.com/fusion809/about/archive/v${_about_arch_ver}.tar.gz | tar xz -C node_modules
-  mv node_modules/about-${_about_arch_ver} node_modules/about-arch
-
-  cp $INDIR/resources/about-arch.patch node_modules/about-arch
-  cd node_modules/about-arch
-  patch -Np1 < about-arch.patch
-  cd -
-
-  sed -i -e 's@node script/bootstrap@node script/bootstrap --no-quiet@g' \
-  ./script/build || die "Fail fixing verbosity of script/build"
 }
 
 export -f sed_pkg

@@ -1,3 +1,6 @@
+#!/bin/bash
+source "./lib/src_prepare.sh"
+
 function default {
   export SRC_DEST=$GHUB
 
@@ -7,12 +10,11 @@ function default {
     rm -rf $SRC_DEST/atom
   fi
 
-  curl -sL https://github.com/atom/atom/archive/v$pkgver.tar.gz | tar xz -C $SRC_DEST
-  mv $SRC_DEST/atom-${pkgver} $SRC_DEST/atom
+  get_atom_src curl
 
-  cd $SRC_DEST/atom
+  src_prepare custom
 
-  src_build custom
+  src_build
 
   if `comex dnf`; then
 

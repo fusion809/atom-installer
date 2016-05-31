@@ -16,7 +16,7 @@ done
   _language_docker_ver=1.1.6
   _language_fortran_ver=2.0.11
   _language_gentoo_ver=0.9.0
-  _language_gfm2_ver=0.90.2
+  _language_gfm2_ver=0.90.3
   _language_groovy_ver=0.6.0
   _language_haskell_ver=1.7.15
   _language_ini2_ver=1.17.1
@@ -28,15 +28,13 @@ done
   _language_pascal_ver=0.18.1
   _language_viml_ver=1.0.0
   _language_shellscript_ver=0.22.3
-  _linter_ver=1.11.4
-  _linter_docker_ver=0.1.2
   _markdown_writer_ver=2.3.4
   _minimap_ver=4.24.3
   _nuclide_ver=0.139.0
   _package_sync_ver=1.1.0
-  _pigments_ver=0.28.4
+  _pigments_ver=0.29.0
   _script_ver=3.7.3
-  _terminal_plus_ver=0.14.5
+  _platformio_ide_terminal_ver=2.0.10
   _atom_language_rust_ver=0.8.0
 
 function sed_pkg {

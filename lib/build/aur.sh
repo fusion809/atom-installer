@@ -4,9 +4,9 @@
 
 function atomin {
   if [[ -n "$1" ]]; then
-    cd /tmp/PKGBUILDs/atom-editor-$1
+    cd /tmp/atom-editor/atom-editor-$1
   else
-    cd /tmp/PKGBUILDs/atom-editor
+    cd /tmp/atom-editor/atom-editor
   fi
   makepkg -si --noconfirm
   cd .
@@ -21,14 +21,14 @@ function atomaur {
   export AUR=https://aur.archlinux.org/cgit/aur.git/snapshot/
   export GIT=https://aur.archlinux.org/
 
-  printf "Would you prefer to install Atom from the AUR or from my PKGBUILDs GitHub repository? [AUR/GitHub/?; GitHub is the default] "
+  printf "Would you prefer to install Atom from the AUR or from my atom-editor GitHub repository? [AUR/GitHub/?; GitHub is the default] "
   read choice
 
   if [[ $choice == "?" ]]; then
 
     printf 'If you opt to install Atom from the AUR, the AUR helper `yaourt` will be used to install it. This means that when updates become available from the AUR you will be able to install them (along with packages updates from the pacman repositories and other AUR packages you have installed) by running `yaourt -Syua`.\nMy PKGBUILD for Atom should be up-to-date and uses a desktop configuration file with MimeType support for a wider variety of different file formats than that provided by the AUR.'
 
-    printf "Would you prefer to install Atom from the AUR or from my PKGBUILDs GitHub repository? [AUR/GitHub; GitHub is the default] "
+    printf "Would you prefer to install Atom from the AUR or from my atom-editor GitHub repository? [AUR/GitHub; GitHub is the default] "
     read choice
 
   fi
@@ -79,15 +79,15 @@ function atomaur {
 
     if comex git; then
 
-      git clone https://github.com/fusion809/PKGBUILDs.git /tmp/PKGBUILDs
+      git clone https://github.com/fusion809/atom-editor.git /tmp/atom-editor
 
     elif comex curl; then
 
-      curl -sL https://github.com/fusion809/PKGBUILDs/archive/master.tar.gz | tar xz --transform=s/PKGBUILDs-master/PKGBUILDs -C /tmp
+      curl -sL https://github.com/fusion809/atom-editor/archive/master.tar.gz | tar xz --transform=s/atom-editor-master/atom-editor -C /tmp
 
     elif comex wget; then
 
-      wget -cqO- https://github.com/fusion809/PKGBUILDs/archive/master.tar.gz | tar xz --transform=s/PKGBUILDs-master/PKGBUILDs -C /tmp
+      wget -cqO- https://github.com/fusion809/atom-editor/archive/master.tar.gz | tar xz --transform=s/atom-editor-master/atom-editor -C /tmp
 
     fi
 

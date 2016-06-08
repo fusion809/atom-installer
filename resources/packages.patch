@@ -1,15 +1,17 @@
---- a/package.json	2016-06-07 07:29:19.000000000 +1000
-+++ b/package.json	2016-06-08 20:54:11.904115569 +1000
-@@ -12,7 +12,7 @@
+--- package.json	2016-06-07 07:29:19.000000000 +1000
++++ ../atom-1.8.0/package.json	2016-06-08 22:02:03.459879237 +1000
+@@ -12,8 +12,9 @@
      "url": "https://github.com/atom/atom/issues"
    },
    "license": "MIT",
 -  "electronVersion": "0.36.8",
 +  "electronVersion": "0.37.8",
    "dependencies": {
++    "language-patch2": "fusion809/language-patch2",
      "async": "0.2.6",
      "atom-keymap": "6.3.2",
-@@ -60,19 +60,6 @@
+     "babel-core": "^5.8.21",
+@@ -60,19 +61,6 @@
      "yargs": "^3.23.0"
    },
    "packageDependencies": {
@@ -29,7 +31,7 @@
      "archive-view": "0.61.1",
      "autocomplete-atom-api": "0.10.0",
      "autocomplete-css": "0.11.1",
-@@ -88,7 +75,6 @@
+@@ -88,7 +76,6 @@
      "deprecation-cop": "0.54.1",
      "dev-live-reload": "0.47.0",
      "encoding-selector": "0.21.0",
@@ -37,7 +39,7 @@
      "find-and-replace": "0.199.0",
      "fuzzy-finder": "1.0.5",
      "git-diff": "1.0.1",
-@@ -100,7 +86,6 @@
+@@ -100,7 +87,6 @@
      "line-ending-selector": "0.4.1",
      "link": "0.31.1",
      "markdown-preview": "0.158.0",
@@ -45,7 +47,7 @@
      "notifications": "0.63.1",
      "open-on-github": "1.0.1",
      "package-generator": "1.0.0",
-@@ -122,7 +107,6 @@
+@@ -122,7 +108,6 @@
      "language-coffee-script": "0.46.1",
      "language-csharp": "0.12.1",
      "language-css": "0.36.1",
@@ -53,7 +55,7 @@
      "language-git": "0.12.1",
      "language-go": "0.42.0",
      "language-html": "0.44.1",
-@@ -141,14 +125,27 @@
+@@ -141,14 +126,27 @@
      "language-ruby": "0.68.5",
      "language-ruby-on-rails": "0.25.0",
      "language-sass": "0.46.0",

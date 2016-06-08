@@ -20,6 +20,7 @@ function sed_pkg {
   cd $SRC_DEST/atom
 
   patch -Np1 -i $INDIR/resources/packages.patch
+  patch -Np1 -i $INDIR/resources/electron.patch
 }
 
 export -f sed_pkg

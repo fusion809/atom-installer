@@ -8,8 +8,9 @@ function src_modules {
   fi
 
   # Get the about-arch module
+  printf "_about_arch_ver is ${_about_arch_ver}"
   curl -L https://github.com/fusion809/about/archive/v${_about_arch_ver}.tar.gz > /tmp/about-v${_about_arch_ver}.tar.gz
-  tar -xzf /tmp/about-${_about_arch_ver}.tar.gz -C node_modules
+  tar -xzf /tmp/about-v${_about_arch_ver}.tar.gz -C node_modules
   mv node_modules/about-${_about_arch_ver} node_modules/about-arch
 
   # Get the patch

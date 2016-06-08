@@ -153,75 +153,6 @@ index 398a3d0..951b89a 100644
      # Don't set icon on Windows so the exe's ico will be used as window and
      # taskbar's icon. See https://github.com/atom/atom/issues/4811 for more.
 
-From 75adc20377a15b3aa30b44a0294019e644736ba1 Mon Sep 17 00:00:00 2001
-From: Antonio Scandurra <me@as-cii.com>
-Date: Fri, 15 Apr 2016 16:02:55 +0200
-Subject: [PATCH 08/22] :arrow_up: electron 0.37.6
-
----
- package.json | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/package.json b/package.json
-index cc8dfa1..b1567a7 100644
---- a/package.json
-+++ b/package.json
-@@ -12,7 +12,7 @@
-     "url": "https://github.com/atom/atom/issues"
-   },
-   "license": "MIT",
--  "electronVersion": "0.37.5",
-+  "electronVersion": "0.37.6",
-   "dependencies": {
-     "async": "0.2.6",
-     "atom-keymap": "6.3.2",
-
-From 49429d7a8093b9237762468936971338e461e53c Mon Sep 17 00:00:00 2001
-From: Wliu <50Wliu@users.noreply.github.com>
-Date: Sun, 24 Apr 2016 16:19:49 -0400
-Subject: [PATCH 09/22] :arrow_up: electron@0.37.7
-
----
- package.json | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/package.json b/package.json
-index 893666d..ec09a15 100644
---- a/package.json
-+++ b/package.json
-@@ -12,7 +12,7 @@
-     "url": "https://github.com/atom/atom/issues"
-   },
-   "license": "MIT",
--  "electronVersion": "0.37.6",
-+  "electronVersion": "0.37.7",
-   "dependencies": {
-     "async": "0.2.6",
-     "atom-keymap": "6.3.2",
-
-From 5df4a8ccd06f29be923b252db10cc709aef3d076 Mon Sep 17 00:00:00 2001
-From: Wliu <50Wliu@users.noreply.github.com>
-Date: Fri, 29 Apr 2016 18:22:05 -0400
-Subject: [PATCH 10/22] :arrow_up: electron@0.37.8
-
----
- package.json | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/package.json b/package.json
-index ec09a15..1d0d5f3 100644
---- a/package.json
-+++ b/package.json
-@@ -12,7 +12,7 @@
-     "url": "https://github.com/atom/atom/issues"
-   },
-   "license": "MIT",
--  "electronVersion": "0.37.7",
-+  "electronVersion": "0.37.8",
-   "dependencies": {
-     "async": "0.2.6",
-     "atom-keymap": "6.3.2",
-
 From a9da86267812ea6355a4127ce34780a3e7cf13eb Mon Sep 17 00:00:00 2001
 From: Wliu <Wliu1402@gmail.com>
 Date: Fri, 29 Apr 2016 18:43:45 -0400
@@ -292,54 +223,6 @@ index 9a2961b..39bdfa2 100644
    for builtin in rendererBuiltins
      cache.builtins[builtin] = path.join(rendererRoot, "#{builtin}.js")
 
-From 6b4742355a20c3b74004ceb3e0422b3873688d93 Mon Sep 17 00:00:00 2001
-From: Wliu <Wliu1402@gmail.com>
-Date: Mon, 2 May 2016 20:10:44 +0000
-Subject: [PATCH 13/22] Set background throttling directly
-
----
- src/browser/atom-window.coffee | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
-
-diff --git a/src/browser/atom-window.coffee b/src/browser/atom-window.coffee
-index 951b89a..2f07dd4 100644
---- a/src/browser/atom-window.coffee
-+++ b/src/browser/atom-window.coffee
-@@ -24,9 +24,8 @@ class AtomWindow
-     options =
-       show: false
-       title: 'Atom'
--
--    if @isSpec
--      options.webPreferences = {backgroundThrottling: false}
-+      webPreferences:
-+        backgroundThrottling: not @isSpec
-
-     # Don't set icon on Windows so the exe's ico will be used as window and
-     # taskbar's icon. See https://github.com/atom/atom/issues/4811 for more.
-
-From bb46933d589ffb4563ee19e830795673006802d4 Mon Sep 17 00:00:00 2001
-From: Wliu <Wliu1402@gmail.com>
-Date: Mon, 2 May 2016 20:08:35 -0400
-Subject: [PATCH 14/22] Explicitly set mini to false when it isn't passed
-
----
- src/text-editor.coffee | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/src/text-editor.coffee b/src/text-editor.coffee
-index 9976e59..3eb15c6 100644
---- a/src/text-editor.coffee
-+++ b/src/text-editor.coffee
-@@ -104,6 +104,7 @@ class TextEditor extends Model
-     @assert ?= (condition) -> condition
-     @firstVisibleScreenRow ?= 0
-     @firstVisibleScreenColumn ?= 0
-+    @mini ?= false
-     @emitter = new Emitter
-     @disposables = new CompositeDisposable
-     @cursors = []
-
 From 32687653412dea7ae4223367eb38b8e965a2c2b8 Mon Sep 17 00:00:00 2001
 From: Wliu <Wliu1402@gmail.com>
 Date: Thu, 5 May 2016 20:42:17 -0400
@@ -403,38 +286,6 @@ index 5f8e03c..6ed8a5a 100644
      promise.then(
        done,
        (error) ->
-
-From 683bef5b9d133cb194b476938c77cc07fd05b972 Mon Sep 17 00:00:00 2001
-From: Antonio Scandurra <as-cii@github.com>
-Date: Mon, 16 May 2016 18:10:38 +0200
-Subject: [PATCH 17/22] Set BrowserWindow's background color to white to
- re-enable sub-pixel AA
-
-In Electron 0.37.3 the default background color has changed from white
-to transparent, and as per the sub pixel anti-aliasing specification,
-the layer which hosts the glyphs that need to be rendered needs to have
-an opaque background.
-
-We have also observed that upon reload everything seems to work smoothly
-even without this fix: this probably points in the direction of a
-regression in Electron, but in the meantime this fix should suffice to
-allow us to proceed.
----
- src/browser/atom-window.coffee | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/src/browser/atom-window.coffee b/src/browser/atom-window.coffee
-index 2f07dd4..0ee44d2 100644
---- a/src/browser/atom-window.coffee
-+++ b/src/browser/atom-window.coffee
-@@ -24,6 +24,7 @@ class AtomWindow
-     options =
-       show: false
-       title: 'Atom'
-+      backgroundColor: "#fff"
-       webPreferences:
-         backgroundThrottling: not @isSpec
-
 
 From 764de235a87258e9c84d4d2626c9f4e699fa353a Mon Sep 17 00:00:00 2001
 From: Antonio Scandurra <as-cii@github.com>

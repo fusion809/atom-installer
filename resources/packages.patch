@@ -1,5 +1,5 @@
---- a/package.json	2016-06-07 07:29:19.000000000 +1000
-+++ b/package.json	2016-06-08 22:02:03.459879237 +1000
+--- package.json	2016-06-07 07:29:19.000000000 +1000
++++ ../atom-1.8.0/package.json	2016-06-08 23:49:51.518432026 +1000
 @@ -12,8 +12,9 @@
      "url": "https://github.com/atom/atom/issues"
    },
@@ -55,7 +55,7 @@
      "language-git": "0.12.1",
      "language-go": "0.42.0",
      "language-html": "0.44.1",
-@@ -141,14 +126,27 @@
+@@ -141,14 +126,26 @@
      "language-ruby": "0.68.5",
      "language-ruby-on-rails": "0.25.0",
      "language-sass": "0.46.0",
@@ -71,7 +71,6 @@
 +    "dark-bint-syntax": "0.8.7",
 +    "fusion-ui": "0.10.6",
 +    "about-arch": "1.5.18",
-+    "color-picker": "2.1.1",
 +    "file-icons": "1.7.13",
 +    "minimap": "4.24.3",
 +    "pigments": "0.29.1",

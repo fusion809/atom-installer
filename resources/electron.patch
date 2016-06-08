@@ -1,73 +1,68 @@
-From ca12075a4121d890cf970bf5d78df842b5a1b851 Mon Sep 17 00:00:00 2001
-From: Wliu <50Wliu@users.noreply.github.com>
-Date: Thu, 14 Apr 2016 18:04:29 -0400
-Subject: [PATCH 02/22] web-preferences -> webPreferences
+diff -Naur a/spec/integration/helpers/start-atom.coffee b/spec/integration/helpers/start-atom.coffee
+--- a/spec/integration/helpers/start-atom.coffee	2016-06-08 21:19:13.631777355 +1000
++++ b/spec/integration/helpers/start-atom.coffee	2016-06-08 21:24:45.464619677 +1000
+@@ -1,6 +1,7 @@
+ path = require 'path'
+ http = require 'http'
+ temp = require('temp').track()
++os = require('os')
+ remote = require 'remote'
+ async = require 'async'
+ {map, extend, once, difference} = require 'underscore-plus'
+@@ -10,7 +11,7 @@
+ AtomPath = remote.process.argv[0]
+ AtomLauncherPath = path.join(__dirname, "..", "helpers", "atom-launcher.sh")
+ ChromedriverPath = path.resolve(__dirname, '..', '..', '..', 'electron', 'chromedriver', 'chromedriver')
+-SocketPath = path.join(temp.mkdirSync("socket-dir"), "atom-#{process.env.USER}.sock")
++SocketPath = path.join(os.tmpdir(), "atom-integration-test-#{Date.now()}.sock")
+ ChromedriverPort = 9515
+ ChromedriverURLBase = "/wd/hub"
+ ChromedriverStatusURL = "http://localhost:#{ChromedriverPort}#{ChromedriverURLBase}/status"
+diff -Naur a/src/atom-environment.coffee b/src/atom-environment.coffee
+--- a/src/atom-environment.coffee	2016-06-08 21:22:06.741811646 +1000
++++ b/src/atom-environment.coffee	2016-06-08 21:24:45.464619677 +1000
+@@ -728,7 +728,7 @@
+       @emitter.emit 'will-throw-error', eventObject
 
----
- src/browser/atom-window.coffee | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+       if openDevTools
+-        @openDevTools().then => @executeJavaScriptInDevTools('DevToolsAPI.showConsole()')
++        @openDevTools().then => @executeJavaScriptInDevTools('DevToolsAPI.showPanel("console")')
 
-diff --git a/src/browser/atom-window.coffee b/src/browser/atom-window.coffee
-index 60e6d05..d490e13 100644
---- a/src/browser/atom-window.coffee
-+++ b/src/browser/atom-window.coffee
-@@ -24,11 +24,11 @@ class AtomWindow
+       @emitter.emit 'did-throw-error', {message, url, line, column, originalError}
+
+diff -Naur a/src/browser/atom-application.coffee b/src/browser/atom-application.coffee
+--- a/src/browser/atom-application.coffee	2016-06-08 21:20:23.068602553 +1000
++++ b/src/browser/atom-application.coffee	2016-06-08 21:24:45.464619677 +1000
+@@ -316,9 +316,6 @@
+     ipcMain.on 'get-auto-update-manager-error', (event) =>
+       event.returnValue = @autoUpdateManager.getErrorMessage()
+
+-    ipcMain.on 'execute-javascript-in-dev-tools', (event, code) ->
+-      event.sender.devToolsWebContents?.executeJavaScript(code)
+-
+   setupDockMenu: ->
+     if process.platform is 'darwin'
+       dockMenu = Menu.buildFromTemplate [
+diff -Naur a/src/browser/atom-window.coffee b/src/browser/atom-window.coffee
+--- a/src/browser/atom-window.coffee	2016-06-08 21:08:06.461701563 +1000
++++ b/src/browser/atom-window.coffee	2016-06-08 21:12:11.016354146 +1000
+@@ -24,11 +24,9 @@
      options =
        show: false
        title: 'Atom'
 -      'web-preferences':
-+      webPreferences:
-         'direct-write': true
+-        'direct-write': true
 
      if @isSpec
 -      options['web-preferences']['page-visibility'] = true
-+      options.webPreferences['page-visibility'] = true
++      options.webPreferences = {backgroundThrottling: false}
 
      # Don't set icon on Windows so the exe's ico will be used as window and
      # taskbar's icon. See https://github.com/atom/atom/issues/4811 for more.
-
-From 098af442d271f99661940bd7f4fcb116feae9558 Mon Sep 17 00:00:00 2001
-From: Wliu <50Wliu@users.noreply.github.com>
-Date: Thu, 14 Apr 2016 20:22:22 -0400
-Subject: [PATCH 03/22] page-visibility -> backgroundThrottling
-
----
- src/browser/atom-window.coffee | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/src/browser/atom-window.coffee b/src/browser/atom-window.coffee
-index d490e13..7019033 100644
---- a/src/browser/atom-window.coffee
-+++ b/src/browser/atom-window.coffee
-@@ -25,10 +25,10 @@ class AtomWindow
-       show: false
-       title: 'Atom'
-       webPreferences:
--        'direct-write': true
-+        directWrite: true
-
-     if @isSpec
--      options.webPreferences['page-visibility'] = true
-+      options.webPreferences.backgroundThrottling = false
-
-     # Don't set icon on Windows so the exe's ico will be used as window and
-     # taskbar's icon. See https://github.com/atom/atom/issues/4811 for more.
-
-From 9966dbc27fbe51168826849c66b780d36e7e8814 Mon Sep 17 00:00:00 2001
-From: Wliu <50Wliu@users.noreply.github.com>
-Date: Thu, 14 Apr 2016 20:24:35 -0400
-Subject: [PATCH 04/22] :fire: Unnecessary audio hack
-
-No longer needed with the `backgroundThrottling` option
----
- src/initialize-test-window.coffee | 7 -------
- 1 file changed, 7 deletions(-)
-
-diff --git a/src/initialize-test-window.coffee b/src/initialize-test-window.coffee
-index 690180f..3558b8d 100644
---- a/src/initialize-test-window.coffee
-+++ b/src/initialize-test-window.coffee
-@@ -48,13 +48,6 @@ module.exports = ({blobStore}) ->
+diff -Naur a/src/initialize-test-window.coffee b/src/initialize-test-window.coffee
+--- a/src/initialize-test-window.coffee	2016-06-08 21:24:27.743420010 +1000
++++ b/src/initialize-test-window.coffee	2016-06-08 21:24:45.439619396 +1000
+@@ -48,13 +48,6 @@
 
      document.title = "Spec Suite"
 
@@ -81,336 +76,24 @@ index 690180f..3558b8d 100644
      testRunner = require(testRunnerPath)
      legacyTestRunner = require(legacyTestRunnerPath)
      buildDefaultApplicationDelegate = -> new ApplicationDelegate()
-
-From 47719f0649a3d9e3a77d4ac0eb3bfb30f60cda47 Mon Sep 17 00:00:00 2001
-From: Wliu <50Wliu@users.noreply.github.com>
-Date: Thu, 14 Apr 2016 20:29:38 -0400
-Subject: [PATCH 05/22] directWrite is true by default
-
----
- src/browser/atom-window.coffee | 2 --
- 1 file changed, 2 deletions(-)
-
-diff --git a/src/browser/atom-window.coffee b/src/browser/atom-window.coffee
-index 7019033..398a3d0 100644
---- a/src/browser/atom-window.coffee
-+++ b/src/browser/atom-window.coffee
-@@ -24,8 +24,6 @@ class AtomWindow
-     options =
-       show: false
-       title: 'Atom'
--      webPreferences:
--        directWrite: true
-
-     if @isSpec
-       options.webPreferences.backgroundThrottling = false
-
-From e03df6e1a48fea12782b25df0b81790e4f4a056c Mon Sep 17 00:00:00 2001
-From: Wliu <50Wliu@users.noreply.github.com>
-Date: Thu, 14 Apr 2016 20:33:56 -0400
-Subject: [PATCH 06/22] Reduce spec timeout duration
-
----
- spec/async-spec-helpers.coffee | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
-
-diff --git a/spec/async-spec-helpers.coffee b/spec/async-spec-helpers.coffee
-index 6ed8a5a..5f8e03c 100644
---- a/spec/async-spec-helpers.coffee
-+++ b/spec/async-spec-helpers.coffee
-@@ -19,9 +19,7 @@ exports.afterEach = (fn) ->
-
- waitsForPromise = (fn) ->
-   promise = fn()
--  # This timeout is 3 minutes. We need to bump it back down once we fix backgrounding
--  # of the renderer process on CI. See https://github.com/atom/electron/issues/4317
--  waitsFor 'spec promise to resolve', 3 * 60 * 1000, (done) ->
-+  waitsFor 'spec promise to resolve', 30000, (done) ->
-     promise.then(
-       done,
-       (error) ->
-
-From a91ad9181bca1eeb841d8c0cdcd4a09b657498c0 Mon Sep 17 00:00:00 2001
-From: Antonio Scandurra <me@as-cii.com>
-Date: Fri, 15 Apr 2016 16:02:31 +0200
-Subject: [PATCH 07/22] Fix backgroundThrottling assignment
-
----
- src/browser/atom-window.coffee | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/src/browser/atom-window.coffee b/src/browser/atom-window.coffee
-index 398a3d0..951b89a 100644
---- a/src/browser/atom-window.coffee
-+++ b/src/browser/atom-window.coffee
-@@ -26,7 +26,7 @@ class AtomWindow
-       title: 'Atom'
-
-     if @isSpec
--      options.webPreferences.backgroundThrottling = false
-+      options.webPreferences = {backgroundThrottling: false}
-
-     # Don't set icon on Windows so the exe's ico will be used as window and
-     # taskbar's icon. See https://github.com/atom/atom/issues/4811 for more.
-
-From a9da86267812ea6355a4127ce34780a3e7cf13eb Mon Sep 17 00:00:00 2001
-From: Wliu <Wliu1402@gmail.com>
-Date: Fri, 29 Apr 2016 18:43:45 -0400
-Subject: [PATCH 11/22] Decrease spec timeouts
-
-Reverts a35e24658d2466c08f185e330badc24b90294dcd
----
- spec/async-spec-helpers.coffee     | 2 +-
- spec/text-editor-component-spec.js | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/spec/async-spec-helpers.coffee b/spec/async-spec-helpers.coffee
-index 5f8e03c..2faa5ab 100644
---- a/spec/async-spec-helpers.coffee
-+++ b/spec/async-spec-helpers.coffee
-@@ -19,7 +19,7 @@ exports.afterEach = (fn) ->
-
- waitsForPromise = (fn) ->
-   promise = fn()
--  waitsFor 'spec promise to resolve', 30000, (done) ->
-+  waitsFor 'spec promise to resolve', 10000, (done) ->
-     promise.then(
-       done,
-       (error) ->
-diff --git a/spec/text-editor-component-spec.js b/spec/text-editor-component-spec.js
-index b031cba..b1f457d 100644
---- a/spec/text-editor-component-spec.js
-+++ b/spec/text-editor-component-spec.js
-@@ -5008,7 +5008,7 @@ describe('TextEditorComponent', function () {
-       let timeout = window.setTimeout(function () {
-         timeoutError.message += ' Frame pending? ' + atom.views.animationFrameRequest + ' Same next update promise pending? ' + (nextUpdatePromise === atom.views.nextUpdatePromise)
-         reject(timeoutError)
--      }, 30000)
-+      }, 5000)
-     })
-   }
-
-
-From 3e507e115777ad1075221139bbb65f1719290882 Mon Sep 17 00:00:00 2001
-From: Wliu <Wliu1402@gmail.com>
-Date: Mon, 2 May 2016 14:27:42 +0000
-Subject: [PATCH 12/22] atom.asar -> electron.asar
-
----
- src/module-cache.coffee | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/src/module-cache.coffee b/src/module-cache.coffee
-index 9a2961b..39bdfa2 100644
---- a/src/module-cache.coffee
-+++ b/src/module-cache.coffee
-@@ -200,14 +200,14 @@ registerBuiltins = (devMode) ->
+diff -Naur a/src/module-cache.coffee b/src/module-cache.coffee
+--- a/src/module-cache.coffee	2016-06-08 21:02:07.111538372 +1000
++++ b/src/module-cache.coffee	2016-06-08 21:03:20.502230393 +1000
+@@ -200,14 +200,14 @@
      cache.builtins.atom = atomCoffeePath if fs.isFileSync(atomCoffeePath)
    cache.builtins.atom ?= path.join(cache.resourcePath, 'exports', 'atom.js')
 
 -  atomShellRoot = path.join(process.resourcesPath, 'atom.asar')
-+  electronAsarRoot = path.join(process.resourcesPath, 'electron.asar')
++  electronAsarRoot = path.join(process.resourcesPath, 'atom.asar')
 
--  commonRoot = path.join(atomShellRoot, 'common', 'api')
-+  commonRoot = path.join(electronAsarRoot, 'common', 'api')
-   commonBuiltins = ['callbacks-registry', 'clipboard', 'crash-reporter', 'shell']
+-  commonRoot = path.join(atomShellRoot, 'common', 'api', 'lib')
++  commonRoot = path.join(electronAsarRoot, 'common', 'api', 'lib')
+   commonBuiltins = ['callbacks-registry', 'clipboard', 'crash-reporter', 'screen', 'shell']
    for builtin in commonBuiltins
      cache.builtins[builtin] = path.join(commonRoot, "#{builtin}.js")
 
--  rendererRoot = path.join(atomShellRoot, 'renderer', 'api')
-+  rendererRoot = path.join(electronAsarRoot, 'renderer', 'api')
-   rendererBuiltins = ['ipc-renderer', 'remote', 'screen']
+-  rendererRoot = path.join(atomShellRoot, 'renderer', 'api', 'lib')
++  rendererRoot = path.join(electronAsarRoot, 'renderer', 'api', 'lib')
+   rendererBuiltins = ['ipc-renderer', 'remote']
    for builtin in rendererBuiltins
      cache.builtins[builtin] = path.join(rendererRoot, "#{builtin}.js")
-
-From 32687653412dea7ae4223367eb38b8e965a2c2b8 Mon Sep 17 00:00:00 2001
-From: Wliu <Wliu1402@gmail.com>
-Date: Thu, 5 May 2016 20:42:17 -0400
-Subject: [PATCH 15/22] Revert "Decrease spec timeouts"
-
-This reverts commit a9da86267812ea6355a4127ce34780a3e7cf13eb.
----
- spec/async-spec-helpers.coffee     | 2 +-
- spec/text-editor-component-spec.js | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/spec/async-spec-helpers.coffee b/spec/async-spec-helpers.coffee
-index 2faa5ab..5f8e03c 100644
---- a/spec/async-spec-helpers.coffee
-+++ b/spec/async-spec-helpers.coffee
-@@ -19,7 +19,7 @@ exports.afterEach = (fn) ->
-
- waitsForPromise = (fn) ->
-   promise = fn()
--  waitsFor 'spec promise to resolve', 10000, (done) ->
-+  waitsFor 'spec promise to resolve', 30000, (done) ->
-     promise.then(
-       done,
-       (error) ->
-diff --git a/spec/text-editor-component-spec.js b/spec/text-editor-component-spec.js
-index 0c7ebd0..83f5d1b 100644
---- a/spec/text-editor-component-spec.js
-+++ b/spec/text-editor-component-spec.js
-@@ -5118,7 +5118,7 @@ describe('TextEditorComponent', function () {
-       let timeout = window.setTimeout(function () {
-         timeoutError.message += ' Frame pending? ' + atom.views.animationFrameRequest + ' Same next update promise pending? ' + (nextUpdatePromise === atom.views.nextUpdatePromise)
-         reject(timeoutError)
--      }, 5000)
-+      }, 30000)
-     })
-   }
-
-
-From aa221a88802abf4df9f1375c52c41d59cf0a12dd Mon Sep 17 00:00:00 2001
-From: Wliu <Wliu1402@gmail.com>
-Date: Thu, 5 May 2016 20:42:27 -0400
-Subject: [PATCH 16/22] Revert "Reduce spec timeout duration"
-
-This reverts commit e03df6e1a48fea12782b25df0b81790e4f4a056c.
----
- spec/async-spec-helpers.coffee | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
-
-diff --git a/spec/async-spec-helpers.coffee b/spec/async-spec-helpers.coffee
-index 5f8e03c..6ed8a5a 100644
---- a/spec/async-spec-helpers.coffee
-+++ b/spec/async-spec-helpers.coffee
-@@ -19,7 +19,9 @@ exports.afterEach = (fn) ->
-
- waitsForPromise = (fn) ->
-   promise = fn()
--  waitsFor 'spec promise to resolve', 30000, (done) ->
-+  # This timeout is 3 minutes. We need to bump it back down once we fix backgrounding
-+  # of the renderer process on CI. See https://github.com/atom/electron/issues/4317
-+  waitsFor 'spec promise to resolve', 3 * 60 * 1000, (done) ->
-     promise.then(
-       done,
-       (error) ->
-
-From 764de235a87258e9c84d4d2626c9f4e699fa353a Mon Sep 17 00:00:00 2001
-From: Antonio Scandurra <as-cii@github.com>
-Date: Tue, 17 May 2016 09:44:54 +0200
-Subject: [PATCH 18/22] :memo: Remember why we added backgroundColor
-
----
- src/browser/atom-window.coffee | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/src/browser/atom-window.coffee b/src/browser/atom-window.coffee
-index 0ee44d2..d70bda2 100644
---- a/src/browser/atom-window.coffee
-+++ b/src/browser/atom-window.coffee
-@@ -24,6 +24,10 @@ class AtomWindow
-     options =
-       show: false
-       title: 'Atom'
-+      # Add an opaque backgroundColor (instead of keeping the default
-+      # transparent one) to prevent subpixel anti-aliasing from being disabled.
-+      # We believe this is a regression introduced with Electron 0.37.3, and
-+      # thus we should remove this as soon as a fix gets released.
-       backgroundColor: "#fff"
-       webPreferences:
-         backgroundThrottling: not @isSpec
-
-From 1cf4e4a8a2b6c531c644fe33ddb91de06019f359 Mon Sep 17 00:00:00 2001
-From: Antonio Scandurra <as-cii@github.com>
-Date: Tue, 17 May 2016 09:47:04 +0200
-Subject: [PATCH 19/22] :memo: Remember why we added backgroundThrottling
-
----
- src/browser/atom-window.coffee | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/src/browser/atom-window.coffee b/src/browser/atom-window.coffee
-index d70bda2..c2909f8 100644
---- a/src/browser/atom-window.coffee
-+++ b/src/browser/atom-window.coffee
-@@ -30,6 +30,10 @@ class AtomWindow
-       # thus we should remove this as soon as a fix gets released.
-       backgroundColor: "#fff"
-       webPreferences:
-+        # Prevent specs from throttling when the window is in the background:
-+        # this should result in faster CI builds, and an improvement in the
-+        # local development experience when running specs through the UI (which
-+        # now won't pause when e.g. minimizing the window).
-         backgroundThrottling: not @isSpec
-
-     # Don't set icon on Windows so the exe's ico will be used as window and
-
-From 124b5d5efe6b096be67894be9898a3f32a62b738 Mon Sep 17 00:00:00 2001
-From: Antonio Scandurra <as-cii@github.com>
-Date: Tue, 17 May 2016 11:18:13 +0200
-Subject: [PATCH 20/22] :fire: Remove duplicate ipcMain.on
-
----
- src/browser/atom-application.coffee | 3 ---
- 1 file changed, 3 deletions(-)
-
-diff --git a/src/browser/atom-application.coffee b/src/browser/atom-application.coffee
-index d089902..a9fa92c 100644
---- a/src/browser/atom-application.coffee
-+++ b/src/browser/atom-application.coffee
-@@ -325,9 +325,6 @@ class AtomApplication
-     ipcMain.on 'get-auto-update-manager-error', (event) =>
-       event.returnValue = @autoUpdateManager.getErrorMessage()
-
--    ipcMain.on 'execute-javascript-in-dev-tools', (event, code) ->
--      event.sender.devToolsWebContents?.executeJavaScript(code)
--
-   setupDockMenu: ->
-     if process.platform is 'darwin'
-       dockMenu = Menu.buildFromTemplate [
-
-From a624489d0f3805a29146d9a8ec60fba330437695 Mon Sep 17 00:00:00 2001
-From: Antonio Scandurra <as-cii@github.com>
-Date: Tue, 17 May 2016 13:01:33 +0200
-Subject: [PATCH 21/22] Fix opening console in DevTools
-
----
- src/atom-environment.coffee | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/src/atom-environment.coffee b/src/atom-environment.coffee
-index 1d60872..1d1a7b2 100644
---- a/src/atom-environment.coffee
-+++ b/src/atom-environment.coffee
-@@ -730,7 +730,7 @@ class AtomEnvironment extends Model
-       @emitter.emit 'will-throw-error', eventObject
-
-       if openDevTools
--        @openDevTools().then => @executeJavaScriptInDevTools('DevToolsAPI.showConsole()')
-+        @openDevTools().then => @executeJavaScriptInDevTools('DevToolsAPI.showPanel("console")')
-
-       @emitter.emit 'did-throw-error', {message, url, line, column, originalError}
-
-
-From ad166db6c4b7feb1302fd529bf85088d458a7251 Mon Sep 17 00:00:00 2001
-From: Antonio Scandurra <as-cii@github.com>
-Date: Tue, 17 May 2016 13:56:57 +0200
-Subject: [PATCH 22/22] Don't use temp for integration tests socket creation
-
----
- spec/integration/helpers/start-atom.coffee | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/spec/integration/helpers/start-atom.coffee b/spec/integration/helpers/start-atom.coffee
-index 2939dd6..7a93118 100644
---- a/spec/integration/helpers/start-atom.coffee
-+++ b/spec/integration/helpers/start-atom.coffee
-@@ -1,6 +1,7 @@
- path = require 'path'
- http = require 'http'
- temp = require('temp').track()
-+os = require('os')
- remote = require 'remote'
- async = require 'async'
- {map, extend, once, difference} = require 'underscore-plus'
-@@ -10,7 +11,7 @@ webdriverio = require '../../../build/node_modules/webdriverio'
- AtomPath = remote.process.argv[0]
- AtomLauncherPath = path.join(__dirname, "..", "helpers", "atom-launcher.sh")
- ChromedriverPath = path.resolve(__dirname, '..', '..', '..', 'electron', 'chromedriver', 'chromedriver')
--SocketPath = path.join(temp.mkdirSync("socket-dir"), "atom-#{process.env.USER}.sock")
-+SocketPath = path.join(os.tmpdir(), "atom-integration-test-#{Date.now()}.sock")
- ChromedriverPort = 9515
- ChromedriverURLBase = "/wd/hub"
- ChromedriverStatusURL = "http://localhost:#{ChromedriverPort}#{ChromedriverURLBase}/status"

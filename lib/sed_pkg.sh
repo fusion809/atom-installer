@@ -8,7 +8,7 @@ function sed_pkg {
   # This function seds the Atom package.json file
   export _about_arch_ver=$(pkg_det fusion809/about)
   export _dark_bint_syntax_ver=$(pkg_det Murriouz/dark-bint-syntax)
-  export _electron_ver=0.36.12
+  export _electron_ver="0.36.12"
   export _fusion_ui_ver=$(pkg_det fusion809/fusion-ui)
   export _language_archlinux_ver=$(pkg_det fusion809/language-archlinux)
   export _language_gfm2_ver=$(pkg_det fusion809/language-gfm2)

@@ -10,48 +10,22 @@ function sed_pkg {
 
   cd $SRC_DEST/atom
 
-  printf "About to sed about=>\n"
-  sed -i -e "s/\"about\": \".*\",/\"about-arch\": \"${_about_arch_ver}\",/g" package.json
-
-  printf "About to sed electron=>\n"
-  sed -i -e "s/\"electronVersion\": \".*\"/\"electronVersion\": \"${_electron_ver}\"/g" package.json
-
-  printf "About to sed privacy=>\n"
   sed -i -e "/exception-reporting/d" \
-         -e "/metrics/d" package.json
-
-  printf "About to sed gfm2=>\n"
-  sed -i -e "s\"language-gfm\": \".*\",/\"language-gfm2\": \"${_language_gfm2_ver}\",/g" package.json
-
-  printf "About to sed liquid=>\n"
-  sed -i -e "/\"language-less\": \".*\",/a \
-              \"language-liquid\": \"${_language_liquid_ver}\"," package.json
-
-  printf "About to sed unix shell=>\n"
-  sed -i -e "s/\"language-shellscript\": \".*\"/\"language-unix-shell\": \"${_language_unix_shell_ver}\"/g" package.json
-
-  printf "About to sed archlinux=>\n"
-  sed -i -e "/\"language-c\": \".*\",/a \
-              \"language-archlinux\": \"${_language_archlinux_ver}\"," package.json
-
-  printf "About to sed patch2=>\n"
-  _language_patch2_url="https://github.com/fusion809/language-patch2"
-
-  sed -i -e "/\"dependencies\": {/a \
-            \"language-patch2\": \"${_language_patch2_url}\"," \
-         -e "/\"language-liquid\": \".*\",/a \
-              \"language-patch2\": \"${_language_patch2_ver}\"," package.json
-
-  printf "About to sed ini-desktop=>\n"
-  sed_ini
-
-  _language_ini_desktop_url="https://github.com/fusion809/language-ini-desktop"
-
-  sed -i -e "/\"dependencies\": {/a \
-            \"language-ini-desktop\": \"${_language_ini_desktop_url}\"," \
-         -e "/\"language-hyperlink\": \".*\",/a \
-              \"language-ini-desktop\": \"${_language_ini_desktop_ver}\"," package.json
-
+         -e "/metrics/d" \
+         -e "s/0.36.8/${_electron_ver}/g" \
+         -e "s/\"language-gfm\": \".*\",/\"language-gfm2\": \"${_language_gfm2_ver}\",\n    \"language-ini-desktop\": \"${_language_ini_desktop_ver}\",\n    \"language-liquid\": \"${_language_liquid_ver}\",\n    \"language-patch2\": \"${_language_patch2_ver}\",/g" \
+         -e "/\"dependencies\": {/a \
+                     \"language-patch2\": \"${_language_patch2_url}\"," \
+         -e "s/\"language-shellscript\": \".*\",/\"language-unix-shell\": \"${_language_unix_shell_ver}\",\n    \"language-archlinux\": \"${_language_archlinux_ver}\",/g" \
+         -e "s/\"about\": \".*\"/\"about-arch\": \"${_about_arch_ver}\"/g" \
+         -e "/\"packageDependencies\": {/a \
+              \"dark-bint-syntax\": \"${_dark_bint_syntax_ver}\",\n    \"fusion-ui\": \"${_fusion_ui_ver}\"," \
+         -e "/atom-dark/d" \
+         -e "/atom-light/d" \
+         -e "/base16/d" \
+         -e "/solarized/d" \
+         -e "/one-/d" \
+         package.json
 }
 
 export -f sed_pkg

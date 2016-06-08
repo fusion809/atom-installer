@@ -64,7 +64,7 @@
 +    "fusion-ui": "0.10.5",
 +    "about-arch": "1.5.18",
 +    "file-icons": "1.7.13",
-+    "platformio-ide-terminal": "2.0.10"
++    "platformio-ide-terminal": "2.0.10",
 +    "language-unix-shell": "0.29.1",
 +    "language-archlinux": "0.2.3",
 +    "language-gfm2": "0.90.3",

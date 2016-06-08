@@ -14,9 +14,8 @@ function src_modules {
   mv node_modules/about-${_about_arch_ver} node_modules/about-arch
 
   # Get the patch
-  cp $INDIR/resources/about-arch.patch node_modules/about-arch
   pushd node_modules/about-arch
-  patch -Np1 -i about-arch.patch
+  patch -Np1 -i $INDIR/resources/about-arch.patch
   popd
 
   cp $INDIR/resources/theme.patch .

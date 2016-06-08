@@ -69,7 +69,7 @@
 -    "language-yaml": "0.25.2"
 +    "language-yaml": "0.25.2",
 +    "dark-bint-syntax": "0.8.7",
-+    "fusion-ui": "0.10.5",
++    "fusion-ui": "0.10.6",
 +    "about-arch": "1.5.18",
 +    "color-picker": "2.1.1",
 +    "file-icons": "1.7.13",

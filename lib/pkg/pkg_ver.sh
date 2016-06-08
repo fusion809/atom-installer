@@ -24,7 +24,7 @@ function pkg_ver {
   _language_ini_desktop_ver=$(pkg_det fusion809/language-ini-desktop)
   _language_liquid_ver=$(pkg_det puranjayjain/language-liquid)
   _language_patch2_ver=$(pkg_det fusion809/language-patch2)
-  _language_unix_shell_ver=$(pkg_det fusion809/language-unix-shell)
+  _language_unix_shell_ver=$(pkg_det fusion809/language-shellscript)
 }
 
 export -f pkg_ver

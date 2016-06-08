@@ -27,9 +27,12 @@ function get_atom_src {
       rm -rf $SRC_DEST/atom-$pkgver
     fi
 
-    wget -cO- https://github.com/atom/atom/archive/v$pkgver.tar.gz | tar xz --transform="s/atom-$pkgver/atom/" -C $SRC_DEST
+    if ! [[ -f /tmp/atom-v$pkgver.tar.gz ]]; then
+      wget -cO- https://github.com/atom/atom/archive/v$pkgver.tar.gz > /tmp/atom-v$pkgver.tar.gz
+    fi
+    tar -xzf /tmp/atom-v$pkgver.tar.gz --transform="s/atom-$pkgver/atom/" -C $SRC_DEST
 
-  cd $SRC_DEST/atom
+    cd $SRC_DEST/atom
 
   elif [[ $SRC_METHOD == "git" ]]; then
 
@@ -47,7 +50,10 @@ function get_atom_src {
       rm -rf $SRC_DEST/atom-$pkgver
     fi
 
-    curl -L https://github.com/atom/atom/archive/v$pkgver.tar.gz | tar xz --transform="s/atom-$pkgver/atom/" -C $SRC_DEST
+    if ! [[ -f /tmp/atom-v$pkgver.tar.gz ]]; then
+      curl -L https://github.com/atom/atom/archive/v$pkgver.tar.gz > /tmp/atom-v$pkgver.tar.gz
+    fi
+    tar -xzf /tmp/atom-v$pkgver.tar.gz --transform="s/atom-$pkgver/atom/" -C $SRC_DEST
 
     cd $SRC_DEST/atom
 

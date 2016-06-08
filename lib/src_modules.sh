@@ -1,6 +1,6 @@
 #!/bin/bash
 function src_modules {
-  # This function just makes the necessary adjustments to node modules being built. 
+  # This function just makes the necessary adjustments to node modules being built.
 
   # create the node_modules folder, if need be
   if ! [[ -d node_modules ]]; then
@@ -14,8 +14,11 @@ function src_modules {
   # Get the patch
   cp $INDIR/resources/about-arch.patch node_modules/about-arch
   pushd node_modules/about-arch
-  patch -Np1 < about-arch.patch
+  patch -Np1 -i about-arch.patch
   popd
+
+  cp $INDIR/resources/theme.patch .
+  patch -Np1 -i theme.patch
 
   # Verbose the build process
   sed -i -e 's@node script/bootstrap@node script/bootstrap --no-quiet@g' \

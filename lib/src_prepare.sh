@@ -6,7 +6,7 @@ source "./lib/src_modules.sh"
 function src_prepare {
   #First and only input is either custom or nothing.
 
-  sed_pkg "$1"
+  sed_pkg
 
   mod_desktop
 

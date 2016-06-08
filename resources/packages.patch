@@ -5,7 +5,7 @@
    },
    "license": "MIT",
 -  "electronVersion": "0.36.8",
-+  "electronVersion": "0.37.8",
++  "electronVersion": "0.36.12",
    "dependencies": {
 +    "language-patch2": "fusion809/language-patch2",
      "async": "0.2.6",

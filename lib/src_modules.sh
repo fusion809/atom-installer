@@ -1,6 +1,7 @@
 #!/bin/bash
 function src_modules {
   # This function just makes the necessary adjustments to node modules being built.
+  pkg_ver
 
   # create the node_modules folder, if need be
   if ! [[ -d node_modules ]]; then

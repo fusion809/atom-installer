@@ -2,10 +2,10 @@
 function pkg_det {
 
   if ! [[ -d /tmp/$1 ]]; then
-    git clone https://github.com/$1 /tmp/$1
+    git clone -q https://github.com/$1 /tmp/$1
   else
     cd /tmp/$1
-    git pull origin master
+    git pull -q origin master
     cd -
   fi
 

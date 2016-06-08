@@ -1,4 +1,5 @@
 . ./lib/build/atom.sh
+. ./lib/build/node.sh
 
 function debian_build {
   # Get dependencies

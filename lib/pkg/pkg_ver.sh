@@ -4,9 +4,7 @@ function pkg_det {
   if ! [[ -d /tmp/$1 ]]; then
     git clone -q https://github.com/$1 /tmp/$1
   else
-    cd /tmp/$1
-    git pull -q origin master
-    cd -
+    git -C /tmp/$1 pull -q origin master
   fi
 
   printf "$(sed -n "s/\"version\": //p" /tmp/$1/package.json | sed 's/"//g' | sed 's/,//g' | sed 's/ //g')"

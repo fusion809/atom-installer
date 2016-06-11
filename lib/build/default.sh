@@ -2,6 +2,8 @@
 source "./lib/src_prepare.sh"
 
 function default {
+  printf "Running default in ./lib/build/default.sh. ==>\n"
+  
   export SRC_DEST=$GHUB
 
   version

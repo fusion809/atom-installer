@@ -3,61 +3,77 @@
 function get_atom_src {
   # If input is given to this function it is to be the download method: curl/wget/git. If none is provided it will ask the user to set the download method.
 
-  if [[ -n "$1" ]]; then
+  if ! ([[ -f /tmp/atom-v$pkgver.tar.gz ]] || [[ -d $SRC_DEST/atom/.git ]]); then
+    if [[ -n "$1" ]]; then
 
-    SRC_METHOD="$1"
+      SRC_METHOD="$1"
 
-  else
+    else
 
-    # Get the source code
-    printf "How would you like to get the source code? \n[curl/git/wget/?; default: curl]\n"
-    read SRC_METHOD
+      # Get the source code
+      printf "How would you like to get the source code? \n[curl/git/wget/?; default: curl]\n"
+      read SRC_METHOD
 
+    fi
   fi
 
-  # Test to see what SRC_METHOD is defined as
-  if [[ $SRC_METHOD == "?" ]]; then
+  . ./lib/version.sh
+  version
 
-    printf "curl and wget are the fastest methods and they chew up less bandwidth.\n
-    While git uses up more bandwidth but it also makes upgrading the package faster."
+  SRCVER=$(cat $SRC_DEST/atom/package.json | grep 'version' | sed 's/ "version": //g')
 
-  elif [[ $SRC_METHOD == "wget" ]]; then
+  if ([[ -d $SRC_DEST/atom ]] && [[ $SRCVER == "$pkgver" ]]); then
+    printf "It seems you already have the source code for this version of Atom at $SRC_DEST/atom.\nWould you like to delete this source tree and extract/git clone it anew? [y/n]\n"
+    read cleanyn
+  else
+    export cleanyn='y'
+  fi
 
-    if [[ -d $SRC_DEST/atom-$pkgver ]]; then
-      rm -rf $SRC_DEST/atom-$pkgver
-    fi
+  if [[ $cleanyn == "y" ]]; then
+    # Test to see what SRC_METHOD is defined as
+    if [[ $SRC_METHOD == "?" ]]; then
 
-    if ! [[ -f /tmp/atom-v$pkgver.tar.gz ]]; then
-      wget -cO- https://github.com/atom/atom/archive/v$pkgver.tar.gz > /tmp/atom-v$pkgver.tar.gz
-    fi
-    tar -xzf /tmp/atom-v$pkgver.tar.gz --transform="s/atom-$pkgver/atom/" -C $SRC_DEST
+      printf "curl and wget are the fastest methods and they chew up less bandwidth.\n
+      While git uses up more bandwidth but it also makes upgrading the package faster."
 
-    cd $SRC_DEST/atom
+    elif [[ $SRC_METHOD == "wget" ]]; then
 
-  elif [[ $SRC_METHOD == "git" ]]; then
+      if [[ -d $SRC_DEST/atom-$pkgver ]]; then
+        rm -rf $SRC_DEST/atom-$pkgver
+      elif [[ -d $SRC_DEST/atom ]]; then
+        rm -rf $SRC_DEST/atom
+      fi
 
-    if ! [[ -d $SRC_DEST/atom ]]; then
+      if ! [[ -f /tmp/atom-v$pkgver.tar.gz ]]; then
+        wget -cO- https://github.com/atom/atom/archive/v$pkgver.tar.gz > /tmp/atom-v$pkgver.tar.gz
+      fi
+      tar -xzf /tmp/atom-v$pkgver.tar.gz --transform="s/atom-$pkgver/atom/" -C $SRC_DEST
+
+    elif [[ $SRC_METHOD == "git" ]]; then
+
+      printf "Cloning the Atom Git repository. This may take some time, as it is over 250 MB in size.==>\n"
       git clone https://github.com/atom/atom $SRC_DEST/atom
+
+      git -C $SRC_DEST/atom fetch -p
+      git -C $SRC_DEST/atom checkout $(git describe --tags `git rev-list --tags --max-count=1`)
+
+    else
+
+      if [[ -d $SRC_DEST/atom-$pkgver ]]; then
+        rm -rf $SRC_DEST/atom-$pkgver
+      elif [[ -d $SRC_DEST/atom ]]; then
+        rm -rf $SRC_DEST/atom
+      fi
+
+      if ! [[ -f /tmp/atom-v$pkgver.tar.gz ]]; then
+        curl -L https://github.com/atom/atom/archive/v$pkgver.tar.gz > /tmp/atom-v$pkgver.tar.gz
+      fi
+      tar -xzf /tmp/atom-v$pkgver.tar.gz --transform="s/atom-$pkgver/atom/" -C $SRC_DEST
+
     fi
-
-    cd $SRC_DEST/atom
-    git fetch -p
-    git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
-
-  else
-
-    if [[ -d $SRC_DEST/atom-$pkgver ]]; then
-      rm -rf $SRC_DEST/atom-$pkgver
-    fi
-
-    if ! [[ -f /tmp/atom-v$pkgver.tar.gz ]]; then
-      curl -L https://github.com/atom/atom/archive/v$pkgver.tar.gz > /tmp/atom-v$pkgver.tar.gz
-    fi
-    tar -xzf /tmp/atom-v$pkgver.tar.gz --transform="s/atom-$pkgver/atom/" -C $SRC_DEST
-
-    cd $SRC_DEST/atom
-
   fi
+
+  cd $SRC_DEST/atom
 
 }
 

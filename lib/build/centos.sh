@@ -2,19 +2,24 @@
 
 function centos_build {
 
+  printf "Running centos_build in ./lib/build/centos.sh. ==>\n"
   # Get dependencies
   sudo yum install -y python gcc gcc-c++ make \
     glibc-devel git-core libgnome-keyring-devel rpmdevtools
 
   ## Node.js
-  curl -L "https://projects.archlinux.org/svntogit/community.git/plain/trunk/PKGBUILD?h=packages/nodejs" > /tmp/PKGBUILD
-  nodelver=$(sed -n 's/pkgver=//p' /tmp/PKGBUILD)
-  nodever=$(node --version | sed 's/v//g')
-  if ! [[ $nodever == $nodelver ]]; then
+  if ! `comex npm`; then
     if curl -sL https://rpm.nodesource.com/setup_6.x | sudo -E bash -; then
-      sudo yum install -y nodejs-devel
+      sudo yum install -y nodejs-devel npm
     else
       node_build
+    fi
+  elif [[ $(npm --version) < "1.4.28" ]]; then
+      if curl -sL https://rpm.nodesource.com/setup_6.x | sudo -E bash -; then
+        sudo yum install -y nodejs-devel npm
+      else
+        node_build
+      fi
     fi
   fi
 

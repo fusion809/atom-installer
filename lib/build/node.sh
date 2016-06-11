@@ -1,6 +1,8 @@
 #!/bin/bash
 function node_build {
 
+  printf "Running node_build in ./lib/build/node.sh. ==>\n"
+
   # Architecture
   export ARCH=$(uname -m)
 

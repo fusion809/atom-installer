@@ -10,6 +10,8 @@ source "./lib/version.sh"
 source "./lib/test.sh"
 
 function atom_build {
+
+  printf "Running atom_build in ./lib/build/atom.sh. ==>\n"
   export GHUB=$HOME/GitHub
 
   if ! `comex node-gyp`; then

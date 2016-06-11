@@ -17,6 +17,8 @@ export -f atomin
 # Install Atom
 function atomaur {
 
+  printf "Running atomaur in ./lib/build/aur.sh. ==>\n"
+
   # Export env variables
   export AUR=https://aur.archlinux.org/cgit/aur.git/snapshot/
   export GIT=https://aur.archlinux.org/

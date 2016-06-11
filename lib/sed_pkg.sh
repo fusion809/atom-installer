@@ -18,8 +18,6 @@ function sed_pkg {
   export _language_unix_shell_ver=$(pkg_det fusion809/language-shellscript)
   export _terminal_fusion_ver=$(pkg_det fusion809/terminal-fusion)
 
-  cd $SRC_DEST/atom
-
   sed -i -e "/-ui/d" \
          -e "/-syntax/d" \
          -e "/-theme/d" \

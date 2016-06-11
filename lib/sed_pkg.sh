@@ -16,11 +16,20 @@ function sed_pkg {
   export _language_liquid_ver=$(pkg_det puranjayjain/language-liquid)
   export _language_patch2_ver=$(pkg_det fusion809/language-patch2)
   export _language_unix_shell_ver=$(pkg_det fusion809/language-shellscript)
+  export _terminal_fusion_ver=$(pkg_det fusion809/terminal-fusion)
 
   cd $SRC_DEST/atom
 
-  patch -Np1 -i $INDIR/resources/packages.patch
-  patch -Np1 -i $INDIR/resources/electron.patch
+  sed -i -e "/-ui/d" \
+         -e "/-syntax/d" \
+         -e "/-theme/d" \
+         -e "/metrics/d" \
+         -e "/exception-reporting/d" \
+         -e "s/\"about\": \".*\",/\"about-arch\": \"${_about_arch_ver}\"," \
+         -e "/language-gfm/d" \
+         -e "/language-shellscript/d" \
+         -e "/\"language-yaml\": \".*\",/a \
+              \"dark-bint-syntax\": \"${_dark_bint_syntax_ver}\",\n    \"fusion-ui\": \"${_fusion_ui_ver}\",\n    \"language-archlinux\": \"${_language_archlinux_ver}\",\n    \"language-gfm2\": \"${_language_gfm2_ver}\",\n    \"language-ini-desktop\": \"${_language_ini_desktop_ver}\",\n    \"language-liquid\": \"${_language_liquid_ver}\",\n    \"language-patch2\": \"${_language_patch2_ver},\n    \"language-unix-shell\": \"${_language_unix_shell_ver}\",\n    \"terminal-fusion\": \"${_terminal_fusion_ver}\"," package.json
 }
 
 export -f sed_pkg

@@ -11,6 +11,10 @@ function ubuntu_build {
   if [[ $npmver < "1.4.28" ]]; then
     sudo npm install -g --loglevel error npm@1.4.28
   fi
+
+  if ! [[ -f /usr/bin/node ]]; then
+    sudo ln -s /usr/bin/nodejs /usr/bin/node
+  fi
   # Build
   atom_build
 }

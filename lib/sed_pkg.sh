@@ -9,6 +9,7 @@ function sed_pkg {
   export _about_arch_ver=$(pkg_det fusion809/about)
   export _dark_bint_syntax_ver=$(pkg_det Murriouz/dark-bint-syntax)
   export _electron_ver="0.36.12"
+  export _file_icons_ver=$(pkg_det DanBrooker/file-icons)
   export _fusion_ui_ver=$(pkg_det fusion809/fusion-ui)
   export _language_archlinux_ver=$(pkg_det fusion809/language-archlinux)
   export _language_gfm2_ver=$(pkg_det fusion809/language-gfm2)
@@ -27,9 +28,9 @@ function sed_pkg {
          -e "s/\"about\": \".*\",/\"about-arch\": \"${_about_arch_ver}\",/g" \
          -e "/language-gfm/d" \
          -e "/language-shellscript/d" \
-         -e "s/0.36.8/0.36.12/g" \
+         -e "s/0.36.8/${_electron_ver}/g" \
          -e "/\"language-yaml\": \".*\"/i \
-              \"dark-bint-syntax\": \"${_dark_bint_syntax_ver}\",\n    \"fusion-ui\": \"${_fusion_ui_ver}\",\n    \"language-archlinux\": \"${_language_archlinux_ver}\",\n    \"language-gfm2\": \"${_language_gfm2_ver}\",\n    \"language-ini-desktop\": \"${_language_ini_desktop_ver}\",\n    \"language-liquid\": \"${_language_liquid_ver}\",\n    \"language-patch2\": \"${_language_patch2_ver}\",\n    \"language-unix-shell\": \"${_language_unix_shell_ver}\",\n    \"terminal-fusion\": \"${_terminal_fusion_ver}\"," \
+              \"dark-bint-syntax\": \"${_dark_bint_syntax_ver}\",\n    \"file-icons\": \"${_file_icons_ver},\n    \"fusion-ui\": \"${_fusion_ui_ver}\",\n    \"language-archlinux\": \"${_language_archlinux_ver}\",\n    \"language-gfm2\": \"${_language_gfm2_ver}\",\n    \"language-ini-desktop\": \"${_language_ini_desktop_ver}\",\n    \"language-liquid\": \"${_language_liquid_ver}\",\n    \"language-patch2\": \"${_language_patch2_ver}\",\n    \"language-unix-shell\": \"${_language_unix_shell_ver}\",\n    \"terminal-fusion\": \"${_terminal_fusion_ver}\"," \
          -e "/\"dependencies\": {/a \
               \"language-patch2\": \"${_language_patch2_url}\",\n    \"about-arch\": \"$SRC_DEST/atom/node_modules/about-arch\"," $SRC_DEST/atom/package.json
 }

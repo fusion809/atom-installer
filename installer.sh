@@ -60,6 +60,7 @@ DISTROS=(
 'Arch'                                      #  Arch Linux
 'CentOS'                                    #  CentOS
 'Debian'                                    #  Debian
+'Deepin'                                    #  Deepin
 'Fedora'                                    #  Fedora
 'Gentoo'                                    #  Gentoo Linux
 'Mageia'                                    #  Mageia
@@ -79,6 +80,8 @@ do                                          # we're on
       ./$ARCH/arch.sh
     elif [[ $i == "zorin-os" ]]; then
       ./$ARCH/ubuntu.sh
+    elif [[ $i == "deepin" ]]; then
+      ./$ARCH/debian.sh
     else
       ./$ARCH/${i}.sh
     fi

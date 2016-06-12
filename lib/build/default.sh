@@ -8,10 +8,6 @@ function default {
 
   version
 
-  if [[ -d $SRC_DEST/atom ]]; then
-    rm -rf $SRC_DEST/atom
-  fi
-
   get_atom_src curl
 
   src_prepare

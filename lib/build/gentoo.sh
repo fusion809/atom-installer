@@ -2,7 +2,7 @@
 
 function gentoo_build {
   printf "Running gentoo_build in ./lib/build/gentoo.sh. ==>\n"
-  
+
   printf "Would you like to install Atom using Portage (option A) or would you prefer to use a more reliable method (option B)? [A/B/?; B is the default]\n"
   read portmethod
 

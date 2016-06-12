@@ -17,9 +17,10 @@ function sed_pkg {
   export _language_gfm2_ver=$(pkg_det fusion809/language-gfm2)
   export _language_ini_desktop_ver=$(pkg_det fusion809/language-ini-desktop)
   export _language_liquid_ver=$(pkg_det puranjayjain/language-liquid)
-  export _language_patch2_url="https://github.com/fusion809/language-patch2"
+  export _language_patch2_url="fusion809/language-patch2"
   export _language_patch2_ver=$(pkg_det fusion809/language-patch2)
-  export _language_rpm_spec_ver=$(pkg_det waveclaw/language-rpm-spec)
+  export _language_rpm_spec2_url="waveclaw/language-rpm-spec"
+  export _language_rpm_spec2_ver=$(pkg_det ${_language_rpm_spec2_url})
   export _language_unix_shell_ver=$(pkg_det fusion809/language-shellscript)
   export _terminal_fusion_ver=$(pkg_det fusion809/terminal-fusion)
 

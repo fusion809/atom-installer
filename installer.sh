@@ -37,7 +37,7 @@ if [[ $LD == "Arch Linux" ]] || [[ $LD == "Manjaro"* ]]; then
   source "lib/build/aur.sh"
 elif [[ $LD == "CentOS"* ]]; then
   source "lib/build/centos.sh"
-elif [[ $LD == "Debian"* ]]; then
+elif [[ $LD == "Debian"* ]] || [[ $LD == "Deepin" ]]; then
   source "lib/build/debian.sh"
 elif [[ $LD == "Fedora"* ]]; then
   source "lib/build/fedora.sh"

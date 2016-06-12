@@ -14,6 +14,15 @@ function atom_build {
   printf "Running atom_build in ./lib/build/atom.sh. ==>\n"
   export GHUB=$HOME/GitHub
 
+  if ! [[ -n $INDIR ]]; then
+    export RELDIR=$(dirname "$0" | sed 's|.||g')
+    if [[ -n $RELDIR ]]; then
+      export INDIR="$PWD/$RELDIR"
+    else
+      export INDIR=$PWD
+    fi
+  fi
+
   if ! `comex node-gyp`; then
     sudo npm install -g node-gyp
   fi

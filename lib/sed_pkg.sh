@@ -23,7 +23,7 @@ function sed_pkg {
          -e "/-theme/d" \
          -e "/metrics/d" \
          -e "/exception-reporting/d" \
-         -e "s/\"about\": \".*\",/\"about-arch\": \"${_about_arch_ver}\"," \
+         -e "s/\"about\": \".*\",/\"about-arch\": \"${_about_arch_ver}\",/g" \
          -e "/language-gfm/d" \
          -e "/language-shellscript/d" \
          -e "/\"language-yaml\": \".*\",/a \

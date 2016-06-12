@@ -3,17 +3,17 @@ function atom_install {
   if [[ $DEST_TYPE == "system" ]]; then
     if `comex dpkg`; then
       if [[ $ARCH == "x86_64" ]]; then
-        script/grunt mkdeb && sudo dpkg -i $SRC_DEST/atom/out/atom-${pkgver}-amd64.deb && sudo apt-get -f install
+        script/grunt mkdeb && sudo dpkg -i "$SRC_DEST/atom/out/atom-${pkgver}-amd64.deb" && sudo apt-get -f install
       else
-        script/grunt mkdeb && sudo dpkg -i $SRC_DEST/atom/out/atom-${pkgver}-i386.deb && sudo apt-get -f install
+        script/grunt mkdeb && sudo dpkg -i "$SRC_DEST/atom/out/atom-${pkgver}-i386.deb" && sudo apt-get -f install
       fi
       sudo apt-get -f install
     elif `comex dnf`; then
-      script/grunt mkrpm && sudo dnf install -y $SRC_DEST/atom/out/rpm/atom*.rpm
+      script/grunt mkrpm && sudo dnf install -y "$SRC_DEST/atom/out/rpm/atom*.rpm"
     elif `comex yum`; then
-      script/grunt mkrpm && sudo yum install -y $SRC_DEST/atom/out/rpm/atom*.rpm
+      script/grunt mkrpm && sudo yum install -y "$SRC_DEST/atom/out/rpm/atom*.rpm"
     elif `comex zypper`; then
-      script/grunt mkrpm && sudo zypper in -y $SRC_DEST/atom/out/rpm/*.rpm
+      script/grunt mkrpm && sudo zypper in -y "$SRC_DEST/atom/out/rpm/*.rpm"
     else
       sudo script/grunt install --channel=stable --install-dir $INST_DEST
     fi

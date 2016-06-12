@@ -1,11 +1,13 @@
 #!/bin/bash
 function src_modules {
   # This function just makes the necessary adjustments to node modules being built.
-  export RELDIR=$(dirname "$0" | sed 's|.||g')
-  if [[ -n $RELDIR ]]; then
-    export INDIR="$PWD/$RELDIR"
-  else
-    export INDIR=$PWD
+  if ! [[ -n $INDIR ]]; then
+    export RELDIR=$(dirname "$0" | sed 's|.||g')
+    if [[ -n $RELDIR ]]; then
+      export INDIR="$PWD/$RELDIR"
+    else
+      export INDIR=$PWD
+    fi
   fi
 
   # create the node_modules folder, if need be

@@ -21,6 +21,14 @@ function atom_build {
     else
       export INDIR=$PWD
     fi
+  else
+    unset INDIR
+    export RELDIR=$(dirname "$0" | sed 's|.||g')
+    if [[ -n $RELDIR ]]; then
+      export INDIR="$PWD/$RELDIR"
+    else
+      export INDIR=$PWD
+    fi
   fi
 
   if ! `comex node-gyp`; then

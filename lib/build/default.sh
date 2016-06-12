@@ -3,7 +3,7 @@ source "./lib/src_prepare.sh"
 
 function default {
   printf "Running default in ./lib/build/default.sh. ==>\n"
-  
+
   export SRC_DEST=$GHUB
 
   version
@@ -38,7 +38,12 @@ function default {
     if `comex dpkg`; then
       script/grunt mkdeb
       cd out
-      sudo apt-get install -y atom*.deb
+      ARCH=$(uname -m)
+      if [[ $ARCH == "x86_64" ]]; then
+        sudo dpkg -i atom-${pkgver}-amd64.deb && sudo apt-get -f install
+      else
+        sudo dpkg -i atom-${pkgver}-i386.deb && sudo apt-get -f install
+      fi
       cd -
     elif `comex rpm`; then
       script/grunt mkrpm

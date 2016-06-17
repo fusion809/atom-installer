@@ -23,7 +23,7 @@ function get_atom_src {
   if [[ -f $SRC_DEST/atom/package.json ]]; then
     SRCVER=$(cat $SRC_DEST/atom/package.json | grep 'version' | sed 's/ "version": //g')
   fi
-  
+
   if ([[ -d $SRC_DEST/atom ]] && [[ $SRCVER == "$pkgver" ]]); then
     printf "It seems you already have the source code for this version of Atom at $SRC_DEST/atom.\nWould you like to delete this source tree and extract/git clone it anew? [y/n]\n"
     read cleanyn

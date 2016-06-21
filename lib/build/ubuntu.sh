@@ -4,7 +4,7 @@
 function ubuntu_build {
   printf "Running ubuntu_build in ./lib/build/ubuntu.sh. ==>\n"
   # Get dependencies
-  sudo apt-get install -y build-essential git libgnome-keyring-dev fakeroot nodejs npm
+  sudo apt-get install -y build-essential git libgnome-keyring-dev fakeroot nodejs npm patch
 
   # Upgrade NPM to the minimum needed
   npmver=$(npm --version)

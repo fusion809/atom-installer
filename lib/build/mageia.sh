@@ -6,7 +6,7 @@ function mageia_build {
   printf "Running mageia-build in ./lib/build/mageia.sh. ==>\n"
 
   # Get dependencies
-  sudo urpmi git curl libgnome-keyring-devel make gcc gcc-c++
+  sudo urpmi git curl libgnome-keyring-devel make gcc gcc-c++ patch
   node_build
   atom_build
 }

@@ -6,7 +6,7 @@ function pclinuxos_build {
 
   # Get dependencies
   sudo apt-get install -y gcc gcc-c++ make git \
-    libgnome-keyring-devel fakeroot rpmdevtools
+    libgnome-keyring-devel fakeroot rpmdevtools patch
   node_build
   atom_build
 }

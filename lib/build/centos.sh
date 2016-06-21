@@ -5,7 +5,7 @@ function centos_build {
   printf "Running centos_build in ./lib/build/centos.sh. ==>\n"
   # Get dependencies
   sudo yum install -y python gcc gcc-c++ make \
-    glibc-devel git-core libgnome-keyring-devel rpmdevtools
+    glibc-devel git-core libgnome-keyring-devel patch rpmdevtools
 
   ## Node.js
   if ! `comex npm`; then

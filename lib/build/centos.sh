@@ -15,11 +15,10 @@ function centos_build {
       node_build
     fi
   elif [[ $(npm --version) < "1.4.28" ]]; then
-      if curl -sL https://rpm.nodesource.com/setup_6.x | sudo -E bash -; then
-        sudo yum install -y nodejs-devel npm
-      else
-        node_build
-      fi
+    if curl -sL https://rpm.nodesource.com/setup_6.x | sudo -E bash -; then
+      sudo yum install -y nodejs-devel npm
+    else
+      node_build
     fi
   fi
 

@@ -25,7 +25,7 @@ if `comex atom`; then                       # Check if Atom is already installed
 
     printf " and is the latest version available!\n Do you want to proceed with the installation anyway? [y/n]\n"
     read proc
-    if [[ proc == "y" ]]; then
+    if [[ $proc == "y" ]]; then
       atomarch
     else
       exit

@@ -26,7 +26,7 @@ if comex atom; then                       # Check if Atom is already installed
   if [[ $INSVER == $pkgver ]]; then
     printf " and it is the latest available version ($pkgver)!\n Do you want to proceed with the installation anyway? [y/n]\n"
     read proc
-    if [[ proc == "y" ]]; then
+    if [[ $proc == "y" ]]; then
       fedatom
     else
       exit

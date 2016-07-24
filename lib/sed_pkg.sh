@@ -23,6 +23,7 @@ function sed_pkg {
 #  export _language_rpm_spec_ver=$(pkg_det ${_language_rpm_spec_url})
   export _language_unix_shell_ver=$(pkg_det fusion809/language-shellscript)
   export _terminal_fusion_ver=$(pkg_det fusion809/terminal-fusion)
+  export _language_vala_modern_ver=$(pkg_det fusion809/language-vala-modern)
 
   sed -i -e "/-ui/d" \
          -e "/-syntax/d" \
@@ -34,7 +35,7 @@ function sed_pkg {
          -e "/language-shellscript/d" \
          -e "s/0.36.8/${_electron_ver}/g" \
          -e "/\"language-yaml\": \".*\"/i \
-              \"dark-bint-syntax\": \"${_dark_bint_syntax_ver}\",\n    \"file-icons\": \"${_file_icons_ver}\",\n    \"fusion-ui\": \"${_fusion_ui_ver}\",\n    \"language-archlinux\": \"${_language_archlinux_ver}\",\n    \"language-debian\": \"${_language_debian_ver}\",\n    \"language-gentoo\": \"${_language_gentoo_ver}\",\n    \"language-gfm2\": \"${_language_gfm2_ver}\",\n    \"language-ini-desktop\": \"${_language_ini_desktop_ver}\",\n    \"language-liquid\": \"${_language_liquid_ver}\",\n    \"language-patch2\": \"${_language_patch2_ver}\",\n    \"language-unix-shell\": \"${_language_unix_shell_ver}\",\n    \"terminal-fusion\": \"${_terminal_fusion_ver}\"," \
+              \"dark-bint-syntax\": \"${_dark_bint_syntax_ver}\",\n    \"file-icons\": \"${_file_icons_ver}\",\n    \"fusion-ui\": \"${_fusion_ui_ver}\",\n    \"language-archlinux\": \"${_language_archlinux_ver}\",\n    \"language-debian\": \"${_language_debian_ver}\",\n    \"language-gentoo\": \"${_language_gentoo_ver}\",\n    \"language-gfm2\": \"${_language_gfm2_ver}\",\n    \"language-ini-desktop\": \"${_language_ini_desktop_ver}\",\n    \"language-liquid\": \"${_language_liquid_ver}\",\n    \"language-patch2\": \"${_language_patch2_ver}\",\n    \"language-vala-modern\": \"${_language_vala_modern_ver}\",\n    \"language-unix-shell\": \"${_language_unix_shell_ver}\",\n    \"terminal-fusion\": \"${_terminal_fusion_ver}\"," \
          -e "/\"dependencies\": {/a \
               \"file-icons\": \"DanBrooker/file-icons\",\n    \"language-patch2\": \"${_language_patch2_url}\",\n    \"about-arch\": \"$SRC_DEST/atom/node_modules/about-arch\"," $SRC_DEST/atom/package.json
 }

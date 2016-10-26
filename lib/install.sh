@@ -21,7 +21,7 @@ function atom_install {
       script/build --create-rpm-package && sudo zypper in -y "$SRC_DEST/atom/out/rpm/*.rpm"
     fi
   else
-    script/build --install
+    printf "Local install no longer supported!"
   fi
 }
 

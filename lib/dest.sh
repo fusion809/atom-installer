@@ -7,10 +7,9 @@ function dest {
     SRC_DEST=$GHUB
   fi
 
-  printf "Do you want to install Atom locally or system-wide? [local/system, default: local] "
-  read DEST_TYPE
+  DEST_TYPE="system"
 
-  printf "Where do you want to install Atom? [Leave empty for ~/.local (local) and /usr (system)] "
+  printf "Where do you want to install Atom? [Leave empty for /usr (system)] "
   read INST_DEST
 
   if ! [[ -n $INST_DEST ]]; then

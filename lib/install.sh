@@ -3,29 +3,25 @@ function atom_install {
   if [[ $DEST_TYPE == "system" ]]; then
     if `comex dpkg`; then
       if [[ $ARCH == "x86_64" ]]; then
-        script/grunt mkdeb || die "Running script/grunt mkdeb failed! ==>\n"
+        script/build --create-debian-package || die "Running script/build --create-debian-package failed! ==>\n"
         printf "Going to attempt to install the Atom package built by script/grunt mkdeb at $SRC_DEST/atom/out/atom-${pkgver}-amd64.deb. ==>\n"
         sudo dpkg -i "$SRC_DEST/atom/out/atom-${pkgver}-amd64.deb"
         sudo apt-get -f install
       else
-        script/grunt mkdeb || die "Running script/grunt mkdeb failed! ==>\n"
+        script/build --create-debian-package || die "Running script/build --create-debian-package failed! ==>\n"
         printf "Going to attempt to install the Atom package built by script/grunt mkdeb at $SRC_DEST/atom/out/atom-${pkgver}-i386.deb. ==>\n"
         sudo dpkg -i "$SRC_DEST/atom/out/atom-${pkgver}-i386.deb"
         sudo apt-get -f install
       fi
     elif `comex dnf`; then
-      script/grunt mkrpm && sudo dnf install -y "$SRC_DEST/atom/out/rpm/atom*.rpm"
+      script/build --create-rpm-package && sudo dnf install -y "$SRC_DEST/atom/out/rpm/atom*.rpm"
     elif `comex yum`; then
-      script/grunt mkrpm && sudo yum install -y "$SRC_DEST/atom/out/rpm/atom*.rpm"
+      script/build --create-rpm-package && sudo yum install -y "$SRC_DEST/atom/out/rpm/atom*.rpm"
     elif `comex zypper`; then
-      script/grunt mkrpm && sudo zypper in -y "$SRC_DEST/atom/out/rpm/*.rpm"
-    else
-      sudo script/grunt install --channel=stable --install-dir $INST_DEST
+      script/build --create-rpm-package && sudo zypper in -y "$SRC_DEST/atom/out/rpm/*.rpm"
     fi
   else
-    script/grunt install --channel=stable --install-dir $INST_DEST
-    chmod +x "$INST_DEST/share/applications/atom.desktop"
-    printf "The Atom executable is now found at $INST_DEST/bin/atom \n"
+    script/build --install
   fi
 }
 
